@@ -37,6 +37,7 @@ body{
     nav ul{
     display: none;
     width: 100%;
+   
     text-align: center;
     position: absolute;
     }
@@ -45,10 +46,9 @@ body{
        width: 100%;
     }
     .active{
-  display: block;
-  background-color: black;
- 
-}
+      display: block;
+      background-color: black;
+    }
   }
 
 nav img{

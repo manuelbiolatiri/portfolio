@@ -1,8 +1,11 @@
 {
-  "name": "strutured",
+  "name": "flashtoken",
   "version": "1.0.0",
-  "description": "structured node",
+  "description": "sell bitcoin and giftcards",
   "main": "index.js",
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "server": "nodemon server",
     "start": "node server"

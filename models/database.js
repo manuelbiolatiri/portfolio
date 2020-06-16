@@ -10,8 +10,8 @@ const connection = {
     // password: process.env.DB_PASSWORD,
     // host: process.env.DB_HOST,
     connectionString: process.env.DATABASE_URL,
-    port: process.env.DB_PORT,
-    ssl: true
+    // port: process.env.DB_PORT,
+    ssl: true,
 };
 
 // pool

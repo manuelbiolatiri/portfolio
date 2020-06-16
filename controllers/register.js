@@ -126,7 +126,7 @@ console.log(req.body);
                             message: 'user successfully loged in',
                             data: {
                                 token,
-                                authorId: logInQuery.rows[0].authorid
+                                id: logInQuery.rows[0].id
                             }
                         })
                     })

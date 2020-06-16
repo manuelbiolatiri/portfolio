@@ -112,13 +112,22 @@ api_secret: process.env.API_SECRET
 });
 
 const storage = cloudinaryStorage({
-cloudinary: cloudinary,
+cloudinary,
 folder: "demo",
 allowedFormats: ["jpg", "png"],
 transformation: [{ width: 500, height: 500, crop: "limit" }]
 });
 
-const parser = multer({ storage: storage });
+const imageFilter = (req, file, cb) => {
+  // accept image files only
+  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+    return cb(new Error("Only image files are allowed!").toString(), false);
+  }
+
+  return cb(null, true);
+};
+
+const parser = multer({ storage, fileFilter: imageFilter });
 
 
 app.post('/api/images', parser.single("image"), async (req, res) => {

@@ -4,7 +4,7 @@
   "description": "sell bitcoin and giftcards",
   "main": "index.js",
   "engines": {
-    "node": "12.16.0"
+    "node": "12x"
   },
   "scripts": {
     "server": "nodemon server",

@@ -8,7 +8,7 @@
     "npm": "6.13.7"
   },
   "scripts": {
-    "start": "PROD= true node server.js",
+    "start": "PROD=true node server.js",
     "server": "nodemon server"
   },
   "devDependencies": {

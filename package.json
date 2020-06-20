@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "PROD= true node server.js",
-    "heroku-postbuild": "cd ./client && npm start",
+    "heroku-postbuild": "cd ./client && npm install",
     "server": "nodemon server"
   },
   "devDependencies": {

@@ -49,6 +49,13 @@ app.use((req, res, next) => {
     next();
 })
 
+if(process.env.NODE_ENV === 'production'){
+    //set static folder
+    app.use(express.static('flashtoken-frontend/build'));
+}
+app.get('*',(req, res) => {
+    res.sendFile(path.resolve(__dirname, 'flashtoken-frontend', 'build', 'index.html'));
+});
 
 // app router
 app.use('/api/v1/', userRouter);

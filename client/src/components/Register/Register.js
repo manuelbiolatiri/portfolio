@@ -54,6 +54,7 @@ class Register extends React.Component {
                   type="email"
                   name="email-address"
                   id="email-address"
+                  placeholder="Enter your username"
                   onChange={this.onEmailChange}
                 />
               </div>

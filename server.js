@@ -53,11 +53,6 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-if(process.env.PROD){
-    //set static folder
-    app.use(express.static(path.join(__dirname, './client/build')));
-    app.use(express.static('client/public'));
-}
 
 // app router
 app.use('/api/v1/', userRouter);

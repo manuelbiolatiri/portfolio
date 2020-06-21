@@ -52,7 +52,8 @@ app.use((req, res, next) => {
 if(process.env.PROD){
     //set static folder
     app.use(express.static(path.join(__dirname, './client/build')));
-
+    app.use(favicon(__dirname + '/public/favicon.ico'));
+    app.use(express.static('public'));
     app.get('*',(req, res) => {
         res.sendFile(path.join(__dirname, './client/build/index.html'));
     });

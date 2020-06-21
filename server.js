@@ -209,7 +209,7 @@ app.use('*', (req, res) => {
 });
 
 
-app.set(port,() => {
+app.listen(port,() => {
     console.log(`app is running on ${port}`)
 });
 

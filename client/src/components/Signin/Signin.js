@@ -18,6 +18,7 @@ class Signin extends React.Component {
   }
 
   onSubmitSignIn = () => {
+    try {
     fetch('/signin', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
@@ -36,6 +37,10 @@ class Signin extends React.Component {
         }
         
       })
+    }
+    catch (e) {
+      console.log(e);
+  };
   }
 
   render() {

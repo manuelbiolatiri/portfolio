@@ -39,7 +39,7 @@ app.use(session({
 //   req.flash('errror', 'Registration failed');
 // res.locals.message = req.flash();
 
-const port = process.env.PORT || 3006;
+
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -213,9 +213,9 @@ app.use('*', (req, res) => {
 });
 
 
-app.listen(port,() => {
-    console.log(`app is running on ${port}`)
-});
+// app.listen(port,() => {
+//     console.log(`app is running on ${port}`)
+// });
 
 // export app for test
 module.exports = app;

@@ -10,9 +10,9 @@ class Register extends React.Component {
     }
   }
 
-  onNameChange = (event) => {
-    this.setState({name: event.target.value})
-  }
+  // onNameChange = (event) => {
+  //   this.setState({name: event.target.value})
+  // }
 
   onEmailChange = (event) => {
     this.setState({email: event.target.value})
@@ -23,7 +23,7 @@ class Register extends React.Component {
   }
 
   onSubmitSignIn = () => {
-    fetch('http://localhost:3006/register', {
+    fetch('/api/v1/auth/create-user', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -48,7 +48,7 @@ class Register extends React.Component {
           <div className="measure">
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
               <legend className="f1 fw6 ph0 mh0">Register</legend>
-              <div className="mt3">
+              {/* <div className="mt3">
                 <label className="db fw6 lh-copy f6" htmlFor="name">Name</label>
                 <input
                   className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
@@ -57,7 +57,7 @@ class Register extends React.Component {
                   id="name"
                   onChange={this.onNameChange}
                 />
-              </div>
+              </div> */}
               <div className="mt3">
                 <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
                 <input

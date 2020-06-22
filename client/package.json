@@ -2,6 +2,7 @@
   "name": "flashtoken",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3006",
   "dependencies": {
     "axios": "^0.19.2",
     "bootstrap": "^4.1.3",

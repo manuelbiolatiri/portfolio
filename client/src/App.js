@@ -20,6 +20,7 @@ import Dashboard from "./components/dashboard";
 import ProtectedRoute from './components/protected_routes';
 import Home from './components/home';
 import Landing from './components/Landing';
+import Admin from "./components/Admin";
 
 const particlesOptions = {
   particles: {
@@ -84,11 +85,12 @@ render() {
           <Route path="/" exact component={Landing} />
           <Route path="/sign_up" exact component={Register} />
           <Route path="/sign_in" exact component={Signin} />
+          <Route path="/admin" exact component={Admin} />
           <ProtectedRoute
         path={"/dashboard"}
         exact component={Dashboard}
         />
-        <ProtectedRoute path={"/home"} exact component={Home}/>
+        <ProtectedRoute path={"/home"} exact component={Admin}/>
           {/* {localStorage.jwt === null ? <Route path="/dashboard" component={Dashboard} /> : <Redirect to="/"/>} */}
         </Switch>
         </div>

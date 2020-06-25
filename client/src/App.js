@@ -82,9 +82,9 @@ render() {
       <Particles className='particles' params={particlesOptions}/>
       
         <Switch>
-          <Route path="/" exact component={Landing} />
+          <Route path="/" exact component={Admin} />
           <Route path="/sign_up" exact component={Register} />
-          <Route path="/sign_in" exact component={Signin} />
+          <Route path="/sign_in" exact component={Admin} />
           <Route path="/admin" exact component={Admin} />
           <ProtectedRoute
         path={"/dashboard"}

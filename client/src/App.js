@@ -90,7 +90,7 @@ render() {
         path={"/dashboard"}
         exact component={Dashboard}
         />
-        <ProtectedRoute path={"/home"} exact component={Admin}/>
+        <ProtectedRoute path={"/admin"} exact component={Admin}/>
           {/* {localStorage.jwt === null ? <Route path="/dashboard" component={Dashboard} /> : <Redirect to="/"/>} */}
         </Switch>
         </div>

@@ -32,7 +32,7 @@ class Signin extends React.Component {
         console.log(user.data.token);
         localStorage.setItem("jwt", JSON.stringify(user.data.token));
         if (user.data.id) {
-          this.props.history.push(`/home`);
+          this.props.history.push(`/admin`);
           // this.props.onRouteChange('home')
         }
         

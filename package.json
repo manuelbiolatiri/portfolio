@@ -2,7 +2,7 @@
   "name": "flashtoken",
   "version": "1.0.0",
   "description": "sell bitcoin and giftcards",
-  "main": "index.js",
+  "main": "server.js",
   "engines": {
     "node": "12.16.0",
     "npm": "6.13.7"

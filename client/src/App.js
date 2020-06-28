@@ -18,9 +18,9 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 
 import Dashboard from "./components/dashboard";
 import ProtectedRoute from './components/protected_routes';
-import Home from './components/home';
-import Landing from './components/Landing';
-import Admin from "./components/Admin";
+// import Home from './components/home';
+// import Landing from './components/Landing';
+import Admin from './components/Admin';
 
 const particlesOptions = {
   particles: {

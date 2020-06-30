@@ -20,7 +20,7 @@ import Dashboard from "./components/dashboard";
 import ProtectedRoute from './components/protected_routes';
 import Home from './components/home';
 import Landing from './components/Landing';
-import Admin from './components/Admin';
+import Admin from './components/Admin/Admin';
 
 const particlesOptions = {
   particles: {

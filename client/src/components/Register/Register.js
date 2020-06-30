@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Link} from 'react-router-dom';
 class Register extends React.Component {
   constructor(props) {
     super(props);
@@ -32,11 +32,14 @@ class Register extends React.Component {
       })
     })
       .then(response => response.json())
-      .then(user => {
-        if (user.id) {
-          this.props.loadUser(user)
-          this.props.onRouteChange('home');
+      .then((user) => {
+        console.log(user.data.token);
+        localStorage.setItem("jwt", JSON.stringify(user.data.token));
+        if (user.data.id) {
+          this.props.history.push(`/sign_in`);
+          // this.props.onRouteChange('home')
         }
+        
       })
   }
 
@@ -76,6 +79,9 @@ class Register extends React.Component {
                 type="submit"
                 value="Register"
               />
+              <Link to="/sign_in">
+          <p className="f6 link dim black db pointer">Have an account? Login!</p>
+          </Link>
             </div>
           </div>
         </main>

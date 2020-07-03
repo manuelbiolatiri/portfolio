@@ -3,12 +3,12 @@ const registerMiddleware = {
         const { email, password, gender, department, address } = req.body;
 
         // check if email value has @(mail service).com
-        if (!(/[\w]+@[a-zA-Z]+\.[a-zA-Z]{2}/.test(email))) {
-            return res.status(400).json({
-                status: 'error',
-                error: 'invalid email format'
-            })
-        }
+        // if (!(/[\w]+@[a-zA-Z]+\.[a-zA-Z]{2}/.test(email))) {
+        //     return res.status(400).json({
+        //         status: 'error',
+        //         error: 'invalid email format'
+        //     })
+        // }
 
 
         if (password.length < 6) {

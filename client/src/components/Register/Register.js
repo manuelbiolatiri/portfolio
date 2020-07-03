@@ -4,9 +4,8 @@ class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
-      name: ''
+      username: '',
+      password: ''
     }
   }
 
@@ -15,7 +14,7 @@ class Register extends React.Component {
   // }
 
   onEmailChange = (event) => {
-    this.setState({email: event.target.value})
+    this.setState({username: event.target.value})
   }
 
   onPasswordChange = (event) => {
@@ -27,20 +26,20 @@ class Register extends React.Component {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        email: this.state.email,
+        email: this.state.username,
         password: this.state.password
       })
     })
       .then(response => response.json())
-      // .then((user) => {
-      //   console.log(user.data.token);
-      //   localStorage.setItem("jwt", JSON.stringify(user.data.token));
-      //   if (user.data.id) {
-      //     this.props.history.push(`/sign_in`);
-      //     // this.props.onRouteChange('home')
-      //   }
+      .then((user) => {
+        console.log(user.data.token);
+        localStorage.setItem("jwt", JSON.stringify(user.data.token));
+        if (user.data.id) {
+          this.props.history.push(`/sign_in`);
+          // this.props.onRouteChange('home')
+        }
         
-      // })
+      })
   }
 
   render() {
@@ -51,12 +50,12 @@ class Register extends React.Component {
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
               <legend className="f1 fw6 ph0 mh0">Register</legend>
               <div className="mt3">
-                <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
+                <label className="db fw6 lh-copy f6" htmlFor="username">Username</label>
                 <input
                   className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                   type="text"
-                  name="email-address"
-                  id="email-address"
+                  name="username"
+                  id="username"
                   placeholder="Enter a username"
                   onChange={this.onEmailChange}
                 />

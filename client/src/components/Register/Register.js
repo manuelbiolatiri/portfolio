@@ -32,15 +32,15 @@ class Register extends React.Component {
       })
     })
       .then(response => response.json())
-      .then((user) => {
-        console.log(user.data.token);
-        localStorage.setItem("jwt", JSON.stringify(user.data.token));
-        if (user.data.id) {
-          this.props.history.push(`/sign_in`);
-          // this.props.onRouteChange('home')
-        }
+      // .then((user) => {
+      //   console.log(user.data.token);
+      //   localStorage.setItem("jwt", JSON.stringify(user.data.token));
+      //   if (user.data.id) {
+      //     this.props.history.push(`/sign_in`);
+      //     // this.props.onRouteChange('home')
+      //   }
         
-      })
+      // })
   }
 
   render() {

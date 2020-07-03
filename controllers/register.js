@@ -35,22 +35,6 @@ console.log(req.body);
                     error: 'user already exist'
                 });
             }
-            // admin signup
-            // else if (process.env.ADMIN_EMAIL === email && process.env.ADMIN_PASSWORD === password) {
-            //     const AdminSignupQuery = `INSERT INTO employee (firstName, lastName, email, password, gender, jobRole, department, address)
-            //     VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`;
-            //     const values = [firstName, lastName, email, hashedPassword, gender, jobRole, department, address];
-            //     const adminResult = await pool.query(AdminSignupQuery, values);
-
-            //     // generate admin token
-            //     jwt.sign({ email, password }, process.env.SECRET_KEY, { expiresIn: '24h' }, (err, token) => {
-            //         res.status(201).json({
-            //             message: 'admin account successfully created',
-            //             token,
-            //             adminId: adminResult.rows[0].authorid
-            //         });
-            //     });
-            // }
             else {
                 // employee sign up
                 const signUpQuery = `INSERT INTO employee (username, password)

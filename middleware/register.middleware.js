@@ -1,6 +1,6 @@
 const registerMiddleware = {
     checkSignUp(req, res, next) {
-        const { username, password, gender, department, address } = req.body;
+        const { username, password } = req.body;
 
         // check if email value has @(mail service).com
         // if (!(/[\w]+@[a-zA-Z]+\.[a-zA-Z]{2}/.test(email))) {
@@ -9,19 +9,19 @@ const registerMiddleware = {
         //         error: 'invalid email format'
         //     })
         // }
-
-
-        if (password.length < 6) {
+        if (username.length < 6) {
             return res.status(400).json({
                 status: 'error',
                 error: 'password length should be more than six characters'
             })
         }
 
-        if (gender.length < 3) {
+
+
+        if (password.length < 6) {
             return res.status(400).json({
                 status: 'error',
-                error: 'gender input length should be more than three characters'
+                error: 'password length should be more than six characters'
             })
         }
 

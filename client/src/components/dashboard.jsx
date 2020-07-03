@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import jwtDecode from "jwt-decode";
 import {Link} from 'react-router-dom';
+import Admin from './Admin/Admin';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -47,6 +48,7 @@ class Dashboard extends Component {
         </nav>
         <h1>HELLO! {this.state.username}</h1>
         <button onClick={this.handleClick}>Sign out</button>
+        <Admin/>
       </div>
     );
   }

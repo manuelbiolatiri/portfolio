@@ -54,10 +54,10 @@ class Register extends React.Component {
                 <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
                 <input
                   className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
-                  type="email"
+                  type="text"
                   name="email-address"
                   id="email-address"
-                  placeholder="Enter your username"
+                  placeholder="Enter a username"
                   onChange={this.onEmailChange}
                 />
               </div>

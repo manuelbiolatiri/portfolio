@@ -3,16 +3,19 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-// connect to database
+// connect to heroku database
 const connection = {
-    // database: process.env.DB_DATABASE,
-    // user: process.env.DB_USER,
-    // password: process.env.DB_PASSWORD,
-    // host: process.env.DB_HOST,
     connectionString: process.env.DATABASE_URL,
-    // port: process.env.DB_PORT,
     ssl: true
 };
+// connect to dev database
+// const connection = {
+//     database: process.env.DB_DATABASE,
+//     user: process.env.DB_USER,
+//     password: process.env.DB_PASSWORD,
+//     host: process.env.DB_HOST,
+//     port: process.env.DB_PORT
+// };
 
 // pool
 const pool = new pg.Pool(connection);

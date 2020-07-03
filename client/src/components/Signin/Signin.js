@@ -58,6 +58,7 @@ class Signin extends React.Component {
                   type="text"
                   name="username"
                   id="email-address"
+                  placeholder="Enter your username"
                   onChange={this.onEmailChange}
                 />
               </div>

@@ -22,6 +22,7 @@ class Register extends React.Component {
   }
 
   onSubmitSignIn = () => {
+    try {
     fetch('https://flashtoken.herokuapp.com/api/v1/auth/create-user', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
@@ -40,9 +41,14 @@ class Register extends React.Component {
         }
         
       })
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 
   render() {
+    const { onRouteChange } = this.props;
     return (
       <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
         <main className="pa4 black-80">
@@ -78,9 +84,11 @@ class Register extends React.Component {
                 type="submit"
                 value="Register"
               />
+              <div className="lh-copy mt3">
               <Link to="/sign_in">
           <p className="f6 link dim black db pointer">Have an account? Login!</p>
           </Link>
+          </div>
             </div>
           </div>
         </main>

@@ -1,6 +1,6 @@
 const registerMiddleware = {
     checkSignUp(req, res, next) {
-        const { email, password, gender, department, address } = req.body;
+        const { username, password, gender, department, address } = req.body;
 
         // check if email value has @(mail service).com
         // if (!(/[\w]+@[a-zA-Z]+\.[a-zA-Z]{2}/.test(email))) {

@@ -1,0 +1,16 @@
+.button:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+  }
+  
+  .error-msg {
+    color: red;
+    margin: 5px 0;
+    font-weight: light;
+  }
+
+  .success-msg {
+    color: green;
+    margin: 5px 0;
+    font-weight: light;
+  }

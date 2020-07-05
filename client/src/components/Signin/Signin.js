@@ -4,13 +4,13 @@ class Signin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      signInUsername: '',
+      signInEmail: '',
       signInPassword: ''
     }
   }
 
   onEmailChange = (event) => {
-    this.setState({signInUsername: event.target.value})
+    this.setState({signInEmail: event.target.value})
   }
 
   onPasswordChange = (event) => {
@@ -19,20 +19,20 @@ class Signin extends React.Component {
 
   onSubmitSignIn = () => {
     try {
-    fetch('https://flashtoken.herokuapp.com/api/v1/auth/signin', {
+    fetch('http://localhost:3006/api/v1/auth/signin', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        username: this.state.signInUsername,
+        username: this.state.signInEmail,
         password: this.state.signInPassword
       })
     })
       .then(response => response.json())
       .then((user) => {
-        console.log(user.data.token);
+        // console.log(user.data.token);
         localStorage.setItem("jwt", JSON.stringify(user.data.token));
         if (user.data.id) {
-          this.props.history.push(`/admin`);
+          this.props.history.push(`/dashboard`);
           // this.props.onRouteChange('home')
         }
         
@@ -52,13 +52,13 @@ class Signin extends React.Component {
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
               <legend className="f1 fw6 ph0 mh0">Login</legend>
               <div className="mt3">
-                <label className="db fw6 lh-copy f6" htmlFor="email-address">Username</label>
+                <label className="db fw6 lh-copy f6" htmlFor="username">Username</label>
                 <input
                   className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                   type="text"
                   name="username"
-                  id="email-address"
-                  placeholder="Enter your username"
+                  id="username"
+                  placeholder="Email"
                   onChange={this.onEmailChange}
                 />
               </div>
@@ -69,6 +69,7 @@ class Signin extends React.Component {
                   type="password"
                   name="password"
                   id="password"
+                  placeholder="Password"
                   onChange={this.onPasswordChange}
                 />
               </div>

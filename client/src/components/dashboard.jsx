@@ -13,12 +13,13 @@ class Dashboard extends Component {
   }
 
   componentDidMount(){
-    let jwt = window.localStorage.getItem('jwt');
+    let jwt = window.localStorage.getItem("jwt");
     let result = jwtDecode(jwt);
     this.setState({username:result.username})
     console.log(`The result is`, result);
     console.log(`the current dashboard state is`, window.localStorage);
   }
+
 
   handleClick = (event) => {
     event.preventDefault();

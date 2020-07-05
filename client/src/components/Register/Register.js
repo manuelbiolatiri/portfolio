@@ -1,51 +1,168 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {Alert} from 'reactstrap';
+import './Register.css';
+
+function ValidationMessage(props) {
+  if (!props.valid) {
+    return(
+      <div className='error-msg'>{props.message}</div>
+    )
+  }
+  return null;
+}
+
 class Register extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: ''
+  state = {
+    username: '', usernameValid: false,
+    email: '', emailValid: false,
+    password: '', passwordValid: false,
+    passwordConfirm: '', passwordConfirmValid: false,
+    formValid: false,
+    errorMsg: {},
+    errorMessage: '',
+    successMessage: ''
+  }
+
+  validateForm = () => {
+    const {usernameValid, emailValid, passwordValid, passwordConfirmValid} = this.state;
+    this.setState({
+      formValid: usernameValid && emailValid && passwordValid && passwordConfirmValid
+    })
+  }
+
+  updateUsername = (username) => {
+    this.setState({username}, this.validateUsername)
+  }
+
+  validateUsername = () => {
+    const {username} = this.state;
+    let usernameValid = true;
+    let errorMsg = {...this.state.errorMsg}
+
+    if (username.length < 3) {
+      usernameValid = false;
+      errorMsg.username = 'Must be at least 3 characters long'
     }
+
+    this.setState({usernameValid, errorMsg}, this.validateForm)
   }
 
-  // onNameChange = (event) => {
-  //   this.setState({name: event.target.value})
-  // }
-
-  onEmailChange = (event) => {
-    this.setState({username: event.target.value})
+  updateEmail = (email) => {
+    this.setState({email}, this.validateEmail)
   }
 
-  onPasswordChange = (event) => {
-    this.setState({password: event.target.value})
+  validateEmail = () => {
+    const {email} = this.state;
+    let emailValid = true;
+    let errorMsg = {...this.state.errorMsg}
+
+    // checks for format _@_._
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      emailValid = false;
+      errorMsg.email = 'Invalid email format'
+    }
+
+    this.setState({emailValid, errorMsg}, this.validateForm)
+  }
+
+  updatePassword = (password) => {
+    this.setState({password}, this.validatePassword);
+  }
+
+  validatePassword = () => {
+    const {password} = this.state;
+    let passwordValid = true;
+    let errorMsg = {...this.state.errorMsg}
+
+    // must be 6 chars
+    // must contain a number
+    // must contain a special character
+
+    if (password.length < 6) {
+      passwordValid = false;
+      errorMsg.password = 'Password must be at least 6 characters long';
+    } else if (!/\d/.test(password)){
+      passwordValid = false;
+      errorMsg.password = 'Password must contain a digit';
+    } else if (!/[!@#$%^&*]/.test(password)){
+      passwordValid = false;
+      errorMsg.password = 'Password must contain special character: !@#$%^&*';
+    }
+
+    this.setState({passwordValid, errorMsg}, this.validateForm);
+  }
+
+  updatePasswordConfirm = (passwordConfirm) => {
+    this.setState({passwordConfirm}, this.validatePasswordConfirm)
+  }
+
+  validatePasswordConfirm = () => {
+    const {passwordConfirm, password} = this.state;
+    let passwordConfirmValid = true;
+    let errorMsg = {...this.state.errorMsg}
+
+    if (password !== passwordConfirm) {
+      passwordConfirmValid = false;
+      errorMsg.passwordConfirm = 'Passwords do not match'
+    }
+
+    this.setState({passwordConfirmValid, errorMsg}, this.validateForm);
   }
 
   onSubmitSignIn = () => {
     try {
-    fetch('https://flashtoken.herokuapp.com/api/v1/auth/create-user', {
+    fetch('http://localhost:3006/api/v1/auth/create-user', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        email: this.state.username,
+        username: this.state.username,
+        email: this.state.email,
         password: this.state.password
       })
     })
-      .then(response => response.json())
-      .then((user) => {
-        console.log(user.data.token);
-        localStorage.setItem("jwt", JSON.stringify(user.data.token));
-        if (user.data.id) {
-          this.props.history.push(`/sign_in`);
-          // this.props.onRouteChange('home')
+      .then(response => {
+        if(response.status === 400){
+          this.setState({errorMessage: 'user already exist'});
+        } else if (response.status === 200 || 201){
+          this.setState({successMessage: 'user registerd successfully'});
         }
-        
       })
-    }
-    catch (e) {
-      console.log(e);
-    }
+      .catch(function(response) {
+        console.log(response.data.status) // some reason error message
+        console.log(response.status) // some reason error message
+        console.log(response.error) // some reason error message
+        console.log(response.data.error) // some reason error
+        console.log('good')
+     
+    })
+      
+      
+      // .then((user) => {
+      //   console.log(user.data.token);
+      //   localStorage.setItem("jwt", JSON.stringify(user.data.token));
+      //   // if (user.data.id) {
+      //     this.props.history.push(`/sign_in`);
+      //     // this.props.onRouteChange('home')
+      //   // }
+        
+      // })
+    
   }
+  catch (e) {
+    console.log(e.data.status) // some reason error message
+    console.log(e.status) // some reason error message
+    console.log(e.error) // some reason error message
+    console.log(e.data.error) // some reason error
+    
+    console.log(e.response.data.status) // some reason error message
+    console.log(e.response.status) // some reason error message
+    console.log(e.response.error) // some reason error message
+    console.log(e.response.data.error) // some reason error message
+
+    this.setState({errorMessage: e.status});
+  }
+}
 
   render() {
     const { onRouteChange } = this.props;
@@ -55,32 +172,51 @@ class Register extends React.Component {
           <div className="measure">
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
               <legend className="f1 fw6 ph0 mh0">Register</legend>
+              <Alert color="success">
+  <p className="mb-0">
+  { this.state.successMessage &&
+  <h3 className="success-msg"> { this.state.successMessage } </h3> }
+  </p>
+</Alert>
+<Alert color="warning">
+  <p className="mb-0">
+  { this.state.errorMessage &&
+  <h3 className="error-msg"> { this.state.errorMessage } </h3> }
+  </p>
+</Alert>
+              
+  
+  
               <div className="mt3">
                 <label className="db fw6 lh-copy f6" htmlFor="username">Username</label>
-                <input
-                  className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
-                  type="text"
-                  name="username"
-                  id="username"
-                  placeholder="Enter a username"
-                  onChange={this.onEmailChange}
-                />
+                < ValidationMessage valid={this.state.usernameValid} message={this.state.errorMsg.username} />
+              <input type='text' id='username' name='username' className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+              value={this.state.username} onChange={(e) => this.updateUsername(e.target.value)}/>
+              </div>
+              <div className="mt3">
+                <label className="db fw6 lh-copy f6" htmlFor="email">Email</label>
+                < ValidationMessage valid={this.state.emailValid} message={this.state.errorMsg.email} />
+              <input type='email' id='email' name='email' className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+              value={this.state.email} onChange={(e) => this.updateEmail(e.target.value)}/>
               </div>
               <div className="mv3">
                 <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
-                <input
-                  className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
-                  type="password"
-                  name="password"
-                  id="password"
-                  onChange={this.onPasswordChange}
-                />
+                  < ValidationMessage valid={this.state.passwordValid} message={this.state.errorMsg.password} />
+                  <input type='password' id='password' name='password' className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                  value={this.state.password} onChange={(e) => this.updatePassword(e.target.value)}/>
+              </div>
+              <div className="mv3">
+                <label className="db fw6 lh-copy f6" htmlFor="password-confirmation">Confirm Password</label>
+                < ValidationMessage valid={this.state.passwordConfirmValid} message={this.state.errorMsg.passwordConfirm} />
+              <input type='password' id='password-confirmation' name='password-confirmation' className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                value={this.state.passwordConfirm} onChange={(e) => this.updatePasswordConfirm(e.target.value)}/>
               </div>
             </fieldset>
             <div className="">
               <input
                 onClick={this.onSubmitSignIn}
-                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+                className="button b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+                disabled={!this.state.formValid}
                 type="submit"
                 value="Register"
               />

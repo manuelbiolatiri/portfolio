@@ -7,11 +7,11 @@ const bodyParser = require('body-parser');
 const register = {
     async signUP(req, res) {
         // body values
-        const { username, password} = req.body;
+        const { username, email, password} = req.body;
         console.log(req.body);
         try {
             // empty body values
-            if(username === '' || password === '') {
+            if(email === '' || password === '' || username === '') {
                 return res.status(400).json({
                     status: 'error',
                     error: 'all fields are required'
@@ -24,8 +24,8 @@ console.log(req.body);
             const hashedPassword = await bcrypt.hash(password, salt);
 
             // check if user exist (email check)
-            const checkQuery = `SELECT * FROM employee WHERE username=$1`;
-            const value = [username];
+            const checkQuery = `SELECT * FROM traders WHERE username=$1 OR email=$2`;
+            const value = [username, email];
             const check = await pool.query(checkQuery, value);
 
             // check if user exist response
@@ -36,10 +36,10 @@ console.log(req.body);
                 });
             }
             else {
-                // employee sign up
-                const signUpQuery = `INSERT INTO employee (username, password)
-                VALUES($1, $2) RETURNING *`
-                const userValue = [username, hashedPassword];
+                // users sign up
+                const signUpQuery = `INSERT INTO traders (username, email, password, joined)
+                VALUES($1, $2, $3, now()) RETURNING *`
+                const userValue = [username, email, hashedPassword];
                 const signUpQuerys = await pool.query(signUpQuery, userValue);
 
                 // generate user token
@@ -74,7 +74,7 @@ console.log(req.body);
             };
 
             // email check (if user with email exist) 
-            const logIn = `SELECT * FROM employee WHERE username=$1`;
+            const logIn = `SELECT * FROM traders WHERE username=$1`;
             const value = [username];
             const logInQuery = await pool.query(logIn, value);
 

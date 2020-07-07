@@ -21,7 +21,8 @@ class Register extends React.Component {
     formValid: false,
     errorMsg: {},
     errorMessage: '',
-    successMessage: ''
+    successMessage: '',
+    visible: true
   }
 
   validateForm = () => {
@@ -32,7 +33,7 @@ class Register extends React.Component {
   }
 
   updateUsername = (username) => {
-    this.setState({username}, this.validateUsername)
+    this.setState({username: username.split(" ").join("")}, this.validateUsername)
   }
 
   validateUsername = () => {
@@ -49,7 +50,7 @@ class Register extends React.Component {
   }
 
   updateEmail = (email) => {
-    this.setState({email}, this.validateEmail)
+    this.setState({email: email.split(" ").join("")}, this.validateEmail)
   }
 
   validateEmail = () => {
@@ -67,7 +68,7 @@ class Register extends React.Component {
   }
 
   updatePassword = (password) => {
-    this.setState({password}, this.validatePassword);
+    this.setState({password: password.split(" ").join("")}, this.validatePassword);
   }
 
   validatePassword = () => {
@@ -94,7 +95,7 @@ class Register extends React.Component {
   }
 
   updatePasswordConfirm = (passwordConfirm) => {
-    this.setState({passwordConfirm}, this.validatePasswordConfirm)
+    this.setState({passwordConfirm: passwordConfirm.split(" ").join("")}, this.validatePasswordConfirm)
   }
 
   validatePasswordConfirm = () => {
@@ -123,46 +124,31 @@ class Register extends React.Component {
     })
       .then(response => {
         if(response.status === 400){
-          this.setState({errorMessage: 'user already exist'});
-        } else if (response.status === 200 || 201){
-          this.setState({successMessage: 'user registerd successfully'});
+          this.setState({errorMessage: 'User already exist'});
+        } else if (response.status === 201){
+          this.setState({successMessage: 'User registered successfully'});
+          setTimeout(() => {
+            this.props.history.push(`/sign_in`);
+          }, 1500)
+          
         }
       })
-      .catch(function(response) {
-        console.log(response.data.status) // some reason error message
-        console.log(response.status) // some reason error message
-        console.log(response.error) // some reason error message
-        console.log(response.data.error) // some reason error
-        console.log('good')
+
+      .catch(response => {
+        console.log(response)
      
     })
       
-      
-      // .then((user) => {
-      //   console.log(user.data.token);
-      //   localStorage.setItem("jwt", JSON.stringify(user.data.token));
-      //   // if (user.data.id) {
-      //     this.props.history.push(`/sign_in`);
-      //     // this.props.onRouteChange('home')
-      //   // }
-        
-      // })
-    
-  }
-  catch (e) {
-    console.log(e.data.status) // some reason error message
-    console.log(e.status) // some reason error message
-    console.log(e.error) // some reason error message
-    console.log(e.data.error) // some reason error
-    
-    console.log(e.response.data.status) // some reason error message
-    console.log(e.response.status) // some reason error message
-    console.log(e.response.error) // some reason error message
-    console.log(e.response.data.error) // some reason error message
-
-    this.setState({errorMessage: e.status});
+    }
+    catch (e) {
+      console.log(e)
   }
 }
+
+
+ onDismiss = () => {
+   this.setState({visible:false})
+ }
 
   render() {
     const { onRouteChange } = this.props;
@@ -172,18 +158,20 @@ class Register extends React.Component {
           <div className="measure">
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
               <legend className="f1 fw6 ph0 mh0">Register</legend>
-              <Alert color="success">
-  <p className="mb-0">
+              
+  
   { this.state.successMessage &&
-  <h3 className="success-msg"> { this.state.successMessage } </h3> }
-  </p>
-</Alert>
-<Alert color="warning">
-  <p className="mb-0">
+  <Alert color="success" isOpen={this.state.visible} toggle={this.onDismiss}>
+  <p className="success-msg mb-0"> { this.state.successMessage } </p> </Alert>}
+
+
+  
   { this.state.errorMessage &&
-  <h3 className="error-msg"> { this.state.errorMessage } </h3> }
-  </p>
-</Alert>
+  <Alert color="warning" isOpen={this.state.visible} toggle={this.onDismiss}>
+  <p className="error-msg mb-0"> { this.state.errorMessage } </p>
+  </Alert> }
+
+
               
   
   

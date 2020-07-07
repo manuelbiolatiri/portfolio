@@ -48,7 +48,8 @@ class Dashboard extends Component {
           </Link>
         </nav>
         <h1>HELLO! {this.state.username}</h1>
-        <button onClick={this.handleClick}>Sign out</button>
+        <button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+        onClick={this.handleClick}>Sign out</button>
         <Admin/>
       </div>
     );

@@ -1,11 +1,18 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
+import {Alert} from 'reactstrap';
+import './Signin.css';
+import { responsiveFontSizes } from '@material-ui/core';
+
 class Signin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       signInEmail: '',
-      signInPassword: ''
+      signInPassword: '',
+      errorMessage: '',
+      successMessage: '',
+      visible: true
     }
   }
 
@@ -27,20 +34,46 @@ class Signin extends React.Component {
         password: this.state.signInPassword
       })
     })
-      .then(response => response.json())
+    .then(response => response.json())
+      // .then(response => {
+      //     if(response.status === 403){
+      //       setTimeout(() => {
+      //       this.setState({errorMessage: 'Incorrect email or password'});
+      //     }, 1000)
+      //     } else if (response.status === 400){
+      //       setTimeout(() => {
+      //       this.setState({errorMessage: 'Username does not exist, please sign up'});
+      //     }, 1000)
+      //     } else if (response.status === 201){
+      //       setTimeout(() => {
+      //         this.setState({successMessage: 'User loged in successfully'});
+      //       }, 1000)
+       
+      //     }
+      // })
       .then((user) => {
-        // console.log(user.data.token);
+        // console.log(user);
+        // console.log(user);
+        if(user.status === 'error') {
+        this.setState({errorMessage: user.error});
+        } else if(user.status === 'success') {
         localStorage.setItem("jwt", JSON.stringify(user.data.token));
-        if (user.data.id) {
-          this.props.history.push(`/dashboard`);
-          // this.props.onRouteChange('home')
+          this.setState({successMessage: user.message});
+          setTimeout(() => {
+            this.props.history.push(`/dashboard`);
+          }, 2000)
+        //   // this.props.onRouteChange('home')
         }
-        
       })
-    }
+  
+  }
     catch (e) {
       console.log(e);
   };
+  }
+
+  onDismiss = () => {
+    this.setState({visible:false})
   }
 
   render() {
@@ -51,6 +84,16 @@ class Signin extends React.Component {
           <div className="measure">
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
               <legend className="f1 fw6 ph0 mh0">Login</legend>
+              { this.state.successMessage &&
+  <Alert color="success" isOpen={this.state.visible} toggle={this.onDismiss}>
+  <p className="success-msg mb-0"> { this.state.successMessage } </p> </Alert>}
+
+
+  
+  { this.state.errorMessage &&
+  <Alert color="warning" isOpen={this.state.visible} toggle={this.onDismiss}>
+  <p className="error-msg mb-0"> { this.state.errorMessage } </p>
+  </Alert> }
               <div className="mt3">
                 <label className="db fw6 lh-copy f6" htmlFor="username">Username</label>
                 <input

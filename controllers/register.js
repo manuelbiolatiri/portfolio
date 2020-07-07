@@ -79,10 +79,18 @@ console.log(req.body);
             const logInQuery = await pool.query(logIn, value);
 
             // email check response
+            // if (!logInQuery.rows[0]) {
+            //     return res.status(400).json({
+            //         status: 'error',
+            //         error: 'email does not exist, please sign up'
+            //     });
+            // };
+
+            // username check response
             if (!logInQuery.rows[0]) {
                 return res.status(400).json({
                     status: 'error',
-                    error: 'email does not exist, please sign up'
+                    error: 'username does not exist, please sign up'
                 });
             };
 
@@ -107,7 +115,7 @@ console.log(req.body);
                     jwt.sign({ username, password }, process.env.SECRET_KEY, { expiresIn: '24h' }, (err, token) => {
                         res.status(201).json({
                             status: 'success',
-                            message: 'user successfully loged in',
+                            message: 'User successfully logged in',
                             data: {
                                 token,
                                 id: logInQuery.rows[0].id

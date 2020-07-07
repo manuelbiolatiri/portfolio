@@ -26,7 +26,7 @@ class Signin extends React.Component {
 
   onSubmitSignIn = () => {
     try {
-    fetch('http://localhost:3006/api/v1/auth/signin', {
+    fetch('https://flashtoken.herokuapp.com/api/v1/auth/signin', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({

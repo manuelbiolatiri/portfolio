@@ -113,7 +113,7 @@ class Register extends React.Component {
 
   onSubmitSignIn = () => {
     try {
-    fetch('http://localhost:3006/api/v1/auth/create-user', {
+    fetch('https://flashtoken.herokuapp.com/api/v1/auth/create-user', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({

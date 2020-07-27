@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {Alert} from 'reactstrap';
-import './Register.css';
+import '../Register/Register.css';
 
 function ValidationMessage(props) {
   if (!props.valid) {
@@ -12,7 +12,7 @@ function ValidationMessage(props) {
   return null;
 }
 
-class Register extends React.Component {
+class Referrals extends React.Component {
   state = {
     username: '', usernameValid: false,
     email: '', emailValid: false,
@@ -112,8 +112,9 @@ class Register extends React.Component {
   }
 
   onSubmitSignIn = () => {
+    const { match: { params } } = this.props;
     try {
-    fetch('http://localhost:3006/api/v1/auth/create-user', {
+    fetch(`http://localhost:3006/api/v1/referrals/${params.id}`, {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -221,4 +222,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+export default Referrals;

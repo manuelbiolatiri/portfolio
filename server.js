@@ -23,8 +23,11 @@ const commentRouter = require('./routes/comment.route');
 // instantiate express
 const app = express();
 // configure bodyparser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
+// app.use(router);
 // app.use(bodyParser.json({ extended : false }));
-app.use(require("body-parser").json())
+// app.use(require("body-parser").json())
 // configure cors
 app.use(cors());
 app.use(cookieParser('keyboard cat'));
@@ -68,6 +71,12 @@ app.get('/', (req, res) => {
         status: 'success',
         message: 'welcome to the team work api'
     }))
+})
+app.get('/verification', (req, res) => {
+  res.status(200).json(({
+      status: 'success',
+      message: 'welcome to the team work api'
+  }))
 })
 
 // request blockchain.info api in json and save api data in variables

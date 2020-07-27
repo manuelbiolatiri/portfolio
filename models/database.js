@@ -4,18 +4,18 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // connect to heroku database
-const connection = {
-    connectionString: process.env.DATABASE_URL,
-    ssl: true
-};
-// connect to dev database
 // const connection = {
-//     database: process.env.DB_DATABASE,
-//     user: process.env.DB_USER,
-//     password: process.env.DB_PASSWORD,
-//     host: process.env.DB_HOST,
-//     port: process.env.DB_PORT
+//     connectionString: process.env.DATABASE_URL,
+//     ssl: true
 // };
+// connect to dev database
+const connection = {
+    database: process.env.DB_DATABASE,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT
+};
 
 // pool
 const pool = new pg.Pool(connection);
@@ -60,6 +60,24 @@ const createTables = async () => {
     }
 };
 
+
+const referralsTable = async () => {
+    const refTable = `CREATE TABLE IF NOT EXISTS
+      referrals(
+        refid SERIAL PRIMARY KEY NOT NULL UNIQUE,
+        id VARCHAR(50) NOT NULL,
+        refUser VARCHAR(50) NOT NULL,
+        created TIMESTAMP NOT NULL
+      )`;
+  
+       try {
+          await pool.query(refTable);
+          console.log('referrals table created')
+      }
+      catch (e) {
+          console.log(e)
+      }
+  };
 // article table
 // const articleTable = async () => {
 //     const articleTableQuery = `CREATE TABLE IF NOT EXISTS
@@ -162,6 +180,7 @@ const createTables = async () => {
 // userTable();
 usersTable();
 createTables();
+referralsTable();
 // article
 // articleTable();
 // gif

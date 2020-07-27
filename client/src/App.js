@@ -3,6 +3,8 @@ import Particles from 'react-particles-js';
 import Navigation from './components/Navigation/Navigation';
 import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
+import Verify from './components/Verify/Verify';
+import Referrals from './components/Referrals/Referrals';
 // import Logo from './components/Logo/Logo';
 // import Crypto from './components/Crypto/Crypto';
 // import Converts from './components/Converter/Converter';
@@ -85,6 +87,8 @@ render() {
           <Route path="/" exact component={Landing} />
           <Route path="/sign_up" exact component={Register} />
           <Route path="/sign_in" exact component={Signin} />
+          <Route path="/verify" exact component={Verify} />
+          <Route path="/referrals/:id" exact component={Referrals} />
           <ProtectedRoute
         path={"/dashboard"}
         exact component={Dashboard}
@@ -98,6 +102,5 @@ render() {
   }
 
 }
-
 
 export default App;

@@ -89,6 +89,7 @@ render() {
           <Route path="/sign_in" exact component={Signin} />
           <Route path="/verify" exact component={Verify} />
           <Route path="/referrals/:id" exact component={Referrals} />
+          <Route path="/home" exact component={Home} />
           <ProtectedRoute
         path={"/dashboard"}
         exact component={Dashboard}

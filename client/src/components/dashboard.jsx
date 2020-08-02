@@ -8,16 +8,36 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      referrals: ""
     };
   }
 
-  componentDidMount(){
+ async componentDidMount(){
     let jwt = window.localStorage.getItem("jwt");
     let result = jwtDecode(jwt);
     this.setState({username:result.username})
     console.log(`The result is`, result);
     console.log(`the current dashboard state is`, window.localStorage);
+
+    //  getRefs
+   
+      const res = await  fetch(`http://localhost:3006/api/v1/getrefs/${result.id}`)
+      .then(response => response.json())
+      .then(res => {
+         
+          this.setState({referrals: res.data.rows[0].count});
+          console.log(res.data.rows[0].count);
+      
+      })
+      
+
+      .catch(res => {
+        console.log(res)
+    
+    })
+
+    
   }
 
 
@@ -32,7 +52,7 @@ class Dashboard extends Component {
       <div>
       <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
           <Link to="/home">
-          <p  className='f3 link dim black underline pa3 pointer'>Home</p>
+    <p  className='f3 link dim black underline pa3 pointer'>Home</p>
           </Link>
           <Link to="/affiliate">
           <p  className='f3 link dim black underline pa3 pointer'>Affiliate</p>
@@ -48,6 +68,7 @@ class Dashboard extends Component {
           </Link>
         </nav>
         <h1>HELLO! {this.state.username}</h1>
+        <h1>No of Referrals: {this.state.referrals}</h1>
         <button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
         onClick={this.handleClick}>Sign out</button>
         <Admin/>
@@ -55,5 +76,6 @@ class Dashboard extends Component {
     );
   }
 }
+
 
 export default Dashboard;

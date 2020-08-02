@@ -61,7 +61,10 @@ class Body extends React.Component{
         this.getDataFor('btc-usd', 'btcusd');
         this.getDataFor('ltc-usd', 'ltcusd');
         this.getDataFor('eth-usd', 'ethusd');
+        this.startUpdatingData()
     }
+
+
 
     startUpdatingData(){
         setInterval(() => {
@@ -70,10 +73,15 @@ class Body extends React.Component{
             .then(d => {
                 let x_axis = this.clientDateTime();
                 let y_axis = d.ticker.price;
+                this.setState({btcusd: d.ticker.price});
                 // this.chartRef.feedData("&label=" + x_axis + "&value=" + y_axis);
             });
-        }, 2000);
+        }, 10000);
     }
+
+    componentWillUnmount() {
+        clearInterval( this.startUpdatingData());
+      }
 
 
     getDataFor(conversion, prop){

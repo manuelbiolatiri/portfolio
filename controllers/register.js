@@ -39,6 +39,7 @@ const mailOption = {
     <h2>${verify}</h2>`
 }
 
+
             // generate bcrypt salt
             const salt = await bcrypt.genSalt(10);
             // hash password
@@ -74,15 +75,12 @@ const mailOption = {
                             authorId: signUpQuerys.rows[0].authorid
                         }
                     })
-
-                    function mailerGo  (err, result) {
-                        if (err) {
-                            console.log(err)
-                        } else {
-                            transporter.sendMail(mailOption,(error,ress)=>{
+                
+                     const mailerGo =  transporter.sendMail(mailOption,(error,result)=>{
                                 if(error){
                                     console.log(error)
                                 }else{
+                                    console.log(result);
                                         // token response
                                         res.status(201).json({
                                             status: 'success',
@@ -93,14 +91,12 @@ const mailOption = {
                                         })
                                 }
                             })
-                            console.log('Data Successfully insert')
+                            console.log(mailerGo());
                             
-                        }
-                    };
-                    mailerGo();
-                })
-            };
+                    
+                    });
         }
+    }
         catch (e) {
             console.log(e);
         };
@@ -204,6 +200,7 @@ const mailOption = {
     async logIn(req, res) {
         // body values
         const { username, password } = req.body;
+        // const { id } = req.params;
 
         try {
             // empty body values
@@ -251,9 +248,9 @@ const mailOption = {
                 //     });
                 // }
                 // user login
-                // else
+                // else 
                 if (username === logInQuery.rows[0].username && result === true && logInQuery.rows[0].active === 'verified') {
-                    jwt.sign({ username, password }, process.env.SECRET_KEY, { expiresIn: '24h' }, (err, token) => {
+                    jwt.sign({id:logInQuery.rows[0].id , username, password }, process.env.SECRET_KEY, { expiresIn: '24h' }, (err, token) => {
                         res.status(201).json({
                             status: 'success',
                             message: 'User successfully logged in',
@@ -308,7 +305,7 @@ const mailOption = {
                     message: 'Account successfully verified',
                     data: {
                         token,
-                        id: quer.rows[0].id
+                        id: logInQuery.rows[0].id
                     }
                 })
             });
@@ -340,18 +337,24 @@ const mailOption = {
             FROM referrals WHERE id=$1`;
             const value = [id];
             const refQuery = await pool.query(refs, value, (err, data) => {
+                if(err){
+                    console.log(err)
+                }else{
                 res.status(201).json({
                     status: 'success',
                     message: 'referrals gotten',
                     data
                 })
+            }
             });
+            refQuery();
             
         } catch (e) {
             console.log(e)
         };
     },
 
+    
 // });
     // token verification
     verifyToken(req, res, next) {

@@ -19,21 +19,21 @@ const gifRouter = require('./routes/gif.route');
 const getRouter = require('./routes/get.route');
 const commentRouter = require('./routes/comment.route');
 
-
 // instantiate express
 const app = express();
 // configure bodyparser
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded());
 app.use(bodyParser.json())
 // app.use(router);
 // app.use(bodyParser.json({ extended : false }));
 // app.use(require("body-parser").json())
 // configure cors
 app.use(cors());
-app.use(cookieParser('keyboard cat'));
+app.use(cookieParser(''));
 app.use(session({
-  secret: 'keyboard cat',
-  cookie: { maxAge: 60000 }
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: true
 }));
   // app.use(express.cookieParser('keyboard cat'));
   // app.use(express.session({ cookie: { maxAge: 60000 }}));
@@ -146,16 +146,19 @@ const parser = multer({ storage, fileFilter: imageFilter });
 
 app.post('/api/images', parser.single("image"), async (req, res) => {
   console.log(req.file) // to see what is returned to you
-
+  const {title} = req.body
   const data = {
-    image: req.file.secure_url
+    asset_id: req.file.asset_id,
+    image: req.file.secure_url,
+    
   };
 
   console.log(data.image)
+  console.log(req.body)
   
   // inset query to run if the upload to cloudinary is successful
-  const insertQuery = "INSERT INTO images (image_url) VALUES($1) RETURNING *";
-  const values = [data.image];
+  const insertQuery = "INSERT INTO images (title, cloudinary_id, image_url) VALUES($1, $2, $3) RETURNING *";
+  const values = [title, data.asset_id, data.image];
 
   // execute query
   const signUpQuerys = await  pool.query(insertQuery, values)
@@ -170,7 +173,9 @@ app.post('/api/images', parser.single("image"), async (req, res) => {
           return res.status(200).json({
               status: 'success',
               data: {
-                image_url: data.image
+                image_url: data.image,
+                title,
+                asset_id: data.asset_id,
               }
           })
         }

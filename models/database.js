@@ -59,7 +59,19 @@ const createTables = async () => {
         console.log(e)
     }
 };
-
+// CREATE TABLE contracts(
+//         id SERIAL PRIMARY KEY NOT NULL UNIQUE,
+//         transactionId VARCHAR(50) NOT NULL,
+//         ownerId VARCHAR(50) NOT NULL,
+//         userId VARCHAR(50) NOT NULL,
+//         note VARCHAR(50),
+//         image_url VARCHAR(128),
+//         amount_$ VARCHAR(50) NOT NULL,
+//         amount_BTC VARCHAR(50),
+//         type VARCHAR(50) NOT NULL,
+//         status VARCHAR(50) DEFAULT '0',
+//         created TIMESTAMPTZ DEFAULT NOW()
+//       );
 
 const referralsTable = async () => {
     const refTable = `CREATE TABLE IF NOT EXISTS

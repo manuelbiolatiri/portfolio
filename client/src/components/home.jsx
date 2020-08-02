@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import jwtDecode from "jwt-decode";
+// import jwtDecode from "jwt-decode";
 import {Link} from 'react-router-dom';
 import Converts from './Converter/Converter';
 import UploadForm from './UploadForm/UploadForm';
@@ -17,17 +17,17 @@ class Home extends Component {
     };
   }
 
-  componentDidMount(){
-    let jwt = window.localStorage.getItem('jwt');
-    let result = jwtDecode(jwt);
-    this.setState({username:result.username})
-    console.log(`The result is`, result);
-    console.log(`the current dashboard state is`, window.localStorage);
-  }
+  // componentDidMount(){
+  //   let jwt = window.localStorage.getItem('jwt');
+  //   let result = jwtDecode(jwt);
+  //   this.setState({username:result.username})
+  //   console.log(`The result is`, result);
+  //   console.log(`the current dashboard state is`, window.localStorage);
+  // }
 
   handleClick = (event) => {
     event.preventDefault();
-    delete localStorage.jwt
+    // delete localStorage.jwt
     this.props.history.push("/")
   }
 

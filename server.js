@@ -22,7 +22,7 @@ const commentRouter = require('./routes/comment.route');
 // instantiate express
 const app = express();
 // configure bodyparser
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended : false }));
 app.use(bodyParser.json())
 // app.use(router);
 // app.use(bodyParser.json({ extended : false }));

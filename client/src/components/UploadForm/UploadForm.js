@@ -60,7 +60,7 @@ class UploadForm extends React.Component {
                   className={classnames({ active: this.state.activeTab === '1' })}
                   onClick={() => { this.toggle('1'); }}
                 >
-                  Tab1
+                  Bitcoin
                 </NavLink>
               </NavItem>
               <NavItem>
@@ -68,7 +68,7 @@ class UploadForm extends React.Component {
                   className={classnames({ active: this.state.activeTab === '2' })}
                   onClick={() => { this.toggle('2'); }}
                 >
-                  More Tabs
+                  Giftcard
                 </NavLink>
               </NavItem>
             </Nav>

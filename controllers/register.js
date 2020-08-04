@@ -347,7 +347,6 @@ const mailOption = {
                 })
             }
             });
-            refQuery();
             
         } catch (e) {
             console.log(e)

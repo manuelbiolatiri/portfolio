@@ -5,6 +5,7 @@ import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import Verify from './components/Verify/Verify';
 import Referrals from './components/Referrals/Referrals';
+import Profile from './helpers/Profile.js';
 // import Logo from './components/Logo/Logo';
 // import Crypto from './components/Crypto/Crypto';
 // import Converts from './components/Converter/Converter';
@@ -27,10 +28,10 @@ import Admin from './components/Admin/Admin';
 const particlesOptions = {
   particles: {
     number: {
-      value: 30,
+      value: 60,
       density: {
         enable: true,
-        value_area: 800
+        value_area: 1500
       }
     }
   }
@@ -90,6 +91,7 @@ render() {
           <Route path="/verify" exact component={Verify} />
           <Route path="/referrals/:id" exact component={Referrals} />
           <Route path="/home" exact component={Home} />
+          <Route path="/profile" exact component={Profile} />
           <ProtectedRoute
         path={"/dashboard"}
         exact component={Dashboard}

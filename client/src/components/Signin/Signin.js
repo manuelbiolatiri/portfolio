@@ -2,7 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 import {Alert} from 'reactstrap';
 import './Signin.css';
-import { responsiveFontSizes } from '@material-ui/core';
+// import { responsiveFontSizes } from '@material-ui/core';
+import Navigation from '../Navigation/Navigation';
 
 class Signin extends React.Component {
   constructor(props) {
@@ -79,6 +80,8 @@ class Signin extends React.Component {
   render() {
     const { onRouteChange } = this.props;
     return (
+      <div className='container'>
+    <Navigation/>
       <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
         <main className="pa4 black-80">
           <div className="measure">
@@ -134,6 +137,7 @@ class Signin extends React.Component {
           </div>
         </main>
       </article>
+      </div>
     );
   }
 }

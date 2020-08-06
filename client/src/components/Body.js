@@ -11,11 +11,13 @@ import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 ReactFC.fcRoot(FusionCharts, Charts, Widgets, FusionTheme);
 
 class Body extends React.Component{
+    
     constructor(props){
         super(props);
         this.BASE_URL = 'https://api.cryptonator.com/api/ticker/';
         this.chartRef = null;
         this.state = {
+            isMounted: false,
             btcusd: '-',
             ltcusd: '-',
             ethusd: '-',
@@ -58,6 +60,7 @@ class Body extends React.Component{
     }
 
     componentDidMount() {
+        this.setState({isMounted: true});
         this.getDataFor('btc-usd', 'btcusd');
         this.getDataFor('ltc-usd', 'ltcusd');
         this.getDataFor('eth-usd', 'ethusd');
@@ -81,6 +84,7 @@ class Body extends React.Component{
 
     componentWillUnmount() {
         clearInterval( this.startUpdatingData());
+        this.setState({isMounted: false});
       }
 
 

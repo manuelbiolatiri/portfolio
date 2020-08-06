@@ -1,34 +1,83 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
+import Tilt from 'react-tilt'
 import jwtDecode from "jwt-decode";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  Navbar,
+  Button,
+  NavbarToggler,
+  Collapse,
+  Nav,
+  NavItem,
+  NavLink,
+} from "reactstrap";
+import { createHashHistory } from "history";
+
+
+
 
 
 
 const Navigation = (props) => {
+
+  // const History = useHistory();
+  const history = createHashHistory();
+
   const handleClick = (event) => {
     event.preventDefault();
     delete localStorage.jwt
-    this.props.history.push("/")
+    history.go("/");
   }
-      return (
-        
-        <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
-          <Link to="/home">
-          <p  className='f3 link dim black underline pa3 pointer'>Affiliate</p>
-          </Link>
-          <Link to="/buy">
-          <p  className='f3 link dim black underline pa3 pointer'>Buy</p>
-          </Link>
-          <Link to="/blog">
-          <p  className='f3 link dim black underline pa3 pointer'>Blog</p>
-          </Link>
-          <button onClick={this.handleClick}>Sign out</button>
-        </nav>
 
-        // : <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
-        //   <p  className='f3 link dim black underline pa3 pointer'>Sign In</p>
-        //   <p  className='f3 link dim black underline pa3 pointer'>Register</p>
-        // </nav>
+  const [topbarIsOpen, setTopbarOpen] = useState(true);
+  const toggleTopbar = () => setTopbarOpen(!topbarIsOpen);
+ 
+
+      return (
+        <Navbar
+      color="light"
+      light
+      className="navbar shadow-sm p-3 mb-5 rounded bg-transparent"
+      expand="lg"
+    >
+      <Tilt className="Tilt br2 shadow-2" options={{ max : 25 }} style={{ height: 60, width: 60 }} >
+						 	<div className="Tilt-inner"><img src="flashtokenlogo.jpg" alt=""/></div>
+						</Tilt>
+      {/* <Button color="info" src={'/bitcoin.png'}>
+      </Button> */}
+      <NavbarToggler onClick={toggleTopbar} />
+      <Collapse isOpen={topbarIsOpen} navbar>
+        <Nav className="ml-auto" navbar>
+          <NavItem>
+            <NavLink tag={Link} to={"/home"}>
+              Home
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink tag={Link} to={"/profile"}>
+              Profile
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink tag={Link} to={"/sign_up"}>
+              Register
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink tag={Link} to={"/sign_in"}>
+              Sign In
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink tag={Link} to={"/signout"} onClick={handleClick}>
+              Sign Out
+            </NavLink>
+          </NavItem>
+        </Nav>
+      </Collapse>
+    </Navbar>
     
       );
 }

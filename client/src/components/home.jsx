@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import jwtDecode from "jwt-decode";
 import {Link} from 'react-router-dom';
 import Converts from './Converter/Converter';
+import Navigation from './Navigation/Navigation';
 import UploadForm from './UploadForm/UploadForm';
 import NumberFormat from "react-number-format";
 import axios from "axios";
@@ -33,24 +34,8 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
-      <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
-          <Link to="/dashboard">
-          <p  className='f3 link dim black underline pa3 pointer'>My Dashboard</p>
-          </Link>
-          <Link to="/affiliate">
-          <p  className='f3 link dim black underline pa3 pointer'>Affiliate</p>
-          </Link>
-          <Link to="/buy">
-          <p  className='f3 link dim black underline pa3 pointer'>Buy</p>
-          </Link>
-          <Link to="/blog">
-          <p  className='f3 link dim black underline pa3 pointer'>Blog</p>
-          </Link>
-          <Link to="/signout">
-          <p onClick={this.handleClick} className='f3 link dim black underline pa3 pointer'>Signout</p>
-          </Link>
-        </nav>
+      <div className='container'>
+      <Navigation/>
         <Body/>
         <UploadForm/>
       </div>

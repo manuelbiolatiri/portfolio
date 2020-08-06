@@ -54,7 +54,7 @@ class UploadForm extends React.Component {
         return (
 
             <div className='container '>
-            <Nav tabs>
+            <Nav tabs style={{justifyContent:'center'}}>
               <NavItem>
                 <NavLink
                   className={classnames({ active: this.state.activeTab === '1' })}

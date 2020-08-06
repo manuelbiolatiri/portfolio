@@ -11,10 +11,19 @@ import {
   NavLink,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { createHashHistory } from "history";
 
 const Topbar = ({ toggleSidebar }) => {
   const [topbarIsOpen, setTopbarOpen] = useState(true);
   const toggleTopbar = () => setTopbarOpen(!topbarIsOpen);
+
+     const history = createHashHistory();
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    delete localStorage.jwt
+    history.go("/");
+  }
 
   return (
     <Navbar
@@ -30,23 +39,23 @@ const Topbar = ({ toggleSidebar }) => {
       <Collapse isOpen={topbarIsOpen} navbar>
         <Nav className="ml-auto" navbar>
           <NavItem>
-            <NavLink tag={Link} to={"/page-1"}>
-              page 1
+            <NavLink tag={Link} to={"/home"}>
+              Home
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={"/page-2"}>
-              page 2
+            <NavLink tag={Link} to={"/buy"}>
+              Buy Bitcoin
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={"/page-3"}>
-              page 3
+            <NavLink tag={Link} to={"/affiliate"}>
+              Affiliate
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={"/page-4"}>
-              page 4
+            <NavLink tag={Link} to={"/signout"} onClick={handleClick}>
+              Sign Out
             </NavLink>
           </NavItem>
         </Nav>

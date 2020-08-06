@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import Converts from './Converter/Converter';
+import Navigation from './Navigation/Navigation';
 import NumberFormat from "react-number-format";
 import axios from "axios";
 import Body from './Body';
@@ -15,8 +16,9 @@ import  'bootstrap/dist/css/bootstrap.min.css';
 
   render() {
     return (
-      <div>
-      <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
+      <div className='container'>
+        <Navigation/>
+      {/* <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
           <Link to="/about">
           <p  className='f3 link dim black underline pa3 pointer'>About</p>
           </Link>
@@ -32,7 +34,7 @@ import  'bootstrap/dist/css/bootstrap.min.css';
           <Link to="/sign_in">
           <p  className='f3 link dim black underline pa3 pointer'>Log in</p>
           </Link>
-        </nav>
+        </nav> */}
         <Body/>
         <Converts/>
         

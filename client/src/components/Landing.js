@@ -1,18 +1,10 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
 import Converts from './Converter/Converter';
 import Navigation from './Navigation/Navigation';
-import NumberFormat from "react-number-format";
-import axios from "axios";
 import Body from './Body';
-import Faq from './Faq';
-import Footer from './Footer';
 import  'bootstrap/dist/css/bootstrap.min.css';
 
  class Landing extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (

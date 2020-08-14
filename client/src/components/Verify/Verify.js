@@ -1,6 +1,4 @@
-import React from 'react'
-import {Link} from 'react-router-dom';
-// import './Signin.css';
+import React from 'react';
 
 class Verify extends React.Component {
   constructor(props) {
@@ -24,33 +22,13 @@ class Verify extends React.Component {
       })
     })
     .then(response => response.json())
-      // .then(response => {
-      //     if(response.status === 403){
-      //       setTimeout(() => {
-      //       this.setState({errorMessage: 'Incorrect email or password'});
-      //     }, 1000)
-      //     } else if (response.status === 400){
-      //       setTimeout(() => {
-      //       this.setState({errorMessage: 'Username does not exist, please sign up'});
-      //     }, 1000)
-      //     } else if (response.status === 201){
-      //       setTimeout(() => {
-      //         this.setState({successMessage: 'User loged in successfully'});
-      //       }, 1000)
-       
-      //     }
-      // })
       .then((user) => {
-        // console.log(user);
         // console.log(user);
         if(user.status === 'error') {
         this.setState({errorMessage: "errorrrrrr"});
         } else if(user.status === 'success') {
           this.setState({successMessage: "verifieddddd"});
-        //   setTimeout(() => {
             this.props.history.push(`/sign_in`);
-        //   }, 2000)
-        //   // this.props.onRouteChange('home')
         }
       })
   

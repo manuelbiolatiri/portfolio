@@ -77,9 +77,6 @@ class Register extends React.Component {
     let passwordValid = true;
     let errorMsg = {...this.state.errorMsg}
 
-    // must be 6 chars
-    // must contain a number
-    // must contain a special character
 
     if (password.length < 6) {
       passwordValid = false;
@@ -152,7 +149,6 @@ class Register extends React.Component {
  }
 
   render() {
-    const { onRouteChange } = this.props;
     return (
       <div className='container'>
       <Navigation/>

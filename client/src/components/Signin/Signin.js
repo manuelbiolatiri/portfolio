@@ -2,7 +2,6 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 import {Alert} from 'reactstrap';
 import './Signin.css';
-// import { responsiveFontSizes } from '@material-ui/core';
 import Navigation from '../Navigation/Navigation';
 
 class Signin extends React.Component {
@@ -36,22 +35,6 @@ class Signin extends React.Component {
       })
     })
     .then(response => response.json())
-      // .then(response => {
-      //     if(response.status === 403){
-      //       setTimeout(() => {
-      //       this.setState({errorMessage: 'Incorrect email or password'});
-      //     }, 1000)
-      //     } else if (response.status === 400){
-      //       setTimeout(() => {
-      //       this.setState({errorMessage: 'Username does not exist, please sign up'});
-      //     }, 1000)
-      //     } else if (response.status === 201){
-      //       setTimeout(() => {
-      //         this.setState({successMessage: 'User loged in successfully'});
-      //       }, 1000)
-       
-      //     }
-      // })
       .then((user) => {
         // console.log(user);
         // console.log(user);
@@ -78,7 +61,6 @@ class Signin extends React.Component {
   }
 
   render() {
-    const { onRouteChange } = this.props;
     return (
       <div className='container'>
     <Navigation/>

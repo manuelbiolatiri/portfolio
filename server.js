@@ -14,10 +14,6 @@ const cloudinaryStorage = require("multer-storage-cloudinary");
 
 // routers
 const userRouter = require('./routes/register.route');
-const articleRouter = require('./routes/article.route');
-const gifRouter = require('./routes/gif.route');
-const getRouter = require('./routes/get.route');
-const commentRouter = require('./routes/comment.route');
 
 // instantiate express
 const app = express();
@@ -37,10 +33,6 @@ app.use(session({
 }));
   // app.use(express.cookieParser('keyboard cat'));
   // app.use(express.session({ cookie: { maxAge: 60000 }}));
-  app.use(flash());
-//   req.flash('success', 'Registration successfully');
-//   req.flash('errror', 'Registration failed');
-// res.locals.message = req.flash();
 
 const port = process.env.PORT || 3006;
 
@@ -60,10 +52,6 @@ app.get('/', function(req, res) {
 
 // app router
 app.use('/api/v1/', userRouter);
-app.use('/api/v1/', articleRouter);
-app.use('/api/v1', gifRouter);
-app.use('/api/v1', getRouter);
-app.use('/api/v1/', commentRouter);
 
 // welcome route
 app.get('/', (req, res) => {
@@ -72,25 +60,7 @@ app.get('/', (req, res) => {
         message: 'welcome to the team work api'
     }))
 })
-app.get('/verification', (req, res) => {
-  res.status(200).json(({
-      status: 'success',
-      message: 'welcome to the team work api'
-  }))
-})
 
-// request blockchain.info api in json and save api data in variables
-
-// function Price(returnPrice){
-// request({
-//     url: "http://blockchain.info/stats?format=json",
-//     json: true
-// }, function(error, response, body) {
-//     returnPrice(body.market_price_usd);
-//       btcPrice = body.market_price_usd;
-//       btcBlocks = body.n_blocks_total;
-// });
-// }
 // home page display current bitcoin price
 app.get("/btc", function(req, res) {
   res.send("Blockchain.info Price: " + btcPrice)
@@ -106,18 +76,7 @@ app.get("/signup", function(req, res) {
         message: req.flash('success')
     });
     });
- 
-// const btc = require('bitcoin-exchange-rate')
-// app.get('/', (req, res) => {
-//     const currency = 'USD';
-// const amount = 100;
 
-// btc.bitcoinrate(currency, amount);
-// console.log(btc.bitcoinrate);
-//     res.render('index', {
-//         price: btc.bitcoinrate
-//     });
-// });
 
 cloudinary.config({
 cloud_name: process.env.CLOUD_NAME,

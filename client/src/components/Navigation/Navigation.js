@@ -13,22 +13,14 @@ import {
   NavItem,
   NavLink,
 } from "reactstrap";
-import { createHashHistory } from "history";
-
-
-
-
 
 
 const Navigation = (props) => {
 
-  // const History = useHistory();
-  const history = createHashHistory();
-
   const handleClick = (event) => {
     event.preventDefault();
     delete localStorage.jwt
-    history.go("/");
+    // history.go("/");
   }
 
   const [topbarIsOpen, setTopbarOpen] = useState(true);
@@ -51,13 +43,13 @@ const Navigation = (props) => {
       <Collapse isOpen={topbarIsOpen} navbar>
         <Nav className="ml-auto" navbar>
           <NavItem>
-            <NavLink tag={Link} to={"/home"}>
+            <NavLink tag={Link} to={"/"}>
               Home
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={"/profile"}>
-              Profile
+            <NavLink tag={Link} to={"/home"}>
+              Home
             </NavLink>
           </NavItem>
           <NavItem>

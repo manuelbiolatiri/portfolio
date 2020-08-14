@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import jwtDecode from "jwt-decode";
 import {Link} from 'react-router-dom';
-import Admin from './Admin/Admin';
 
 const Dashboard = () => {
   const [username, setUsername] = useState('');
@@ -105,11 +104,9 @@ useEffect( ()=>{
         <h1>No of Referrals: {referrals ? referrals : 'loading'}</h1>
         <button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
         onClick={this.handleClick}>Sign out</button>
-        <Admin/>
       </div>
     );
   }
-// }
 
 
 export default Dashboard;

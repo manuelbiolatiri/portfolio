@@ -118,7 +118,7 @@ getDataFor(conversion, prop){
       
         <h1>Convert</h1>
 
-        <form className="form-inline mb-4">
+        <form className="form-inline mb-4  justify-content-center">
                     <input type="number" value={amount}
                       onChange={this.handleInput}
                       className="form-control form-control-lg mx-3"
@@ -127,7 +127,7 @@ getDataFor(conversion, prop){
                    
                   </form>
 
-                  <form className="form-inline mb-4">
+                  <form className="form-inline mb-4 justify-content-center">
                     <input
                       disabled={true}
                       value={
@@ -140,11 +140,9 @@ getDataFor(conversion, prop){
                       className="form-control form-control-lg mx-3"
                     />
                     <input type="button" className="form-control form-control-lg" value={base}/><br></br>
-                    <input type="button" className="form-control form-control-lg btn-success" value="SELL"/>
                   </form>
-                  
-                  
-      </div>
+                  <button className="btn-success rounded-corner btn-lg">Sell</button>
+          </div>
     );
   }
 }

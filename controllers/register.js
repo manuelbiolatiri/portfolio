@@ -216,14 +216,6 @@ const mailOption = {
             const value = [username];
             const logInQuery = await pool.query(logIn, value);
 
-            // email check response
-            // if (!logInQuery.rows[0]) {
-            //     return res.status(400).json({
-            //         status: 'error',
-            //         error: 'email does not exist, please sign up'
-            //     });
-            // };
-
             // username check response
             if (!logInQuery.rows[0]) {
                 return res.status(400).json({
@@ -234,21 +226,7 @@ const mailOption = {
 
             // compare password
             bcrypt.compare(password, logInQuery.rows[0].password, (err, result) => {
-                // admin login
-                // if (logInQuery.rows[0].email === process.env.ADMIN_EMAIL && result === true) {
-                //     jwt.sign({ email, password }, process.env.SECRET_KEY, { expiresIn: '24h' }, (err, token) => {
-                //         res.status(201).json({
-                //             status: 'success',
-                //             message: 'admin successfully loged in',
-                //             data: {
-                //                 token,
-                //                 adminId: logInQuery.rows[0].authorid
-                //             }
-                //         });
-                //     });
-                // }
-                // user login
-                // else 
+                
                 if (username === logInQuery.rows[0].username && result === true && logInQuery.rows[0].active === 'verified') {
                     jwt.sign({id:logInQuery.rows[0].id , username, password }, process.env.SECRET_KEY, { expiresIn: '24h' }, (err, token) => {
                         res.status(201).json({
@@ -318,12 +296,6 @@ const mailOption = {
                         error: 'token not generated, incorrect email or password'
                     });
                 }
-            
-
-            // pool.query(
-            //     "UPDATE traders SET active = $1 WHERE verification = $2",
-            //     [true, verify]
-            //   );
             } catch (e) {
                 console.log(e)
             };

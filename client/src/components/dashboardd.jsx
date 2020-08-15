@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import jwtDecode from "jwt-decode";
 import {Link} from 'react-router-dom';
-import Tilt from 'react-tilt'
 import {
   Collapse,
   Navbar,
@@ -17,7 +16,7 @@ import {
   NavbarText
 } from 'reactstrap';
 
-const Dashboard = () => {
+const Dashboardd = () => {
   const [username, setUsername] = useState('');
   // const [password, setPassword] = useState('');
   const [referrals, setReferrals] = useState('');
@@ -102,13 +101,10 @@ useEffect( ()=>{
       const toggle = () => setIsOpen(!isOpen);
     return (
       <div>
-        
+        <div className="container">
           <Navbar color="light" light  className="navbar shadow-sm p-3 mb-5 rounded bg-transparent"
       expand="lg">
-        <div className="container">
-            <Tilt className="Tilt br2 shadow-2" options={{ max : 25 }} style={{ height: 60, width: 60 }} >
-						 	<div className="Tilt-inner"><img src="flashtokenlogo.jpg" alt=""/></div>
-						</Tilt>
+            <NavbarBrand href="/">reactstrap</NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
               <Nav className="mr-auto" navbar>
@@ -138,8 +134,8 @@ useEffect( ()=>{
               </Nav>
               <NavbarText>Simple Text</NavbarText>
             </Collapse>
-            </div>
           </Navbar>
+        </div>
       <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
           <Link to="/home">
     <p  className='f3 link dim black underline pa3 pointer'>Home</p>
@@ -157,13 +153,13 @@ useEffect( ()=>{
           <p onClick={this.handleClick} className='f3 link dim black underline pa3 pointer'>Signout</p>
           </Link>
         </nav>
-        <h1>HELLO! {username}</h1>
+        <h1>Hello! {username}</h1>
         <h1>No of Referrals: {referrals ? referrals : 'loading'}</h1>
         <button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
-        onClick={this.handleClick}>Sign out</button>
+        onClick={this.handleClick}>TestingggggggggggggTestingggggggggggggTestinggggggggggggg</button>
       </div>
     );
   }
 
 
-export default Dashboard;
+export default Dashboardd;

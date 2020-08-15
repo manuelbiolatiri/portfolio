@@ -9,6 +9,7 @@ import '../src/style.css';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Dashboard from "./components/dashboard";
+import Dashboardd from "./components/dashboardd";
 import ProtectedRoute from './components/protected_routes';
 import Home from './components/home';
 import Landing from './components/Landing';
@@ -46,6 +47,7 @@ render() {
           <Route path="/referrals/:id" exact component={Referrals} />
           <Route path="/home" exact component={Home} />
           <ProtectedRoute  path={"/dashboard"} exact component={Dashboard} />
+          <ProtectedRoute  path={"/sell"} exact component={Dashboardd} />
         </Switch>
         </div>
       </Router>

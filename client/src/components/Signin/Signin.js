@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import {Alert} from 'reactstrap';
 import './Signin.css';
 import Navigation from '../Navigation/Navigation';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class Signin extends React.Component {
   constructor(props) {
@@ -25,6 +27,7 @@ class Signin extends React.Component {
   }
 
   onSubmitSignIn = () => {
+    let customId = "custom-id-yes";
     try {
     fetch('http://localhost:3006/api/v1/auth/signin', {
       method: 'post',
@@ -39,9 +42,17 @@ class Signin extends React.Component {
         // console.log(user);
         // console.log(user);
         if(user.status === 'error') {
+          toast.warn(user.error, {
+            toastId: customId,
+            position: toast.POSITION.TOP_RIGHT
+          });
         this.setState({errorMessage: user.error});
         } else if(user.status === 'success') {
         localStorage.setItem("jwt", JSON.stringify(user.data.token));
+        toast.success(user.message, {
+          toastId: customId,
+          position: toast.POSITION.TOP_CENTER
+        });
           this.setState({successMessage: user.message});
           setTimeout(() => {
             this.props.history.push(`/dashboard`);
@@ -64,21 +75,23 @@ class Signin extends React.Component {
     return (
       <div className='container'>
     <Navigation/>
+    {this.state.errorMessage ? <ToastContainer position= "top-right"
+hideProgressBar= {false}
+closeOnClick= {true}
+pauseOnHover= {true}
+draggable= {true}
+progress= {undefined}/> : ''}
+      {this.state.successMessage ? <ToastContainer position= "top-right"
+hideProgressBar= {false}
+closeOnClick= {true}
+pauseOnHover= {true}
+draggable= {true}
+progress= {undefined}/> : ''}
       <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
         <main className="pa4 black-80">
           <div className="measure">
-            <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
+            <fieldset id="sign_in" className="ba b--transparent ph0 mh0">
               <legend className="f1 fw6 ph0 mh0">Login</legend>
-              { this.state.successMessage &&
-  <Alert color="success" isOpen={this.state.visible} toggle={this.onDismiss}>
-  <p className="success-msg mb-0"> { this.state.successMessage } </p> </Alert>}
-
-
-  
-  { this.state.errorMessage &&
-  <Alert color="warning" isOpen={this.state.visible} toggle={this.onDismiss}>
-  <p className="error-msg mb-0"> { this.state.errorMessage } </p>
-  </Alert> }
               <div className="mt3">
                 <label className="db fw6 lh-copy f6" htmlFor="username">Username</label>
                 <input

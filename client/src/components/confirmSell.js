@@ -17,6 +17,10 @@ const ConfirmSell = (props) => {
   const [username, setUsername] = useState('');
   const [usd, setUsd] = useState('');
   const [btc, setBtc] = useState('');
+  const [phone, setPhone] = useState('')
+    const [bank, setBank] = useState('')
+    const [bankname, setBankname] = useState('')
+    const [banknumber, setBanknumber] = useState('')
   const [referrals, setReferrals] = useState('');
 
 useEffect( ()=>{
@@ -25,6 +29,10 @@ useEffect( ()=>{
   let btcamount = JSON.parse(window.localStorage.getItem("btcamount"));
     let result = jwtDecode(jwt);
     setUsername(result.username)
+    setPhone(result.phone)
+    setBank(result.bank)
+    setBankname(result.bankname)
+    setBanknumber(result.banknumber)
     setUsd(usdamount)
     setBtc(btcamount)
     
@@ -127,6 +135,7 @@ useEffect( ()=>{
                   type="text"
                   name="title"
                   id="title"
+                  value={bank ? bank : ''}
                   placeholder="Enter your bank"
                   onChange={this.onTitleChange}
                 />
@@ -138,6 +147,7 @@ useEffect( ()=>{
                   type="text"
                   name="title"
                   id="title"
+                  value={bankname ? bankname : ''}
                   placeholder="Enter your account name"
                   onChange={this.onTitleChange}
                 />
@@ -149,6 +159,7 @@ useEffect( ()=>{
                   type="text"
                   name="title"
                   id="title"
+                  value={banknumber ? banknumber : ''}
                   placeholder="Enter your account number"
                   onChange={this.onTitleChange}
                 />

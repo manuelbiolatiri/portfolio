@@ -72,7 +72,7 @@ const mailOption = {
                         data: {
                             message: 'user account successfully created',
                             token,
-                            authorId: signUpQuerys.rows[0].authorid
+                            authorId: signUpQuerys.rows[0].id
                         }
                     })
                 
@@ -95,6 +95,49 @@ const mailOption = {
                             
                     
                     });
+        }
+    }
+        catch (e) {
+            console.log(e);
+        };
+    },
+    async updateSignUP(req, res) {
+        // body values
+        const { id, phone, bank,  bankname, banknumber} = req.body;
+        console.log(req.body);
+        try {
+            // empty body values
+            // if(phone === '' || bank === '' || bankname === '' || banknumber === '') {
+            //     return res.status(400).json({
+            //         status: 'error',
+            //         error: 'all fields are required'
+            //     });
+            // };
+console.log(req.body);
+
+            // check if user exist (email check)
+            const checkQuery = `SELECT id, phone, bank, bankname, banknumber FROM traders WHERE phone=$1 AND bank=$2 AND bankname=$3 AND banknumber=$4 AND id=$5`;
+            const value = [phone, bank,  bankname, banknumber,id];
+            const check = await pool.query(checkQuery, value);
+console.log(id)
+            // check if user exist response
+            if (check.rows[0]) {
+                return res.status(400).json({
+                    status: 'error',
+                    error: 'account already verified'
+                });
+            }
+            else {
+                // users account update
+                const signUpQuery = `UPDATE traders SET phone =$1, bank =$2, bankname=$3, banknumber=$4 WHERE id =$5
+                RETURNING *`
+                const userValue = [phone, bank,  bankname, banknumber, id];
+                const signUpQuerys = await pool.query(signUpQuery, userValue);
+
+                    res.status(201).json({
+                        status: 'success',
+                        message: 'account successfully updated'
+                    })
         }
     }
         catch (e) {
@@ -228,13 +271,26 @@ const mailOption = {
             bcrypt.compare(password, logInQuery.rows[0].password, (err, result) => {
                 
                 if (username === logInQuery.rows[0].username && result === true && logInQuery.rows[0].active === 'verified') {
-                    jwt.sign({id:logInQuery.rows[0].id , username, password }, process.env.SECRET_KEY, { expiresIn: '24h' }, (err, token) => {
+                    jwt.sign({id:logInQuery.rows[0].id ,
+                        active: logInQuery.rows[0].active,
+                                verification: logInQuery.rows[0].verification,
+                                phone: logInQuery.rows[0].phone,
+                                bank: logInQuery.rows[0].bank,
+                                bankname: logInQuery.rows[0].bankname,
+                                banknumber: logInQuery.rows[0].banknumber,
+                        username, password }, process.env.SECRET_KEY, { expiresIn: '24h' }, (err, token) => {
                         res.status(201).json({
                             status: 'success',
                             message: 'User successfully logged in',
                             data: {
                                 token,
-                                id: logInQuery.rows[0].id
+                                id: logInQuery.rows[0].id,
+                                active: logInQuery.rows[0].active,
+                                verification: logInQuery.rows[0].verification,
+                                phone: logInQuery.rows[0].phone,
+                                bank: logInQuery.rows[0].bank,
+                                bankname: logInQuery.rows[0].bankname,
+                                banknumber: logInQuery.rows[0].banknumber,
                             }
                         })
                     })

@@ -13,6 +13,7 @@ import Dashboardd from "./components/dashboardd";
 import ProtectedRoute from './components/protected_routes';
 import Home from './components/home';
 import Landing from './components/Landing';
+import ConfirmSell from './components/confirmSell';
 
 const particlesOptions = {
   particles: {
@@ -47,7 +48,7 @@ render() {
           <Route path="/referrals/:id" exact component={Referrals} />
           <Route path="/home" exact component={Home} />
           <ProtectedRoute  path={"/dashboard"} exact component={Dashboard} />
-          <ProtectedRoute  path={"/sell"} exact component={Dashboardd} />
+          <ProtectedRoute  path={"/confirmsell"} exact component={ConfirmSell} />
         </Switch>
         </div>
       </Router>

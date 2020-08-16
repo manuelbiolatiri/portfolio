@@ -1,4 +1,6 @@
 import React from 'react';
+import { InputGroup, InputGroupAddon, InputGroupText, Input, Button } from 'reactstrap';
+import {Link} from 'react-router-dom';
 // import './App.css';
 // import Convert from '../Convert/Convert'
 
@@ -49,6 +51,8 @@ getDataFor(conversion, prop){
     } else {
       const result = (this.state.btcusd * amount).toFixed(2)
           console.log(result)
+          localStorage.setItem("usdamount", JSON.stringify(result));
+          localStorage.setItem("btcamount", JSON.stringify(this.state.amount));
           this.setState({
             result
           });
@@ -119,17 +123,20 @@ getDataFor(conversion, prop){
         <h1>Convert</h1>
 
         <form className="form-inline mb-4  justify-content-center">
-                    <input type="number" value={amount}
+        <InputGroup>
+        <Input type="number" value={amount}
                       onChange={this.handleInput}
-                      className="form-control form-control-lg mx-3"
-                    />
-                    <input type="button" className="form-control form-control-lg" value="BTC" />
+                      className="form-control form-control-lg mx-3" />
+        <InputGroupAddon addonType="append">
+          <InputGroupText>BTC</InputGroupText>
+        </InputGroupAddon>
+      </InputGroup>
                    
                   </form>
 
                   <form className="form-inline mb-4 justify-content-center">
-                    <input
-                      disabled={true}
+                  <InputGroup>
+        <Input disabled={true}
                       value={
                         amount === ""
                           ? "0"
@@ -137,11 +144,15 @@ getDataFor(conversion, prop){
                           ? "Calculating..."
                           : result
                       }
-                      className="form-control form-control-lg mx-3"
-                    />
-                    <input type="button" className="form-control form-control-lg" value={base}/><br></br>
+                      className="form-control form-control-lg mx-3" />
+        <InputGroupAddon addonType="append">
+          <InputGroupText>{base}</InputGroupText>
+        </InputGroupAddon>
+      </InputGroup>
                   </form>
-                  <button className="btn-success rounded-corner btn-lg">Sell</button>
+                  <Link to="/confirmsell">
+                  <button type="button" className="btn btn-outline-success" >success</button>
+                  </Link>
           </div>
     );
   }

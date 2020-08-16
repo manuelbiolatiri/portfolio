@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import Converts from './Converter/Converter';
 import Navigation from './Navigation/Navigation';
+import { Card, Button, CardText } from 'reactstrap';
+import {Link} from 'react-router-dom';
 import Body from './Body';
+import Footer from './Footer'
 import  'bootstrap/dist/css/bootstrap.min.css';
 
  class Landing extends Component {
@@ -29,6 +32,15 @@ import  'bootstrap/dist/css/bootstrap.min.css';
         </nav> */}
         <Body/>
         <Converts/>
+        <div style={{width:'50%'}} className="m-auto">
+        <Card body>
+          <CardText>Join our affiliate program and Earn 15% of Flashtoken's commission on<br></br>ALL of your referral's transactions including all their future transactions</CardText>
+          <Link to="/sign_in">
+          <Button>Login to get referral link</Button>
+          </Link>
+        </Card>
+        </div>
+        <Footer/>
         
       </div>
 

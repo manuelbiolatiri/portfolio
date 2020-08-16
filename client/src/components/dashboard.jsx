@@ -6,15 +6,10 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText
+  NavLink,Card, Button, CardImg, CardTitle, CardText, CardDeck,
+  CardSubtitle, CardBody
 } from 'reactstrap';
 
 const Dashboard = () => {
@@ -111,36 +106,34 @@ useEffect( ()=>{
 						</Tilt>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
-              <Nav className="mr-auto" navbar>
+              <Nav className="ml-auto" navbar>
+              <NavItem>
+                  <NavLink href="/profile">Hi, {username}</NavLink>
+                </NavItem>
+              <NavItem>
+                  <NavLink href="/dashboard">Dashboard</NavLink>
+                </NavItem>
                 <NavItem>
                   <NavLink href="/sell">Sell</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="/dashboard">dashboard</NavLink>
+                  <NavLink href="/profile">Profile</NavLink>
                 </NavItem>
-                <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav caret>
-                    Options
-                  </DropdownToggle>
-                  <DropdownMenu right>
-                    <DropdownItem>
-                      Option 1
-                    </DropdownItem>
-                    <DropdownItem>
-                      Option 2
-                    </DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem>
-                      Reset
-                    </DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
+                <NavItem>
+                  <NavLink href="/affiliate">Affiliate</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="/contact">Contact Support</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="/logout"><button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+        onClick={this.handleClick}>Sign out</button></NavLink>
+                </NavItem>
               </Nav>
-              <NavbarText>Simple Text</NavbarText>
             </Collapse>
             </div>
           </Navbar>
-      <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
+      {/* <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
           <Link to="/home">
     <p  className='f3 link dim black underline pa3 pointer'>Home</p>
           </Link>
@@ -156,7 +149,29 @@ useEffect( ()=>{
           <Link to="/signout">
           <p onClick={this.handleClick} className='f3 link dim black underline pa3 pointer'>Signout</p>
           </Link>
-        </nav>
+        </nav> */}
+        <div className="container">
+        <CardDeck>
+      <Card>
+        <CardBody>
+          <CardSubtitle>Balance</CardSubtitle>
+          <CardText><h3>#5,000</h3></CardText>
+        </CardBody>
+      </Card>
+      <Card>
+      <CardBody>
+      <CardSubtitle>No of Referrals</CardSubtitle>
+          <CardText><h3>{referrals ? referrals : 'loading'}</h3></CardText>
+        </CardBody>
+      </Card>
+      <Card>
+      <CardBody>
+      <CardSubtitle>No of Transactions</CardSubtitle>
+          <CardText><h3>20</h3></CardText>
+        </CardBody>
+      </Card>
+    </CardDeck>
+    </div>
         <h1>HELLO! {username}</h1>
         <h1>No of Referrals: {referrals ? referrals : 'loading'}</h1>
         <button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"

@@ -77,7 +77,7 @@ class UploadForm extends React.Component {
                 <Row>
                   <Col sm="12">
                       
-                  { this.state.activeTab === 1 ? 
+                  { this.state.activeTab === '1' ? 
                   <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
                   <main className="pa4 black-80">
                     <div className="measure">
@@ -117,7 +117,7 @@ class UploadForm extends React.Component {
               </TabPane>
               <TabPane tabId="2">
                 <Row>
-                  { this.state.activeTab === 2 ? 
+                  { this.state.activeTab === '2' ? 
                     <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
                     <main className="pa4 black-80">
                       <div className="measure">

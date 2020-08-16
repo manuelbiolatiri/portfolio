@@ -47,8 +47,13 @@ const Navigation = (props) => {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={"/home"}>
-              Home
+            <NavLink tag={Link} to={"/sell"}>
+              Sell
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink tag={Link} to={"/affiliate"}>
+              Affiliate
             </NavLink>
           </NavItem>
           <NavItem>

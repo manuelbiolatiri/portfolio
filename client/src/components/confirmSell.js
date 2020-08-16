@@ -121,14 +121,39 @@ useEffect( ()=>{
                       <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
                         <legend className="f1 fw6 ph0 mh0">Sell Bitcoin</legend>
                         <div className="mt3">
-                        <select type="select" name="select" id="exampleSelect">
-        <option>Select a bank</option>
-          <option>FirstBank</option>
-          <option>GTBank Plc</option>
-          <option>UBA</option>
-          <option>Zenith</option>
-          <option>Ecobank</option>
-          </select>
+                <label className="db fw6 lh-copy f6" htmlFor="title">Bank</label>
+                <input
+                  className="pa2 input-reset ba bg-transparent hover-bg-white  w-100"
+                  type="text"
+                  name="title"
+                  id="title"
+                  placeholder="Enter your bank"
+                  onChange={this.onTitleChange}
+                />
+              </div>
+              <div className="mt3">
+                <label className="db fw6 lh-copy f6" htmlFor="title">Bank Account Name</label>
+                <input
+                  className="pa2 input-reset ba bg-transparent hover-bg-white  w-100"
+                  type="text"
+                  name="title"
+                  id="title"
+                  placeholder="Enter your account name"
+                  onChange={this.onTitleChange}
+                />
+              </div>
+              <div className="mt3">
+                <label className="db fw6 lh-copy f6" htmlFor="title">Account Number</label>
+                <input
+                  className="pa2 input-reset ba bg-transparent hover-bg-white  w-100"
+                  type="text"
+                  name="title"
+                  id="title"
+                  placeholder="Enter your account number"
+                  onChange={this.onTitleChange}
+                />
+              </div>
+                        <div className="mt3">
                 <label className="db fw6 lh-copy f6" htmlFor="title">Description</label>
                 <input
                   className="pa2 input-reset ba bg-transparent hover-bg-white  w-100"

@@ -101,9 +101,11 @@ useEffect( ()=>{
           <Navbar color="light" light  className="navbar shadow-sm p-3 mb-5 rounded bg-transparent"
       expand="lg">
         <div className="container">
+        <NavLink href="/">
             <Tilt className="Tilt br2 shadow-2" options={{ max : 25 }} style={{ height: 60, width: 60 }} >
 						 	<div className="Tilt-inner"><img src="flashtokenlogo.jpg" alt=""/></div>
 						</Tilt>
+            </NavLink>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
               <Nav className="ml-auto" navbar>
@@ -114,7 +116,7 @@ useEffect( ()=>{
                   <NavLink href="/dashboard">Dashboard</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="/sell">Sell</NavLink>
+                  <NavLink href="/">Sell</NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink href="/profile">Profile</NavLink>

@@ -4,16 +4,19 @@ import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import Verify from './components/Verify/Verify';
 import Referrals from './components/Referrals/Referrals';
+import UploadForm from './components/UploadForm/UploadForm';
 import  'bootstrap/dist/css/bootstrap.min.css';
 import '../src/style.css';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Dashboard from "./components/dashboard";
-import Dashboardd from "./components/dashboardd";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import Dashboard from "./components/Dashboard";
+import Profile from "./components/Profile";
 import ProtectedRoute from './components/protected_routes';
 import Home from './components/home';
 import Landing from './components/Landing';
 import ConfirmSell from './components/confirmSell';
+import Footer from './components/Footer'
+import ErrorPage from './components/ErrorPage'
 
 const particlesOptions = {
   particles: {
@@ -49,8 +52,14 @@ render() {
           <Route path="/home" exact component={Home} />
           <ProtectedRoute  path={"/dashboard"} exact component={Dashboard} />
           <ProtectedRoute  path={"/confirmsell"} exact component={ConfirmSell} />
+          <ProtectedRoute  path={"/profile"} exact component={Profile} />
+          <ProtectedRoute  path={"/sell"} exact component={UploadForm} />
+          <Route path='/404' component={ErrorPage} />
+          <Redirect from='*' to='/404' />
         </Switch>
+        <Footer/>
         </div>
+        
       </Router>
     )
   }

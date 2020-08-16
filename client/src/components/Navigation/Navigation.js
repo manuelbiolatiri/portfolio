@@ -35,9 +35,11 @@ const Navigation = (props) => {
       expand="lg"
     >
       <div className="container">
+            <NavLink tag={Link} to={"/"}>
       <Tilt className="Tilt br2 shadow-2" options={{ max : 25 }} style={{ height: 60, width: 60 }} >
 						 	<div className="Tilt-inner"><img src="flashtokenlogo.jpg" alt=""/></div>
 						</Tilt>
+            </NavLink>
       <NavbarToggler onClick={toggleTopbar} />
       <Collapse isOpen={topbarIsOpen} navbar>
         <Nav className="ml-auto" navbar>
@@ -47,7 +49,7 @@ const Navigation = (props) => {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={"/sell"}>
+            <NavLink tag={Link} to={"/"}>
               Sell
             </NavLink>
           </NavItem>

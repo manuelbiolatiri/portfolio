@@ -4,7 +4,7 @@ import './Footer.css'
 class Footer extends Component {
   render() {
     return (
-      <footer className="pa4 pa5-l black-70 bt b--black-10">
+      <div className="pa4 pa5-l black-70 bt b--black-10">
   <div className="mb4-l cf">
     <h1 className="fl w-100 pv0 f6 fw6 ttu tracked mb4">Studios</h1>
     <article className="fl w-50 dib-ns w-auto-ns mr4-m mr5-l mb4 pr2 pr0-ns">
@@ -45,7 +45,7 @@ class Footer extends Component {
   <section className="cf mb5">
     <div className="mb4 mb0-ns w-100 w-50-l fr">
       <a className="black-70 f3 f2-ns fw6 tl link dim dib pv3 mt2 mb4 mb0-l" href="mailto:hello@flashtoken.com" >
-        hello@yourcompany.com
+        hello@flashtoken.com
       </a>
     </div>
     <div className="mb4 mb0-ns fl w-100 w-50-l" >
@@ -59,7 +59,7 @@ class Footer extends Component {
   <div className="dt dt--fixed w-100" >
     <div className="dn dtc-ns v-mid">
       <p className="f7 black-70 dib pr3 mb3">
-        Copyright © Your Company 2048
+        Copyright © FlashX 2020
       </p>
     </div>
     <div className="db dtc-ns black-70 tc tr-ns v-mid">
@@ -114,10 +114,10 @@ class Footer extends Component {
   </div>
   <div className="db dn-ns">
     <p className="f7 black-70 mt4 tc">
-      Copyright © Your Company 2038
+      Copyright © FlashX  2020
     </p>
   </div>
-</footer>
+</div>
     );
   }
 }

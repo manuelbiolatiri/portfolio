@@ -151,7 +151,7 @@ getDataFor(conversion, prop){
       </InputGroup>
                   </form>
                   <Link to="/confirmsell">
-                  <button type="button" className="btn btn-outline-success" >success</button>
+                  <button type="button" className="btn btn-outline-success" >Sell</button>
                   </Link>
           </div>
     );

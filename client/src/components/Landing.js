@@ -4,7 +4,7 @@ import Navigation from './Navigation/Navigation';
 import { Card, Button, CardText } from 'reactstrap';
 import {Link} from 'react-router-dom';
 import Body from './Body';
-import Footer from './Footer'
+
 import  'bootstrap/dist/css/bootstrap.min.css';
 
  class Landing extends Component {
@@ -40,7 +40,6 @@ import  'bootstrap/dist/css/bootstrap.min.css';
           </Link>
         </Card>
         </div>
-        <Footer/>
         
       </div>
 

@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { TabContent, TabPane, Nav, NavItem, NavLink,  Row, Col } from 'reactstrap';
 import classnames from 'classnames';
-
+import Converts from '../Converter/Converter';
 
 class UploadForm extends React.Component {
 
@@ -54,6 +54,7 @@ class UploadForm extends React.Component {
         return (
 
             <div className='container '>
+              <Converts/>
             <Nav tabs style={{justifyContent:'center'}}>
               <NavItem>
                 <NavLink

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import jwtDecode from "jwt-decode";
-import {Redirect} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import Tilt from 'react-tilt'
 import {
   Collapse,
@@ -84,10 +84,6 @@ const onSubmitSave = () => {
                 position: toast.POSITION.TOP_CENTER
               });
           setSuccess(user.message);
-          setTimeout(() => {
-            <Redirect to="/profile"/>
-          }, 2000)
-        //   // this.props.onRouteChange('home')
         }
       })
 

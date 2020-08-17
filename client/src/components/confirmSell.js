@@ -45,13 +45,9 @@ useEffect( ()=>{
       .then(response => response.json())
       .then(res => {
          setReferrals(res.data.rows[0].count)
-          // this.setState({referrals: });
           console.log(res.data.rows[0].count);
-      
       })
-      
-
-      .catch(res => {
+       .catch(res => {
         console.log(res)
     
     })

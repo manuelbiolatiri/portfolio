@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import jwtDecode from "jwt-decode";
-import {Link} from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import Tilt from 'react-tilt'
 import {
   Collapse,
@@ -83,12 +83,12 @@ useEffect( ()=>{
     
 //   }
 
-
-  // handleClick = (event) => {
-  //   event.preventDefault();
-  //   delete localStorage.jwt
-  //   this.props.history.push("/")
-  // }
+let history = useHistory();
+const  handleClick = (event) => {
+    event.preventDefault();
+    delete localStorage.jwt
+    history.push("/");
+  }
 
   // render() {
 
@@ -129,7 +129,7 @@ useEffect( ()=>{
                 </NavItem>
                 <NavItem>
                   <NavLink href="/logout"><button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
-        onClick={this.handleClick}>Sign out</button></NavLink>
+        onClick={handleClick}>Sign out</button></NavLink>
                 </NavItem>
               </Nav>
             </Collapse>

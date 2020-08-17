@@ -49,6 +49,34 @@ const usersTable = async () => {
     }
 };
 
+const contractsTables = async () => {
+    const contractTable = `CREATE TABLE IF NOT EXISTS
+      contracts(
+        id SERIAL PRIMARY KEY NOT NULL UNIQUE,
+                transactionId VARCHAR(50) NOT NULL,
+                admin VARCHAR(50) NOT NULL,
+                userId VARCHAR(50) NOT NULL,
+                note VARCHAR(50),
+                image_url VARCHAR(50) NOT NULL,
+                amount_usd VARCHAR(50) NOT NULL,
+                amount_btc VARCHAR(50) NOT NULL,
+                bank VARCHAR(50),
+                bankname VARCHAR(50),
+                banknumber VARCHAR(50),
+                type VARCHAR(50),
+                status VARCHAR(50) DEFAULT '0',
+                created TIMESTAMPTZ DEFAULT NOW()
+                )`;
+
+     try {
+        await pool.query(contractTable);
+        console.log('contracts table created')
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+
 const createTables = async () => {
   const imageTable = `CREATE TABLE IF NOT EXISTS
     images(
@@ -66,19 +94,6 @@ const createTables = async () => {
         console.log(e)
     }
 };
-// CREATE TABLE contracts(
-//         id SERIAL PRIMARY KEY NOT NULL UNIQUE,
-//         transactionId VARCHAR(50) NOT NULL,
-//         ownerId VARCHAR(50) NOT NULL,
-//         userId VARCHAR(50) NOT NULL,
-//         note VARCHAR(50),
-//         image_url VARCHAR(128),
-//         amount_$ VARCHAR(50) NOT NULL,
-//         amount_BTC VARCHAR(50),
-//         type VARCHAR(50) NOT NULL,
-//         status VARCHAR(50) DEFAULT '0',
-//         created TIMESTAMPTZ DEFAULT NOW()
-//       );
 
 const referralsTable = async () => {
     const refTable = `CREATE TABLE IF NOT EXISTS
@@ -101,7 +116,7 @@ const referralsTable = async () => {
 usersTable();
 createTables();
 referralsTable();
-
+contractsTables();
 
 // export pool to controllers
 module.exports = pool;

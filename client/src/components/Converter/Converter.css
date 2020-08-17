@@ -15,3 +15,8 @@ span.left {
 span.right {
   float:right;
 }
+
+.form-inline .form-control { 
+  display: inline-block !important; 
+  width: auto!important
+}

@@ -8,6 +8,7 @@ dotenv.config();
 //     connectionString: process.env.DATABASE_URL,
 //     ssl: true
 // };
+
 // connect to dev database
 const connection = {
     database: process.env.DB_DATABASE,
@@ -30,12 +31,46 @@ const usersTable = async () => {
         username VARCHAR(50) NOT NULL,
         email VARCHAR(50) NOT NULL,
         password VARCHAR(200) NOT NULL,
+        verification VARCHAR(200),
+        active VARCHAR(200),
+        phone VARCHAR(50),
+        bank VARCHAR(50),
+        bankname VARCHAR(50),
+        banknumber VARCHAR(50),
         joined TIMESTAMP NOT NULL
     )`;
 
     try {
         await pool.query(userTableQuery);
         console.log('users table created')
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+
+const contractsTables = async () => {
+    const contractTable = `CREATE TABLE IF NOT EXISTS
+      contracts(
+        id SERIAL PRIMARY KEY NOT NULL UNIQUE,
+                transactionId VARCHAR(50) NOT NULL,
+                admin VARCHAR(50) NOT NULL,
+                userId VARCHAR(50) NOT NULL,
+                note VARCHAR(50),
+                image_url VARCHAR(50) NOT NULL,
+                amount_usd VARCHAR(50) NOT NULL,
+                amount_btc VARCHAR(50) NOT NULL,
+                bank VARCHAR(50),
+                bankname VARCHAR(50),
+                banknumber VARCHAR(50),
+                type VARCHAR(50),
+                status VARCHAR(50) DEFAULT '0',
+                created TIMESTAMPTZ DEFAULT NOW()
+                )`;
+
+     try {
+        await pool.query(contractTable);
+        console.log('contracts table created')
     }
     catch (e) {
         console.log(e)
@@ -59,19 +94,6 @@ const createTables = async () => {
         console.log(e)
     }
 };
-// CREATE TABLE contracts(
-//         id SERIAL PRIMARY KEY NOT NULL UNIQUE,
-//         transactionId VARCHAR(50) NOT NULL,
-//         ownerId VARCHAR(50) NOT NULL,
-//         userId VARCHAR(50) NOT NULL,
-//         note VARCHAR(50),
-//         image_url VARCHAR(128),
-//         amount_$ VARCHAR(50) NOT NULL,
-//         amount_BTC VARCHAR(50),
-//         type VARCHAR(50) NOT NULL,
-//         status VARCHAR(50) DEFAULT '0',
-//         created TIMESTAMPTZ DEFAULT NOW()
-//       );
 
 const referralsTable = async () => {
     const refTable = `CREATE TABLE IF NOT EXISTS
@@ -90,119 +112,11 @@ const referralsTable = async () => {
           console.log(e)
       }
   };
-// article table
-// const articleTable = async () => {
-//     const articleTableQuery = `CREATE TABLE IF NOT EXISTS
-//     articles(
-//         articleId SERIAL PRIMARY KEY NOT NULL UNIQUE,
-//         title VARCHAR(100) NOT NULL,
-//         article VARCHAR(5000) NOT NULL,
-//         authorId INT NOT NULL,
-//         createdOn VARCHAR(50) NOT NULL,
-//         FOREIGN KEY(authorId) REFERENCES employee(authorId)  ON DELETE CASCADE ON UPDATE CASCADE
-//     )`;
 
-//     try{
-//         await pool.query(articleTableQuery);
-//         console.log('article table created');
-//     }
-//     catch(e) {
-//         console.log(e)
-//     }
-// };
-
-// article comment table
-// const articleCommentTable = async () => {
-//     const articleCommentTableQuery = `CREATE TABLE IF NOT EXISTS
-//     article_comments(
-//         commentId SERIAL PRIMARY KEY NOT NULL UNIQUE,
-//         comment VARCHAR(300) NOT NULL,
-//         createdOn VARCHAR(50) NOT NULL,
-//         authorId INT NOT NULL,
-//         articleId INT NOT NULL,
-//         FOREIGN KEY(articleId) REFERENCES articles(articleId),
-//         FOREIGN KEY(authorId) REFERENCES employee(authorId)
-//     )`;
-
-//     try{
-//         await pool.query(articleCommentTableQuery);
-//         console.log('article comment table created')
-//     }
-//     catch(e) {
-//         console.log(e)
-//     }
-// };
-
-// gif table
-// const gifTable = async () => {
-//     const gifTableQuery = `CREATE TABLE IF NOT EXISTS
-//     gifs(
-//         gifId SERIAL PRIMARY KEY NOT NULL UNIQUE,
-//         image VARCHAR(500) NOT NULL,
-//         gifTitle VARCHAR(50) NOT NULL,
-//         gifAuthorId INT NOT NULL,
-//         gifCreatedOn VARCHAR(50) NOT NULL,
-//         FOREIGN KEY(gifAuthorId) REFERENCES employee(authorId) ON DELETE CASCADE ON UPDATE CASCADE
-//     )`;
-
-//     try{
-//         await pool.query(gifTableQuery)
-//         console.log('gif table created');
-//     }
-//     catch(e) {
-//         console.log(e)
-//     }
-// };
-
-// gif comment table
-// const gifCommentTable = async () => {
-//     const gifCommentTableQuery = `CREATE TABLE IF NOT EXISTS
-//     gif_comments(
-//         commentId SERIAL PRIMARY KEY NOT NULL UNIQUE,
-//         comment VARCHAR(300) NOT NULL,
-//         createdOn VARCHAR(50) NOT NULL,
-//         authorId INT NOT NULL,
-//         gifId INT NOT NULL,
-//         FOREIGN KEY(gifId) REFERENCES gifs(gifId),
-//         FOREIGN KEY(authorId) REFERENCES employee(authorId) 
-//     )`
-
-//     try{
-//         await pool.query(gifCommentTableQuery);
-//         console.log('gif comment table created')
-//     }
-//     catch(e) {
-//         console.log(e)
-//     }
-// };
-
-// drop table
-// const dropTable = async () => {
-//     const dropTableQuery = `DROP TABLE IF EXISTS employee`
-//     try{
-//         await pool.query(dropTableQuery)
-//         console.log('table dropped')
-//     }
-//     catch(e) {
-//         console.log(e)
-//     }
-// }
-
-// user
-// userTable();
 usersTable();
 createTables();
 referralsTable();
-// article
-// articleTable();
-// gif
-// gifTable();
-// article comment
-// articleCommentTable();
-// gif comment
-// gifCommentTable();
-// dropTable
-// dropTable();
+contractsTables();
 
 // export pool to controllers
 module.exports = pool;

@@ -34,11 +34,12 @@ const Navigation = (props) => {
       className="navbar shadow-sm p-3 mb-5 rounded bg-transparent"
       expand="lg"
     >
+      <div className="container">
+            <NavLink tag={Link} to={"/"}>
       <Tilt className="Tilt br2 shadow-2" options={{ max : 25 }} style={{ height: 60, width: 60 }} >
 						 	<div className="Tilt-inner"><img src="flashtokenlogo.jpg" alt=""/></div>
 						</Tilt>
-      {/* <Button color="info" src={'/bitcoin.png'}>
-      </Button> */}
+            </NavLink>
       <NavbarToggler onClick={toggleTopbar} />
       <Collapse isOpen={topbarIsOpen} navbar>
         <Nav className="ml-auto" navbar>
@@ -48,8 +49,13 @@ const Navigation = (props) => {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={"/home"}>
-              Home
+            <NavLink tag={Link} to={"/"}>
+              Sell
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink tag={Link} to={"/affiliate"}>
+              Affiliate
             </NavLink>
           </NavItem>
           <NavItem>
@@ -69,6 +75,7 @@ const Navigation = (props) => {
           </NavItem>
         </Nav>
       </Collapse>
+      </div>
     </Navbar>
     
       );

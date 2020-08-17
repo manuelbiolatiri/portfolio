@@ -1,6 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import jwtDecode from "jwt-decode";
-import {Link} from 'react-router-dom';
+import { useHistory } from "react-router-dom";
+import Tilt from 'react-tilt'
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  Nav,
+  NavItem,
+  NavLink,Card, Button, CardImg, CardTitle, CardText, CardDeck,
+  CardSubtitle, CardBody
+} from 'reactstrap';
 
 const Dashboard = () => {
   const [username, setUsername] = useState('');
@@ -73,17 +83,59 @@ useEffect( ()=>{
     
 //   }
 
-
-  // handleClick = (event) => {
-  //   event.preventDefault();
-  //   delete localStorage.jwt
-  //   this.props.history.push("/")
-  // }
+let history = useHistory();
+const  handleClick = (event) => {
+    event.preventDefault();
+    delete localStorage.jwt
+    history.push("/");
+  }
 
   // render() {
+
+      const [isOpen, setIsOpen] = useState(false);
+    
+      const toggle = () => setIsOpen(!isOpen);
     return (
       <div>
-      <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
+        
+          <Navbar color="light" light  className="navbar shadow-sm p-3 mb-5 rounded bg-transparent"
+      expand="lg">
+        <div className="container">
+        <NavLink href="/">
+            <Tilt className="Tilt br2 shadow-2" options={{ max : 25 }} style={{ height: 60, width: 60 }} >
+						 	<div className="Tilt-inner"><img src="flashtokenlogo.jpg" alt=""/></div>
+						</Tilt>
+            </NavLink>
+            <NavbarToggler onClick={toggle} />
+            <Collapse isOpen={isOpen} navbar>
+              <Nav className="ml-auto" navbar>
+              <NavItem>
+                  <NavLink href="/profile">Hi, {username}</NavLink>
+                </NavItem>
+              <NavItem>
+                  <NavLink href="/dashboard">Dashboard</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="/">Sell</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="/profile">Profile</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="/affiliate">Affiliate</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="/contact">Contact Support</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="/logout"><button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+        onClick={handleClick}>Sign out</button></NavLink>
+                </NavItem>
+              </Nav>
+            </Collapse>
+            </div>
+          </Navbar>
+      {/* <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
           <Link to="/home">
     <p  className='f3 link dim black underline pa3 pointer'>Home</p>
           </Link>
@@ -99,7 +151,29 @@ useEffect( ()=>{
           <Link to="/signout">
           <p onClick={this.handleClick} className='f3 link dim black underline pa3 pointer'>Signout</p>
           </Link>
-        </nav>
+        </nav> */}
+        <div className="container">
+        <CardDeck>
+      <Card>
+        <CardBody>
+          <CardSubtitle>Balance</CardSubtitle>
+          <CardText><h3>#5,000</h3></CardText>
+        </CardBody>
+      </Card>
+      <Card>
+      <CardBody>
+      <CardSubtitle>No of Referrals</CardSubtitle>
+          <CardText><h3>{referrals ? referrals : 'loading'}</h3></CardText>
+        </CardBody>
+      </Card>
+      <Card>
+      <CardBody>
+      <CardSubtitle>No of Transactions</CardSubtitle>
+          <CardText><h3>20</h3></CardText>
+        </CardBody>
+      </Card>
+    </CardDeck>
+    </div>
         <h1>HELLO! {username}</h1>
         <h1>No of Referrals: {referrals ? referrals : 'loading'}</h1>
         <button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"

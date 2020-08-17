@@ -74,12 +74,12 @@ class Body extends React.Component{
             fetch(this.BASE_URL + 'btc-usd')
             .then(res => res.json())
             .then(d => {
-                let x_axis = this.clientDateTime();
-                let y_axis = d.ticker.price;
+                // let x_axis = this.clientDateTime();
+                // let y_axis = d.ticker.price;
                 this.setState({btcusd: d.ticker.price});
                 // this.chartRef.feedData("&label=" + x_axis + "&value=" + y_axis);
             });
-        }, 10000);
+        }, 15000);
     }
 
     componentWillUnmount() {

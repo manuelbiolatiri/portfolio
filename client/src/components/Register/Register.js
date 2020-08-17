@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {Alert} from 'reactstrap';
 import Navigation from '../Navigation/Navigation';
 import './Register.css';
@@ -113,7 +113,6 @@ class Register extends React.Component {
 
   onSubmitSignIn = () => {
     let customId = "custom-id-yes";
-    let history = useHistory();
     try {
     fetch('http://localhost:3006/api/v1/auth/create-user', {
       method: 'post',
@@ -138,7 +137,7 @@ class Register extends React.Component {
           });
           this.setState({successMessage: 'User registered successfully'});
           setTimeout(() => {
-            history.push(`/verify`);
+            this.props.history.push(`/verify`);
           }, 1500)
           
         }

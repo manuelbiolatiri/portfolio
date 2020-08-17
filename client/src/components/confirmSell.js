@@ -125,7 +125,7 @@ useEffect( ()=>{
                       <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
                         <legend className="f1 fw6 ph0 mh0">Sell Bitcoin</legend>
                         <div className="mt3">
-                <label className="db fw6 lh-copy f6" htmlFor="title">Bank</label>
+                <label className="db fw6 lh-copy f6" htmlFor="bank">Bank</label>
                 <input
                   className="pa2 input-reset ba bg-transparent hover-bg-white  w-100"
                   type="text"
@@ -137,7 +137,7 @@ useEffect( ()=>{
                 />
               </div>
               <div className="mt3">
-                <label className="db fw6 lh-copy f6" htmlFor="title">Bank Account Name</label>
+                <label className="db fw6 lh-copy f6" htmlFor="bankname">Bank Account Name</label>
                 <input
                   className="pa2 input-reset ba bg-transparent hover-bg-white  w-100"
                   type="text"
@@ -149,7 +149,7 @@ useEffect( ()=>{
                 />
               </div>
               <div className="mt3">
-                <label className="db fw6 lh-copy f6" htmlFor="title">Account Number</label>
+                <label className="db fw6 lh-copy f6" htmlFor="banknumber">Account Number</label>
                 <input
                   className="pa2 input-reset ba bg-transparent hover-bg-white  w-100"
                   type="text"
@@ -161,7 +161,7 @@ useEffect( ()=>{
                 />
               </div>
                         <div className="mt3">
-                <label className="db fw6 lh-copy f6" htmlFor="title">Description</label>
+                <label className="db fw6 lh-copy f6" htmlFor="title">Note</label>
                 <input
                   className="pa2 input-reset ba bg-transparent hover-bg-white  w-100"
                   type="text"

@@ -1,5 +1,5 @@
 import React from 'react'
-import {useHistory, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {Alert} from 'reactstrap';
 import './Signin.css';
 import Navigation from '../Navigation/Navigation';
@@ -28,7 +28,6 @@ class Signin extends React.Component {
 
   onSubmitSignIn = () => {
     let customId = "custom-id-yes";
-    let history = useHistory();
     try {
     fetch('http://localhost:3006/api/v1/auth/signin', {
       method: 'post',
@@ -56,8 +55,8 @@ class Signin extends React.Component {
         });
           this.setState({successMessage: user.message});
           setTimeout(() => {
-            history.push(`/dashboard`);
-          }, 1500)
+            this.props.history.push(`/dashboard`);
+          }, 2000)
         //   // this.props.onRouteChange('home')
         }
       })
@@ -77,6 +76,7 @@ class Signin extends React.Component {
       <div className='container'>
     <Navigation/>
     {this.state.errorMessage ? <ToastContainer position= "top-right"
+autoClose= '3000'
 hideProgressBar= {false}
 closeOnClick= {true}
 pauseOnHover= {true}

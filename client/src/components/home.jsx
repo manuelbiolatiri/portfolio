@@ -3,17 +3,16 @@ import React, { Component } from 'react';
 import Converts from './Converter/Converter';
 import Navigation from './Navigation/Navigation';
 import UploadForm from './UploadForm/UploadForm';
-import NumberFormat from "react-number-format";
-import axios from "axios";
+import NumberFormat from 'react-number-format';
+import axios from 'axios';
 import Body from './Body';
-import  'bootstrap/dist/css/bootstrap.min.css';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: ""
+      username: '',
+      password: ''
     };
   }
 
@@ -28,15 +27,15 @@ class Home extends Component {
   handleClick = (event) => {
     event.preventDefault();
     // delete localStorage.jwt
-    this.props.history.push("/")
-  }
+    this.props.history.push('/');
+  };
 
   render() {
     return (
-      <div className='container'>
-      <Navigation/>
-        <Body/>
-        <UploadForm/>
+      <div className="container">
+        <Navigation />
+        <Body />
+        <UploadForm />
       </div>
     );
   }

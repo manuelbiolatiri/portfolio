@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
-import {Alert} from 'reactstrap';
+import {Spinner} from 'reactstrap';
 import './Signin.css';
 import Navigation from '../Navigation/Navigation';
 import { ToastContainer, toast } from 'react-toastify';
@@ -14,8 +14,17 @@ class Signin extends React.Component {
       signInPassword: '',
       errorMessage: '',
       successMessage: '',
-      visible: true
+      visible: true,
+      loading: false
     }
+  }
+
+  hideLoader = () => {
+    this.setState({ loading: false });
+  }
+
+  showLoader = () => {
+    this.setState({ loading: true });
   }
 
   onEmailChange = (event) => {
@@ -27,6 +36,7 @@ class Signin extends React.Component {
   }
 
   onSubmitSignIn = () => {
+    this.showLoader();
     let customId = "custom-id-yes";
     try {
     fetch('http://localhost:3006/api/v1/auth/signin', {
@@ -53,6 +63,7 @@ class Signin extends React.Component {
           toastId: customId,
           position: toast.POSITION.TOP_CENTER
         });
+        this.hideLoader();
           this.setState({successMessage: user.message});
           setTimeout(() => {
             this.props.history.push(`/dashboard`);
@@ -117,12 +128,10 @@ progress= {undefined}/> : ''}
               </div>
             </fieldset>
             <div className="">
-              <input
-                onClick={this.onSubmitSignIn}
+              <button onClick={this.onSubmitSignIn}
                 className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                 type="submit"
-                value="Sign in"
-              />
+              >{this.state.loading? <Spinner size="sm" animation="border" variant="primary" /> : 'Sign in'}</button>
             </div>
             <div className="lh-copy mt3">
             <Link to="/sign_up">

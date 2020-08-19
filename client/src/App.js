@@ -21,6 +21,7 @@ import Landing from './components/Landing';
 import ConfirmSell from './components/confirmSell';
 import Footer from './components/Footer';
 import ErrorPage from './components/ErrorPage';
+import Nav from './components/Nav';
 
 const particlesOptions = {
   particles: {
@@ -43,6 +44,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+          <Nav />
           <Particles className="particles" params={particlesOptions} />
 
           <Switch>

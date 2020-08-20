@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+
 body {
   margin: 0;
   padding: 0;
-  font-family: "Courier New", Courier, monospace;
-  background: linear-gradient(90deg, #1171ef 0%, #04C8DE 100%); /* w3c */
+  font-family: 'Source Sans Pro', sans-serif;
+  background: linear-gradient(90deg, #1171ef 0%, #04c8de 100%); /* w3c */
 }
 
 button {

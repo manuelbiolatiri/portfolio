@@ -1,19 +1,23 @@
 import React from 'react';
 
 const PriceCard = (props) => {
-    const value = typeof parseInt(props.value) === 'number' && !isNaN(parseInt(props.value)) ? Math.round(parseInt(props.value)) : props.value;
-    return (
-        <div className="card mr-0 custom-card">
-            <div className="card-body">
-            < img src={props.src} alt={props.src} className = "img-responsive float-right"  />
-                <h6 className="card-title mb-4 ">{props.header} </h6>
-               
-                <h2 className="mb-1 text-primary">${value}</h2>
-                <p className="card-text"><small className="text-muted">{props.label}</small></p>
-                
-            </div>  
-        </div>
-    )
+  const value =
+    typeof parseInt(props.value) === 'number' && !isNaN(parseInt(props.value))
+      ? Math.round(parseInt(props.value))
+      : props.value;
+  return (
+    <div className="bg-white mr4-l mr2-m w-25-m w-20-l dib-ns bg-white br3 pa2 mw6 mv3 ba b--black-10">
+      <div className="card-body">
+        <img src={props.src} alt={props.src} className="img-responsive fr" />
+        <h6 className="card-title mb-4 ">{props.header} </h6>
+
+        <h2 className="mb-1 text-primary">${value}</h2>
+        <p className="card-text">
+          <small className="text-muted">{props.label}</small>
+        </p>
+      </div>
+    </div>
+  );
 };
 
 export default PriceCard;

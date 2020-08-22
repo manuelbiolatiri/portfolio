@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Tilt from 'react-tilt';
 import {
@@ -22,21 +23,24 @@ import Converts from './Converter/Converter';
 
 const ConfirmSell = (props) => {
   const [username, setUsername] = useState('');
+  const [note, setNote] = useState('');
   const [usd, setUsd] = useState('');
   const [btc, setBtc] = useState('');
-  const [phone, setPhone] = useState('');
   const [bank, setBank] = useState('');
   const [bankname, setBankname] = useState('');
   const [banknumber, setBanknumber] = useState('');
   const [referrals, setReferrals] = useState('');
+  const [image, setImage] = useState('');
+  
+  let jwt = window.localStorage.getItem('jwt');
+  const result = jwtDecode(jwt);
 
   useEffect(() => {
-    let jwt = window.localStorage.getItem('jwt');
+    
     let usdamount = JSON.parse(window.localStorage.getItem('usdamount'));
     let btcamount = JSON.parse(window.localStorage.getItem('btcamount'));
-    let result = jwtDecode(jwt);
+    
     setUsername(result.username);
-    setPhone(result.phone);
     setBank(result.bank);
     setBankname(result.bankname);
     setBanknumber(result.banknumber);
@@ -59,47 +63,38 @@ const ConfirmSell = (props) => {
       });
   }, [username, referrals]);
 
-  const [isOpen, setIsOpen] = useState(false);
 
-  const toggle = () => setIsOpen(!isOpen);
+   const onFormSubmit  = async(e)=>{
+    e.preventDefault();
+    if (image) {
+    const formData = new FormData();
+    formData.append('image',image);
+    formData.set('note',note);
+    formData.set('bank',bank);
+    formData.set('bankname',bankname);
+    formData.set('banknumber',banknumber);
+    formData.set('amount_usd',usd);
+    formData.set('amount_btc',btc);
+    formData.set('userId',result.id);
+    formData.set('email',result.email);
+    const config = {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+        
+    };
+   await axios.post("http://localhost:3006/api/v1/auth/sell", formData, config)
+        .then((response) => {
+            alert("The file is successfully uploaded");
+        }).catch((error) => {
+          console.log(error)
+    });
+  } else {
+    console.log('You need to select a file');
+}
+}
   return (
     <div>
-      {/*         
-          <Navbar color="light" light  className="navbar shadow-sm p-3 mb-5 rounded bg-transparent"
-      expand="lg">
-        <div className="container">
-            <Tilt className="Tilt br2 shadow-2" options={{ max : 25 }} style={{ height: 60, width: 60 }} >
-						 	<div className="Tilt-inner"><img src="flashtokenlogo.jpg" alt=""/></div>
-						</Tilt>
-            <NavbarToggler onClick={toggle} />
-            <Collapse isOpen={isOpen} navbar>
-              <Nav className="ml-auto" navbar>
-              <NavItem>
-                  <NavLink href="/profile">Hi, {username}</NavLink>
-                </NavItem>
-              <NavItem>
-                  <NavLink href="/dashboard">Dashboard</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="/sell">Sell</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="/profile">Profile</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="/affiliate">Affiliate</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="/contact">Contact Support</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="/logout"><button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
-        onClick={this.handleClick}>Sign out</button></NavLink>
-                </NavItem>
-              </Nav>
-            </Collapse>
-            </div>
-          </Navbar> */}
       <div className="container center">
         <div className="flex flex-wrap">
           <div>
@@ -117,28 +112,6 @@ const ConfirmSell = (props) => {
             <h4>
               {usd} | {btc}
             </h4>
-            <Form>
-              <FormGroup>
-                <Label for="exampleSelect">Select a Bank</Label>
-                <Input type="select" name="select" id="exampleSelect">
-                  <option>Select a bank</option>
-                  <option>FirstBank</option>
-                  <option>GTBank Plc</option>
-                  <option>UBA</option>
-                  <option>Zenith</option>
-                  <option>Ecobank</option>
-                </Input>
-              </FormGroup>
-              <FormGroup>
-                <Label for="exampleEmail">Bank Account Name</Label>
-                <Input
-                  type="text"
-                  name=""
-                  id="exampleEmail"
-                  placeholder="Your account name"
-                />
-              </FormGroup>
-            </Form>
           </div>
           <div>
             <article>
@@ -157,7 +130,7 @@ const ConfirmSell = (props) => {
                         id="title"
                         value={bank ? bank : ''}
                         placeholder="Enter your bank"
-                        onChange={this.onTitleChange}
+                        onChange={e => setBank(e.target.value)}
                       />
                     </div>
                     <div className="mt3">
@@ -171,7 +144,7 @@ const ConfirmSell = (props) => {
                         id="title"
                         value={bankname ? bankname : ''}
                         placeholder="Enter your account name"
-                        onChange={this.onTitleChange}
+                        onChange={e => setBankname(e.target.value)}
                       />
                     </div>
                     <div className="mt3">
@@ -185,36 +158,33 @@ const ConfirmSell = (props) => {
                         id="title"
                         value={banknumber ? banknumber : ''}
                         placeholder="Enter your account number"
-                        onChange={this.onTitleChange}
+                        onChange={e => setBanknumber(e.target.value)}
                       />
                     </div>
                     <div className="mt3">
-                      <label className="db fw6 lh-copy f6" htmlFor="title">
+                      <label className="db fw6 lh-copy f6" htmlFor="note">
                         Note
                       </label>
                       <input
                         className="pa2 input-reset ba bg-transparent hover-bg-white  w-100"
                         type="text"
-                        name="title"
-                        id="title"
+                        name="note"
+                        id="note"
                         placeholder="Leave a note(Optional)"
-                        onChange={this.onTitleChange}
+                        value={note}
+                        onChange={e => setNote(e.target.value)}
                       />
                     </div>
-                    {/* <div className="mt3">
-                      <label className="db fw6 lh-copy f6" htmlFor="username">
-                        Upload Receipt
-                      </label>
-                      <input
-                        type="file"
-                        name="image"
-                        onChange={this.onChange}
-                      />
-                    </div> */}
+                    <div className="mt3">
+              <label className="db fw6 lh-copy f6" htmlFor="image">
+                Upload Receipt
+              </label>
+              <input type="file" name="image" onChange={e => setImage(e.target.files[0])} />
+            </div>
                   </fieldset>
                   <div className="">
                     <input
-                      onClick={this.onFormSubmit}
+                      onClick={onFormSubmit}
                       className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                       type="submit"
                       value="Sell"

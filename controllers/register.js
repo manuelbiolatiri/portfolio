@@ -101,6 +101,66 @@ const mailOption = {
             console.log(e);
         };
     },
+    async sell(req, res) {
+        try {
+        // body values
+        const { email, userId, note, amount_usd,
+            amount_btc, bank, bankname, banknumber, type} = req.body;
+            const data = {
+                asset_id: req.file.asset_id,
+                image: req.file.secure_url
+                
+              };
+        console.log(req.body);
+        console.log(data.image)
+        
+            // empty body values
+            // if(email === '' || password === '' || username === '') {
+            //     return res.status(400).json({
+            //         status: 'error',
+            //         error: 'all fields are required'
+            //     });
+            // };
+console.log(req.body);
+
+const code = Math.random().toString(36).substr(2, 6);
+const amt2receive = 440 * amount_usd;
+
+const mailOption = {
+    from :'emmanuelbiolatiri49@gmail.com', // sender this is your email here
+    to : email, // receiver email2
+    subject: "Account Verification",
+    html: `<h1>Hello Chief, you have just made a bitcoin sale, kindly wait for admin to verify and be credited.<h1><br><hr>`
+}
+
+
+        const signUpQuery = `INSERT INTO contracts (transactionId, userId, note,cloudinary_id,image_url, amount_usd,
+            amount_btc, bank, bankname, banknumber, amt2receive, type, created)
+        VALUES($1, $2, $3, $4,$5, $6, $7, $8, $9, $10, $11, $12, now()) RETURNING *`
+        const userValue = [code, userId, note,data.asset_id, data.image, amount_usd,
+            amount_btc, bank, bankname, banknumber, amt2receive, type];
+        const signUpQuerys = await pool.query(signUpQuery, userValue);
+
+        const mailerGo =  transporter.sendMail(mailOption,(error,result)=>{
+            if(error){
+                console.log(error)
+            }else{
+                console.log(result);
+                    // token response
+                    res.status(201).json({
+                        status: 'success',
+                        data: {
+                            message: 'Great!, sell successfully made',
+                            transactionId: signUpQuerys.rows[0].id
+                        }
+                    })
+            }
+        })
+    }
+        catch (e) {
+            console.log(e);
+        };
+    },
     async updateSignUP(req, res) {
         // body values
         const { id, phone, bank,  bankname, banknumber} = req.body;
@@ -274,6 +334,7 @@ const mailOption = {
                     jwt.sign({id:logInQuery.rows[0].id ,
                         active: logInQuery.rows[0].active,
                                 verification: logInQuery.rows[0].verification,
+                                email: logInQuery.rows[0].email,
                                 phone: logInQuery.rows[0].phone,
                                 bank: logInQuery.rows[0].bank,
                                 bankname: logInQuery.rows[0].bankname,

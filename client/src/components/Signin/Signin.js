@@ -2,7 +2,6 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 import {Spinner} from 'reactstrap';
 import './Signin.css';
-import Navigation from '../Navigation/Navigation';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -85,7 +84,6 @@ class Signin extends React.Component {
   render() {
     return (
       <div className='container'>
-    <Navigation/>
     {this.state.errorMessage ? <ToastContainer position= "top-right"
 autoClose= '3000'
 hideProgressBar= {false}

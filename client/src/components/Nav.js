@@ -5,7 +5,7 @@ import Tilt from 'react-tilt';
 
 const Nav = () => {
   return (
-    <header className=" black-80 tc pv4 avenir">
+    <header className=" black-80 bg-gold tc pv4 avenir">
       <a href="/" className=" dib pa3  h2 br-100">
         <Tilt
           className="Tilt br2 shadow-2"

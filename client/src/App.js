@@ -5,6 +5,7 @@ import Register from './components/Register/Register';
 import Verify from './components/Verify/Verify';
 import Referrals from './components/Referrals/Referrals';
 import UploadForm from './components/UploadForm/UploadForm';
+import Navigation from './components/Navigation/Navigation';
 import '../src/style.css';
 import './App.css';
 import {
@@ -44,7 +45,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Nav />
+          <Navigation />
           <Particles className="particles" params={particlesOptions} />
 
           <Switch>

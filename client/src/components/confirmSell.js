@@ -114,7 +114,7 @@ const ConfirmSell = (props) => {
             </h4>
           </div>
           <div>
-            <article>
+            <article className=" bg-white">
               <main className="pa4 black-80">
                 <div className="measure">
                   <fieldset id="sign_up" className="ba b--transparent ph0 mh0">

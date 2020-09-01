@@ -4,56 +4,31 @@ import React, { Component } from 'react';
 class Footer extends Component {
   render() {
     return (
-      <div className="pa4 pa5-l black-70 bt b--black-10">
+      <div className="pa4 pa5-l black-70 bt b--black-10 bg-white">
         <div className="mb4-l cf">
           <h1 className="fl w-100 pv0 f6 fw6 ttu tracked mb4">Flashtoken</h1>
           <article className="fl w-50 dib-ns w-auto-ns mr4-m mr5-l mb4 pr2 pr0-ns">
-            <h4 className="f5 f4-l fw6">SF</h4>
-            <span className="f7 f6-l db black-70">837 Larkin St.</span>
-            <span className="f7 f6-l black-70">San Francisco, CA 94109 </span>
-            <a
-              className="f6 db fw6 pv3 black-70 link dim"
-              title="Call SF"
-              href="tel:+12075555555"
-            >
-              +1 207-555-5555
-            </a>
+            <h4 className="f5 f4-l fw6">Bitcoin</h4>
+            <span className="f7 f6-l db black-70">Sell Bitcoin</span>
+            <span className="f7 f6-l black-70">Buy Bitcoin</span>
+            
           </article>
           <article className="fl w-50 dib-ns w-auto-ns mr4-m mr5-l mb4 pl2 pl0-ns">
-            <h4 className="f5 f4-l fw6">LA</h4>
-            <span className="f7 f6-l db black-70">1111 Manor Way</span>
-            <span className="f7 f6-l di black-70">Los Angeles, CA 90048</span>
-            <a
-              href="tel:+13235555555"
-              className="f6 db fw6 pv3 link dim black-70"
-              title="Call the LA office."
-            >
-              +1 323-555-5555
-            </a>
+            <h4 className="f5 f4-l fw6">Giftcards</h4>
+            <span className="f7 f6-l db black-70">Sell Giftcards</span>
+            <span className="f7 f6-l di black-70">Amazon & more</span>
+            
           </article>
           <article className="fl w-50 dib-ns w-auto-ns mr4-m mr5-l mb4 pr2 pr0-ns">
-            <h4 className="f5 f4-l fw6">London</h4>
-            <span className="f7 f6-l db black-70">11 Downey St.</span>
-            <span className="f7 f6-l black-70">London, UK</span>
-            <a
-              href="tel:+5555555555"
-              className="link dim f6 db fw6 pv3 black-70"
-              title="Call the London office"
-            >
-              +44 0 5555-5555
-            </a>
+            <h4 className="f5 f4-l fw6">Links</h4>
+            <span className="f7 f6-l db black-70">Blog</span>
+            <span className="f7 f6-l black-70">Affiliate</span>
+            
           </article>
           <article className="fl w-50 dib-ns w-auto-ns mb4 pl2 pl0-ns">
-            <h4 className="f5 f4-l fw6">Tokyo</h4>
-            <span className="f7 f6-l db black-70">1982 Flangan Rd.</span>
-            <span className="f7 f6-l">Shinjuku, Tokyo</span>
-            <a
-              href="tel:+444444444444"
-              className="f6 db dim fw6 pv3 link black-70"
-              title="Call Tokyo Office"
-            >
-              +99 5555-5555
-            </a>
+            <h4 className="f5 f4-l fw6">Support</h4>
+            <span className="f7 f6-l db black-70">Contact Us</span>
+            <span className="f7 f6-l" href="tel:+2348095001676">+234 809-5001-676</span>
           </article>
         </div>
         <section className="cf mb5">

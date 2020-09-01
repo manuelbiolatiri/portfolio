@@ -19,6 +19,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <link rel="stylesheet" href="bower_components/aos/dist/aos.css" />
     <title>Flashtoken | Sell Cryptos & GiftCards Online</title>
   </head>
   <body>
@@ -47,6 +48,15 @@
   s1.setAttribute('crossorigin','*');
   s0.parentNode.insertBefore(s1,s0);
   })();
+  </script>
+  <script src="bower_components/aos/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      offset: 200,
+      duration: 600,
+      easing: 'ease-in-sine',
+      delay: 100,
+    });
   </script>
   <!--End of Tawk.to Script-->
   </body>

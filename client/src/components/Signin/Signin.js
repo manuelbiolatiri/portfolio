@@ -97,7 +97,7 @@ closeOnClick= {true}
 pauseOnHover= {true}
 draggable= {true}
 progress= {undefined}/> : ''}
-      <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
+      <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6  bg-white shadow-5 center">
         <main className="pa4 black-80">
           <div className="measure">
             <fieldset id="sign_in" className="ba b--transparent ph0 mh0">
@@ -105,7 +105,7 @@ progress= {undefined}/> : ''}
               <div className="mt3">
                 <label className="db fw6 lh-copy f6" htmlFor="username">Username</label>
                 <input
-                  className="pa2 input-reset ba bg-transparent hover-bg-black  w-100"
+                  className="pa2 input-reset ba bg-transparent   w-100"
                   type="text"
                   name="username"
                   id="username"
@@ -116,7 +116,7 @@ progress= {undefined}/> : ''}
               <div className="mv3">
                 <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
                 <input
-                  className="b pa2 input-reset ba bg-transparent hover-bg-black  w-100"
+                  className="b pa2 input-reset ba bg-transparent   w-100"
                   type="password"
                   name="password"
                   id="password"

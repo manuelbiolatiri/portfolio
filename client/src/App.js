@@ -21,13 +21,14 @@ import Home from './components/home';
 import Landing from './components/Landing';
 import ConfirmSell from './components/confirmSell';
 import Footer from './components/Footer';
+import Affiliate from './components/Affiliate';
 import ErrorPage from './components/ErrorPage';
 import Nav from './components/Nav';
 
 const particlesOptions = {
   particles: {
     number: {
-      value: 60,
+      value: 100,
       density: {
         enable: true,
         value_area: 1500
@@ -55,6 +56,7 @@ class App extends Component {
             <Route path="/verify" exact component={Verify} />
             <Route path="/referrals/:id" exact component={Referrals} />
             <Route path="/home" exact component={Home} />
+            <Route path="/affiliate" exact component={Affiliate} />
             <ProtectedRoute path={'/dashboard'} exact component={Dashboard} />
             <ProtectedRoute
               path={'/confirmsell'}

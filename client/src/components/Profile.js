@@ -101,7 +101,7 @@ const onSubmitSave = () => {
     return (
       <div>
         
-          <Navbar color="light" light  className="navbar shadow-sm p-3 mb-5 rounded bg-transparent"
+          {/* <Navbar color="light" light  className="navbar shadow-sm p-3 mb-5 rounded bg-transparent"
       expand="lg">
         <div className="container">
         <NavLink href="/">
@@ -137,7 +137,7 @@ const onSubmitSave = () => {
               </Nav>
             </Collapse>
             </div>
-          </Navbar>
+          </Navbar> */}
           {success ? <ToastContainer position= "top-right"
 hideProgressBar= {false}
 closeOnClick= {true}
@@ -151,7 +151,7 @@ pauseOnHover= {true}
 draggable= {true}
 progress= {undefined}/> : ''}
       <div className='container'>
-      <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
+      <article className="br3 ba b--black-10 bg-white mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
         <main className="pa4 black-80">
           <div className="measure">
             <fieldset id="sprofile" className="ba b--transparent ph0 mh0">
@@ -159,7 +159,7 @@ progress= {undefined}/> : ''}
               <div className="mt3">
                 <label className="db fw6 lh-copy f6" htmlFor="phone">Phone</label>
                 <input
-                className="pa2 input-reset ba bg-transparent hover-bg-black  w-100"
+                className="pa2 input-reset ba bg-transparent   w-100"
                 type="text"
                 pattern="[0-9]*"
                 name="phone"
@@ -171,7 +171,7 @@ progress= {undefined}/> : ''}
               <div className="mt3">
                 <label className="db fw6 lh-copy f6" htmlFor="bank">Bank Name</label>
                 <input
-                  className="pa2 input-reset ba bg-transparent hover-bg-black  w-100"
+                  className="pa2 input-reset ba bg-transparent   w-100"
                   type="text"
                   name="bank"
                   placeholder="Bank"
@@ -182,7 +182,7 @@ progress= {undefined}/> : ''}
               <div className="mt3">
                 <label className="db fw6 lh-copy f6" htmlFor="bankname">Bank Account Name</label>
                 <input
-                  className="pa2 input-reset ba bg-transparent hover-bg-black  w-100"
+                  className="pa2 input-reset ba bg-transparent   w-100"
                   type="text"
                   name="bankname"
                   placeholder="Enter name on account"
@@ -193,7 +193,7 @@ progress= {undefined}/> : ''}
               <div className="mt3">
                 <label className="db fw6 lh-copy f6" htmlFor="banknumber">Account Number</label>
                 <input
-                  className="pa2 input-reset ba bg-transparent hover-bg-black  w-100"
+                  className="pa2 input-reset ba bg-transparent   w-100"
                   type="text"
                   name="banknumber"
                   placeholder="Account number"

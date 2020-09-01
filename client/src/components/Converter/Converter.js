@@ -7,7 +7,7 @@ import {
   Button
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
-// import './App.css';
+import './Converter.css';
 // import Convert from '../Convert/Convert'
 
 class Converts extends React.Component {
@@ -120,43 +120,53 @@ class Converts extends React.Component {
   render() {
     const { currencies, amount, result, base, convertTo, btcusd } = this.state;
     return (
-      <div className=" text-center m-auto">
-        <h1>Convert</h1>
+      <div className=" text-center m-auto"
+      data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600">
 
-        <form className="center mb2">
-          <div className="flex">
-            <input
-              type="number"
-              value={amount}
-              onChange={this.handleInput}
-              className="pa1"
-            />
-            <div>
-              <span className="bg-washed-blue pa2 dib">BTC</span>
+        <form className="">
+        <div className="mb4 " style={{padding:'0 10px'}}>
+          <div className="mb4 mb0-ns ">
+              <input
+                type="number"
+                value={amount}
+                onChange={this.handleInput}
+                className="mw-100 w5-ns f5 input-reset ba b--black-20 pv3 ph2 border-box"
+              />
+              <input
+                type="submit"
+                value="BTC"
+                style={{lineHeight: 1.15}}
+                className="input-reset w-auto-ns bg-black-80 white f5 pv2 pv3-ns ph3 ba b--black-80 bg-hover-mid-gray"
+              />
             </div>
-          </div>
+            </div>
         </form>
 
-        <form className="center mb2">
-          <div className="flex">
-            <input
-              disabled={true}
-              value={
-                amount === ''
-                  ? '0'
-                  : result === null
-                  ? 'Calculating...'
-                  : result
-              }
-              className="pa1"
-            />
-            <div>
-              <span className="bg-washed-blue pa2 dib">{base}</span>
+        <form className="">
+        <div className=" " style={{padding:'0 10px'}}>
+        <div className="mb2 mb0-ns ">
+              <input
+                disabled={true}
+                value={
+                  amount === ''
+                    ? '0'
+                    : result === null
+                    ? 'Calculating...'
+                    : result
+                }
+                className="mw-100 w5-ns f5 input-reset ba b--black-20 pv3 ph2 border-box"
+              />
+              <input
+                type="submit"
+                value="USD"
+                style={{lineHeight: 1.15}}
+                className="input-reset w-auto-ns bg-black-80 white f5 pv2 pv3-ns ph3 ba b--black-80 bg-hover-mid-gray"
+              />
             </div>
-          </div>
+            </div>
         </form>
         <Link to="/confirmsell">
-          <button type="button" className="br2 w4 pa2 ">
+          <button type="button" style={{lineHeight: 1.15}} className=" button b ph3 pv2 input-reset ba white mt2 mb3 bg-black-80 grow pointer f5 dib ">
             Sell
           </button>
         </Link>

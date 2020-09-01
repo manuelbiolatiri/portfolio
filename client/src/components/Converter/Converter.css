@@ -1,4 +1,4 @@
-
+/* 
 
 div#converter-container {
   background:red;
@@ -19,4 +19,10 @@ span.right {
 .form-inline .form-control { 
   display: inline-block !important; 
   width: auto!important
+} */
+
+@media (max-width: 600px) {
+ .bg-hover-mid-gray {
+  line-height: 2.15
+ } 
 }

@@ -98,7 +98,7 @@ const  handleClick = (event) => {
     return (
       <div>
         
-          <Navbar color="light" light  className="navbar shadow-sm p-3 mb-5 rounded bg-transparent"
+          {/* <Navbar color="light" light  className="navbar shadow-sm p-3 mb-5 rounded bg-transparent"
       expand="lg">
         <div className="container">
         <NavLink href="/">
@@ -134,7 +134,7 @@ const  handleClick = (event) => {
               </Nav>
             </Collapse>
             </div>
-          </Navbar>
+          </Navbar> */}
       {/* <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
           <Link to="/home">
     <p  className='f3 link dim black underline pa3 pointer'>Home</p>
@@ -152,7 +152,7 @@ const  handleClick = (event) => {
           <p onClick={this.handleClick} className='f3 link dim black underline pa3 pointer'>Signout</p>
           </Link>
         </nav> */}
-        <div className="container">
+        <div className="container white">
         <CardDeck>
       <Card>
         <CardBody>

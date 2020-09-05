@@ -135,8 +135,8 @@ class Converts extends React.Component {
               <input
                 type="submit"
                 value="BTC"
-                style={{lineHeight: 1.15}}
-                className="input-reset w-auto-ns bg-black-80 white f5 pv2 pv3-ns ph3 ba b--black-80 bg-hover-mid-gray"
+                // style={{lineHeight: 1.15}}
+                className="input-reset w-auto-ns bg-black-80 white f5 pv2 pv3-ns lhyt ph3 ba b--black-80 bg-hover-mid-gray"
               />
             </div>
             </div>
@@ -159,8 +159,8 @@ class Converts extends React.Component {
               <input
                 type="submit"
                 value="USD"
-                style={{lineHeight: 1.15}}
-                className="input-reset w-auto-ns bg-black-80 white f5 pv2 pv3-ns ph3 ba b--black-80 bg-hover-mid-gray"
+                // style={{lineHeight: 1.15}}
+                className="input-reset w-auto-ns bg-black-80 white f5 lhyt pv2 pv3-ns ph3 ba b--black-80 bg-hover-mid-gray"
               />
             </div>
             </div>

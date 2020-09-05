@@ -13,8 +13,8 @@ class Landing extends Component {
       <div className="">
       <article>
   <header className="bg-transparent san-serif flex justify-around">
-    <div className=" w-50 pa4 pt5-ns tl" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600" >
-      <h3 className="f2 f1-m   lh-title mv0" style={{fontSize:"4rem"}}>
+    <div className=" w-50 respo pa4 pt5-ns tl" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600" >
+      <h3 className=" fsm  fs lh-title mv0 ">
         <span className="bg-black-90 lh-copy white pa1 tracked-tight">
         The easiest way to sell cryptocurrency & Giftcards
 
@@ -31,7 +31,7 @@ class Landing extends Component {
             
     </div>
     {/* <div className="mw9 w-50"> */}
-      <img src="landing.svg" style={{ height: 500, width: 500 }}
+      <img src="landing.svg" className="img" style={{ height: 500, width: 500 }}
       data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600"/>
       {/* </div> */}
   </header>

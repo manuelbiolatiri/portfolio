@@ -16,15 +16,14 @@ import {
 } from "reactstrap";
 import './Navigation.css'
 
-const Navigation = (props) => {
+const Navigation = ({isLoggedIn}) => {
 
   let history = useHistory();
-  let token = localStorage.jwt;
+  // let token = localStorage.jwt;
 const  handleClick = (event) => {
     event.preventDefault();
     delete localStorage.jwt
-    // <Redirect component={Landing}/>
-    history.push("/");
+    history.push("/sign_in");
   }
 
   // const handleClick = (event) => {
@@ -33,10 +32,10 @@ const  handleClick = (event) => {
   //   // history.go("/");
   // }
 
-  const [topbarIsOpen, setTopbarOpen] = useState(true);
-  const toggleTopbar = () => setTopbarOpen(!topbarIsOpen);
+  // const [topbarIsOpen, setTopbarOpen] = useState(true);
+  // const toggleTopbar = () => setTopbarOpen(!topbarIsOpen);
  
-  if (token){
+  if (isLoggedIn){
     return (
         
       <header className="bg-transparent">
@@ -52,11 +51,10 @@ const  handleClick = (event) => {
 <ul>
 <li><a href="/"><i class="fa fa-home"></i>Sell</a></li>
 <li><a href="/about"><i class="fa fa-user"></i>About</a></li>
-<li><a href="affiliate"><i class="fas fa-thumbs-up-alt"></i>Affiliate</a></li>
-<li><a href="sign_up"><i class="fas fa-gear"></i>Register</a></li>
-<li><a href="/sign_in"><i class="fa fa-picture"></i>Login</a></li>
+<li><a href="/affiliate"><i class="fas fa-thumbs-up-alt"></i>Affiliate</a></li>
+<li><a href="/profile"><i class="fas fa-gear"></i>Profile</a></li>
 <li><a href="/contact"><i class="fa fa-phone"></i>Contact</a></li>
-<li><a><button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+<li><a><button className="b ph3 pv2 input-reset ba b--white white bg-transparent grow pointer f6 dib"
       onClick={handleClick}>Sign out</button></a></li>
 </ul>
 

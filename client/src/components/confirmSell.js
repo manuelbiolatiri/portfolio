@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
+import './csell.css';
 import { Link } from 'react-router-dom';
 import Tilt from 'react-tilt';
 import {
@@ -97,7 +98,7 @@ const ConfirmSell = (props) => {
     <div>
       <div className="container center">
         <div className="flex flex-wrap">
-          <div>
+          <div className="white">
             <h3>Send Coin to Any of These Wallet Addresses</h3>
 
             <h3>wiorivnirvnroihwr48394489y3hfc8n5</h3>
@@ -175,12 +176,16 @@ const ConfirmSell = (props) => {
                         onChange={e => setNote(e.target.value)}
                       />
                     </div>
-                    <div className="mt3">
+                    <div className="button-wrap mt3">
+  <label class ="new-button" for="upload"> Upload Receipt</label>
+  <input id="upload" type="file" onChange={e => setImage(e.target.files[0])} />
+</div>
+                    {/* <div className="mt3">
               <label className="db fw6 lh-copy f6" htmlFor="image">
                 Upload Receipt
               </label>
               <input type="file" name="image" onChange={e => setImage(e.target.files[0])} />
-            </div>
+            </div> */}
                   </fieldset>
                   <div className="">
                     <input

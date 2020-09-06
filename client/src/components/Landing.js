@@ -56,11 +56,14 @@ class Landing extends Component {
 {/* <div className="bg-dark-pink h2">
 <h1 className="white center">Giftcards Rates</h1>
 </div> */}
+<div className="pv3 bg-white" style={{textAlign:'center',width:'100%'}}>
+    <h2 className="black-70">Chat With Us For A Flash Giftcards Transaction</h2>
+  </div>
 <div class="center bg-white">
   
   <main class="gridd" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600">
     <article>
-      <img src="https://dundle.com/resources/images/products/200w/amazon-200w.png" className="w-100" alt="Sample photo"/>
+      <img src="https://i.pinimg.com/236x/b0/f7/fc/b0f7fc969633b3effc5c022b46279f56--gift-cards.jpg" className="w-100" alt="Sample photo"/>
       <div class="text">
   <p >Itunes | 240/$</p>
       </div>
@@ -72,7 +75,7 @@ class Landing extends Component {
       </div>
     </article>
     <article>
-      <img src="https://dundle.com/resources/images/products/200w/amazon-200w.png" className="w-100" alt="Sample photo"/>
+      <img src="https://i.pinimg.com/236x/b0/f7/fc/b0f7fc969633b3effc5c022b46279f56--gift-cards.jpg" className="w-100" alt="Sample photo"/>
       <div class="text">
   <p>Steam | 250$</p>
       </div>

@@ -10,10 +10,11 @@
 input[type="file"] {
   position: absolute;
   z-index: -1;
-  top: 6px;
+  top: -600px;
   left: 0;
+  display:none;
   font-size: 15px;
-  color: rgb(153,153,153);
+  /* color: rgb(153,153,153); */
 }
   input[type="file"]:hover::before {
     color: #fff;
@@ -30,4 +31,20 @@ input[type="file"] {
 
 .button-wrap {
   position: relative;
+}
+
+.griddd {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-gap: 30px;
+  align-items: stretch;
+  margin: 0px 30px;
+  width:80%
+}
+@media (max-width: 600px) {
+  .griddd { grid-template-columns: repeat(1, 1fr);
+    grid-gap:10px;
+    width:auto;
+    margin: 0px 10px;
+   }
 }

@@ -141,21 +141,34 @@ const mailOption = {
             amount_btc, bank, bankname, banknumber, amt2receive, type];
         const signUpQuerys = await pool.query(signUpQuery, userValue);
 
-        const mailerGo =  transporter.sendMail(mailOption,(error,result)=>{
-            if(error){
-                console.log(error)
-            }else{
-                console.log(result);
-                    // token response
-                    res.status(201).json({
-                        status: 'success',
-                        data: {
+        if (signUpQuerys.rows[0].amount_usd === amount_usd) {
+            const mailerGo =  transporter.sendMail(mailOption,(error,result)=>{
+                if(error){
+                        res.status(400).json({
+                            status: 'error',
+                            message: 'An error occured, please try again'
+                            
+                        });
+                }else{
+                    console.log(result);
+                        // token response
+                        res.status(201).json({
+                            status: 'success',
                             message: 'Great!, sell successfully made',
                             transactionId: signUpQuerys.rows[0].id
-                        }
-                    })
-            }
-        })
+                            
+                        })
+                }
+            })
+        } else {
+            res.status(403).json({
+                status: 'error',
+                message: 'An error occured, please try again'
+                
+            });
+        }
+
+        
     }
         catch (e) {
             console.log(e);
@@ -194,10 +207,39 @@ console.log(id)
                 const userValue = [phone, bank,  bankname, banknumber, id];
                 const signUpQuerys = await pool.query(signUpQuery, userValue);
 
-                    res.status(201).json({
-                        status: 'success',
-                        message: 'account successfully updated'
+                if (id === signUpQuerys.rows[0].id && signUpQuerys.rows[0].active === 'verified') {
+                    jwt.sign({id:signUpQuerys.rows[0].id ,
+                        active: signUpQuerys.rows[0].active,
+                                verification: signUpQuerys.rows[0].verification,
+                                email: signUpQuerys.rows[0].email,
+                                phone: signUpQuerys.rows[0].phone,
+                                bank: signUpQuerys.rows[0].bank,
+                                bankname: signUpQuerys.rows[0].bankname,
+                                banknumber: signUpQuerys.rows[0].banknumber }, process.env.SECRET_KEY, { expiresIn: '24h' }, (err, token) => {
+                        res.status(201).json({
+                            status: 'success',
+                            message: 'account successfully updated',
+                            data: {
+                                token,
+                                id: signUpQuerys.rows[0].id,
+                                active: signUpQuerys.rows[0].active,
+                                verification: signUpQuerys.rows[0].verification,
+                                phone: signUpQuerys.rows[0].phone,
+                                bank: signUpQuerys.rows[0].bank,
+                                bankname: signUpQuerys.rows[0].bankname,
+                                banknumber: signUpQuerys.rows[0].banknumber,
+                            }
+                        })
                     })
+                }
+                // incorrect email and password
+                else {
+                    res.status(403).json({
+                        status: 'error',
+                        error: 'token not generated, incorrect email or password'
+                    });
+                }
+
         }
     }
         catch (e) {
@@ -339,7 +381,7 @@ const mailOption = {
                                 bank: logInQuery.rows[0].bank,
                                 bankname: logInQuery.rows[0].bankname,
                                 banknumber: logInQuery.rows[0].banknumber,
-                        username, password }, process.env.SECRET_KEY, { expiresIn: '24h' }, (err, token) => {
+                        username }, process.env.SECRET_KEY, { expiresIn: '24h' }, (err, token) => {
                         res.status(201).json({
                             status: 'success',
                             message: 'User successfully logged in',
@@ -384,7 +426,7 @@ const mailOption = {
              if (!logInQuery.rows[0]) {
                 return res.status(400).json({
                     status: 'error',
-                    error: 'username does not exist & incorrect token, please sign up'
+                    error: 'Incorrect code, please try again or sign up'
                 });
             };
             console.log(verify === logInQuery.rows[0].verification);

@@ -1,177 +1,254 @@
-import React, { useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
 import {Link} from 'react-router-dom';
 import {Alert} from 'reactstrap';
 import './Register.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { register } from "../../actions/auth";
-import { history } from "../../helpers/history";
+import { css } from "@emotion/core";
+import PulseLoader from "react-spinners/PulseLoader";
 
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
-
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
-import { isEmail } from "validator";
-
-const required = (value) => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
+function ValidationMessage(props) {
+  if (!props.valid) {
+    return(
+      <div className='error-msg'>{props.message}</div>
+    )
   }
-};
+  return null;
+}
 
-const validEmail = (value) => {
-  if (!isEmail(value)) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This is not a valid email.
-      </div>
-    );
+class Register extends React.Component {
+  state = {
+    username: '', usernameValid: false,
+    email: '', emailValid: false,
+    password: '', passwordValid: false,
+    passwordConfirm: '', passwordConfirmValid: false,
+    formValid: false,
+    errorMsg: {},
+    errorMessage: '',
+    successMessage: '',
+    visible: true,
+    loading: false
   }
-};
 
-const vusername = (value) => {
-  if (value.length < 3 || value.length > 20) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The username must be between 3 and 20 characters.
-      </div>
-    );
+  hideLoader = () => {
+    this.setState({ loading: false });
   }
-};
 
-const vpassword = (value) => {
-  if (value.length < 6 || value.length > 40) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The password must be between 6 and 40 characters.
-      </div>
-    );
+  showLoader = () => {
+    this.setState({ loading: true });
   }
-};
 
-const Register = () => {
-  const form = useRef();
-  const checkBtn = useRef();
 
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [successful, setSuccessful] = useState(false);
+  validateForm = () => {
+    const {usernameValid, emailValid, passwordValid, passwordConfirmValid} = this.state;
+    this.setState({
+      formValid: usernameValid && emailValid && passwordValid && passwordConfirmValid
+    })
+  }
 
-  const { message } = useSelector(state => state.message);
-  const dispatch = useDispatch();
+  updateUsername = (username) => {
+    this.setState({username: username.split(" ").join("")}, this.validateUsername)
+  }
 
-  const onChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
-  };
+  validateUsername = () => {
+    const {username} = this.state;
+    let usernameValid = true;
+    let errorMsg = {...this.state.errorMsg}
 
-  const onChangeEmail = (e) => {
-    const email = e.target.value;
-    setEmail(email);
-  };
-
-  const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
-  };
-
-  const handleRegister = (e) => {
-    e.preventDefault();
-
-    setSuccessful(false);
-
-    form.current.validateAll();
-
-    if (checkBtn.current.context._errors.length === 0) {
-      dispatch(register(username, email, password))
-        .then(() => {
-          setSuccessful(true);
-        })
-        .catch(() => {
-          setSuccessful(false);
-        });
+    if (username.length < 3) {
+      usernameValid = false;
+      errorMsg.username = 'Must be at least 3 characters long'
     }
-  };
 
-  return (
-    <div className="col-md-12">
-      <div className="card card-container">
+    this.setState({usernameValid, errorMsg}, this.validateForm)
+  }
+
+  updateEmail = (email) => {
+    this.setState({email: email.split(" ").join("")}, this.validateEmail)
+  }
+
+  validateEmail = () => {
+    const {email} = this.state;
+    let emailValid = true;
+    let errorMsg = {...this.state.errorMsg}
+
+    // checks for format _@_._
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      emailValid = false;
+      errorMsg.email = 'Invalid email format'
+    }
+
+    this.setState({emailValid, errorMsg}, this.validateForm)
+  }
+
+  updatePassword = (password) => {
+    this.setState({password: password.split(" ").join("")}, this.validatePassword);
+  }
+
+  validatePassword = () => {
+    const {password} = this.state;
+    let passwordValid = true;
+    let errorMsg = {...this.state.errorMsg}
+
+
+    if (password.length < 6) {
+      passwordValid = false;
+      errorMsg.password = 'Password must be at least 6 characters long';
+    } else if (!/\d/.test(password)){
+      passwordValid = false;
+      errorMsg.password = 'Password must contain a digit';
+    } else if (!/[!@#$%^&*]/.test(password)){
+      passwordValid = false;
+      errorMsg.password = 'Password must contain special character: !@#$%^&*';
+    }
+
+    this.setState({passwordValid, errorMsg}, this.validateForm);
+  }
+
+  updatePasswordConfirm = (passwordConfirm) => {
+    this.setState({passwordConfirm: passwordConfirm.split(" ").join("")}, this.validatePasswordConfirm)
+  }
+
+  validatePasswordConfirm = () => {
+    const {passwordConfirm, password} = this.state;
+    let passwordConfirmValid = true;
+    let errorMsg = {...this.state.errorMsg}
+
+    if (password !== passwordConfirm) {
+      passwordConfirmValid = false;
+      errorMsg.passwordConfirm = 'Passwords do not match'
+    }
+
+    this.setState({passwordConfirmValid, errorMsg}, this.validateForm);
+  }
+
+  onSubmitRegister = () => {
+    this.showLoader();
+    let customId = "custom-id-yes";
+    try {
+    fetch('http://localhost:3006/api/v1/auth/create-user', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        username: this.state.username,
+        email: this.state.email,
+        password: this.state.password
+      })
+    })
+      .then(response => {
+        if(response.status === 400){
+          toast.warn('User already exist', {
+            toastId: customId,
+            position: toast.POSITION.TOP_RIGHT
+          });
+          this.setState({errorMessage: 'User already exist'});
+          this.hideLoader();
+        } else if (response.status === 201){
+          toast.success('User registered successfully', {
+            toastId: customId,
+            position: toast.POSITION.TOP_CENTER
+          });
+          this.setState({successMessage: 'User registered successfully'});
+          
+          setTimeout(() => {
+            
+            this.props.history.push(`/verify`);
+            this.hideLoader();
+          }, 1500)
+          
+        }
+      })
+
+      .catch(response => {
+        console.log(response)
+    
+    })
+      
+    }
+    catch (e) {
+      console.log(e)
+  }
+}
+
+
+ onDismiss = () => {
+   this.setState({visible:false})
+ }
+
+  render() {
+    return (
+      <div className='container'>
       <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 bg-white shadow-5 center">
         <main className="pa4 black-80">
           <div className="measure">
-        <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="profile-img"
-          className="profile-img-card"
-        />
-
-        <Form onSubmit={handleRegister} ref={form}>
-          {!successful && (
-            <div>
-              <div className="form-group">
-                <label htmlFor="username">Username</label>
-                <Input
-                  type="text"
-                  className="b pa2 input-reset ba bg-transparent   w-100"
-                  name="username"
-                  value={username}
-                  onChange={onChangeUsername}
-                  validations={[required, vusername]}
-                />
+            <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
+              <legend className="f1 fw6 ph0 mh0">Register</legend>
+              
+              {this.state.errorMessage ? <ToastContainer position= "top-right"
+hideProgressBar= {false}
+closeOnClick= {true}
+pauseOnHover= {true}
+draggable= {true}
+progress= {undefined}/> : ''}
+      {this.state.successMessage ? <ToastContainer position= "top-right"
+hideProgressBar= {false}
+closeOnClick= {true}
+pauseOnHover= {true}
+draggable= {true}
+progress= {undefined}/> : ''}
+  
+              <div className="mt3">
+                <label className="db fw6 lh-copy f6" htmlFor="username">Username</label>
+                < ValidationMessage valid={this.state.usernameValid} message={this.state.errorMsg.username} />
+              <input type='text' id='username' name='username' className="b pa2 input-reset ba bg-transparent   w-100"
+              value={this.state.username} onChange={(e) => this.updateUsername(e.target.value)}/>
               </div>
-
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <Input
-                  type="text"
-                  className="b pa2 input-reset ba bg-transparent   w-100"
-                  name="email"
-                  value={email}
-                  onChange={onChangeEmail}
-                  validations={[required, validEmail]}
-                />
+              <div className="mt3">
+                <label className="db fw6 lh-copy f6" htmlFor="email">Email</label>
+                < ValidationMessage valid={this.state.emailValid} message={this.state.errorMsg.email} />
+              <input type='email' id='email' name='email' className="b pa2 input-reset ba bg-transparent   w-100"
+              value={this.state.email} onChange={(e) => this.updateEmail(e.target.value)}/>
               </div>
-
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <Input
-                  type="password"
-                  className="b pa2 input-reset ba bg-transparent   w-100"
-                  name="password"
-                  value={password}
-                  onChange={onChangePassword}
-                  validations={[required, vpassword]}
-                />
+              <div className="mv3">
+                <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
+                  < ValidationMessage valid={this.state.passwordValid} message={this.state.errorMsg.password} />
+                  <input type='password' id='password' name='password' className="b pa2 input-reset ba bg-transparent   w-100"
+                  value={this.state.password} onChange={(e) => this.updatePassword(e.target.value)}/>
               </div>
-
-              <div className="form-group">
-                <button className="b pa2 input-reset ba bg-transparent   w-100">Sign Up</button>
+              <div className="mv3">
+                <label className="db fw6 lh-copy f6" htmlFor="password-confirmation">Confirm Password</label>
+                < ValidationMessage valid={this.state.passwordConfirmValid} message={this.state.errorMsg.passwordConfirm} />
+              <input type='password' id='password-confirmation' name='password-confirmation' className="b pa2 input-reset ba bg-transparent   w-100"
+                value={this.state.passwordConfirm} onChange={(e) => this.updatePasswordConfirm(e.target.value)}/>
               </div>
+            </fieldset>
+            <div className="">
+            <button disabled={!this.state.formValid}
+            onClick={this.onSubmitRegister} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">{this.state.loading ? <PulseLoader
+              css={override}
+              size={6}
+              color={"black"}
+              loading={this.state.loading}
+            /> : `Register`}
+            </button>
+              <div className="lh-copy mt3">
+              <Link to="/sign_in">
+          <p className="f6 link dim black db pointer">Have an account? Login!</p>
+          </Link>
+          </div>
             </div>
-          )}
-
-          {message && (
-            <div className="form-group">
-              <div className={ successful ? "alert alert-success" : "alert alert-danger" } role="alert">
-                {message}
-              </div>
-            </div>
-          )}
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
-        </Form>
-        </div>
+          </div>
         </main>
-        </article>
+      </article>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Register;

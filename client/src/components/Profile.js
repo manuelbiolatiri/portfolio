@@ -1,17 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import jwtDecode from "jwt-decode";
-import {useHistory} from 'react-router-dom';
-import Tilt from 'react-tilt'
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  Nav,
-  NavItem,
-  NavLink 
-} from 'reactstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { css } from "@emotion/core";
+import PulseLoader from "react-spinners/PulseLoader";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: black;
+`;
 
 const Profile = () => {
 
@@ -25,6 +23,7 @@ const Profile = () => {
   const [referrals, setReferrals] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const jwt = window.localStorage.getItem("jwt");
   const result = jwtDecode(jwt);
@@ -34,8 +33,12 @@ useEffect( ()=>{
     console.log(`The result is`, result);
     console.log(`the current dashboard state is`, window.localStorage);
 
+    setPhone(result.phone);
+    setBank(result.bank);
+    setBankname(result.bankname);
+    setBanknumber(result.banknumber);
+
     //  getRefs
-   
        fetch(`http://localhost:3006/api/v1/getrefs/${result.id}`)
       .then(response => response.json())
       .then(res => {
@@ -52,9 +55,17 @@ useEffect( ()=>{
     })
 }, [username, referrals])
 
+const hideLoader = () => {
+  setLoading(false);
+}
+
+const showLoader = () => {
+  setLoading(true);
+}
 const customId = "custom-id-yes";
 
 const onSubmitSave = () => {
+  showLoader();
     const id = result.id;
     try {
     fetch('http://localhost:3006/api/v1/auth/profile', {
@@ -78,12 +89,18 @@ const onSubmitSave = () => {
                 position: toast.POSITION.TOP_RIGHT
               });
         setError(user.error)
+        hideLoader();
         } else if(user.status === 'success') {
+          localStorage.setItem("jwt", JSON.stringify(user.data.token));
             toast.success(user.message, {
                 toastId: customId,
                 position: toast.POSITION.TOP_CENTER
               });
           setSuccess(user.message);
+          setTimeout(() => {
+            window.location.href = "/dashboard"
+          }, 1500)
+          hideLoader();
         }
       })
 
@@ -101,43 +118,6 @@ const onSubmitSave = () => {
     return (
       <div>
         
-          {/* <Navbar color="light" light  className="navbar shadow-sm p-3 mb-5 rounded bg-transparent"
-      expand="lg">
-        <div className="container">
-        <NavLink href="/">
-            <Tilt className="Tilt br2 shadow-2" options={{ max : 25 }} style={{ height: 60, width: 60 }} >
-						 	<div className="Tilt-inner"><img src="flashtokenlogo.jpg" alt=""/></div>
-						</Tilt>
-            </NavLink>
-            <NavbarToggler onClick={toggle} />
-            <Collapse isOpen={isOpen} navbar>
-              <Nav className="ml-auto" navbar>
-              <NavItem>
-                  <NavLink href="/profile">Hi, {username}</NavLink>
-                </NavItem>
-              <NavItem>
-                  <NavLink href="/dashboard">Dashboard</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="/">Sell</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="/profile">Profile</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="/affiliate">Affiliate</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="/contact">Contact Support</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="/logout"><button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
-        onClick={this.handleClick}>Sign out</button></NavLink>
-                </NavItem>
-              </Nav>
-            </Collapse>
-            </div>
-          </Navbar> */}
           {success ? <ToastContainer position= "top-right"
 hideProgressBar= {false}
 closeOnClick= {true}
@@ -160,10 +140,10 @@ progress= {undefined}/> : ''}
                 <label className="db fw6 lh-copy f6" htmlFor="phone">Phone</label>
                 <input
                 className="pa2 input-reset ba bg-transparent   w-100"
-                type="text"
+                type="number"
                 pattern="[0-9]*"
                 name="phone"
-                value={phone}
+                value={phone ? phone : ''}
       onChange={e => setPhone(e.target.value)}
       placeholder="Enter phone number"
      />
@@ -175,7 +155,7 @@ progress= {undefined}/> : ''}
                   type="text"
                   name="bank"
                   placeholder="Bank"
-                  value={bank}
+                  value={bank ? bank : ''}
       onChange={e => setBank(e.target.value)}
                 />
               </div>
@@ -186,7 +166,7 @@ progress= {undefined}/> : ''}
                   type="text"
                   name="bankname"
                   placeholder="Enter name on account"
-                  value={bankname}
+                  value={bankname ? bankname : ''}
       onChange={e => setBankname(e.target.value)}
                 />
               </div>
@@ -194,21 +174,19 @@ progress= {undefined}/> : ''}
                 <label className="db fw6 lh-copy f6" htmlFor="banknumber">Account Number</label>
                 <input
                   className="pa2 input-reset ba bg-transparent   w-100"
-                  type="text"
+                  type="number"
                   name="banknumber"
                   placeholder="Account number"
-                  value={banknumber}
+                  value={banknumber ? banknumber : ''}
       onChange={e => setBanknumber(e.target.value)}
                 />
               </div>
             </fieldset>
             <div className="">
-              <input
-                onClick={onSubmitSave}
-                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
-                type="submit"
-                value="Save"
-              />
+            <button onClick={onSubmitSave}
+                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">
+                {loading ? <PulseLoader css={override} color={"black"} size={6}
+        /> : `Save`}</button>
             </div>
           </div>
         </main>

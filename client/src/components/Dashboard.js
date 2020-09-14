@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import jwtDecode from "jwt-decode";
 import { useHistory } from "react-router-dom";
-import Tilt from 'react-tilt'
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  Nav,
-  NavItem,
-  NavLink,Card, Button, CardImg, CardTitle, CardText, CardDeck,
-  CardSubtitle, CardBody
-} from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDollarSign, faRetweet, faExchangeAlt} from '@fortawesome/free-solid-svg-icons'
+import { css } from "@emotion/core";
+import ClipLoader from "react-spinners/ClipLoader";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: white;
+`;
 
 const Dashboard = () => {
   const [username, setUsername] = useState('');
@@ -82,35 +82,30 @@ useEffect( ()=>{
 
     
 //   }
-
-let history = useHistory();
-const  handleClick = (event) => {
-    event.preventDefault();
-    delete localStorage.jwt
-    history.push("/");
-  }
-
-
     return (
       <div>
         
         <div className="container white">
         <h2 className=" tc">Hi! {username}</h2>
         <div class=" jt center">
-  <main class="grid">
+  <main class="gd">
     <article style={{margin:"12px 0"}}>
+    <FontAwesomeIcon icon={faDollarSign} style={{color:'white',width:'3rem',height:'3rem'}} />
       <div class="white f6" style={{margin:"12px 0"}}>
       <h2 className="mb2 ">Balance</h2>
   <p >#5.5000</p>
       </div>
     </article>
     <article style={{margin:"12px 0"}}>
+    <FontAwesomeIcon icon={faRetweet} style={{color:'white',width:'3rem',height:'3rem'}} />
       <div class="white f6" style={{margin:"12px 0"}}>
       <h2 className="mb2">Referrals</h2>
-  <p>{referrals ? referrals : 'loading'}</p>
+  <p>{referrals ? referrals : <ClipLoader css={override} color={"white"} size={35}
+        />}</p>
       </div>
     </article>
     <article style={{margin:"12px 0"}}>
+    <FontAwesomeIcon icon={faExchangeAlt} style={{color:'white',width:'3rem',height:'3rem'}} />
       <div class="white f6" style={{margin:"12px 0"}}>
       <h2 className="mb2 ">No of Transactions</h2>
 <p>0</p>

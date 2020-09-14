@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import Converts from './Converter/Converter';
-import Navigation from './Navigation/Navigation';
-import { Card, Button, CardText } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Body from './Body';
 import './Landing.css';
-import PriceCard from './PriceCard';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFastForward, faLock, faUserCheck, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 
 class Landing extends Component {
   render() {
     return (
       <div className="">
       <article>
-  <header className="bg-transparent san-serif flex justify-around">
-    <div className=" w-50 respo pa4 pt5-ns tl" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600" >
+  <header className="bg-transparent pb3 san-serif flex justify-around">
+    <div className=" w-50 respo pa4 pt5-ns tl" >
       <h3 className=" fsm  fs lh-title mv0 ">
         <span className="bg-black-90 lh-copy white pa1 tracked-tight">
         The easiest way to sell cryptocurrency & Giftcards
@@ -32,21 +31,10 @@ class Landing extends Component {
     </div>
     {/* <div className="mw9 w-50"> */}
       <img src="landing.svg" className="img" style={{ height: 500, width: 500 }}
-      data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600"/>
+     />
       {/* </div> */}
   </header>
 </article>
-
-  {/* <div className="marque">
-    <div class="content">
-    <div class="flex w-100">
-        <div class="w-25">yterereret</div>
-        <div class="w-25">tyetettut</div>
-        <div class="w-25">yuryry</div>
-        <div class="w-25">iyryyrtrtyertweqerwtu646</div>
-      </div>
-    </div>
-  </div> */}
   <div className="bg-white">
       <Body />
      <Converts />
@@ -65,7 +53,7 @@ class Landing extends Component {
     <article>
       <img src="https://i.pinimg.com/236x/b0/f7/fc/b0f7fc969633b3effc5c022b46279f56--gift-cards.jpg" className="w-100" alt="Sample photo"/>
       <div class="text">
-  <p >Itunes | 240/$</p>
+  <p >Itunes | 200/$</p>
       </div>
     </article>
     <article>
@@ -92,14 +80,14 @@ class Landing extends Component {
 <div class="  center">
   <main class="grid">
     <article style={{margin:"12px 0"}}>
-      {/* <img src="https://picsum.photos/600/400?image=1056" alt="Sample photo"/> */}
+    <FontAwesomeIcon icon={faFastForward} style={{color:'white',width:'3rem',height:'3rem'}} />
       <div class="white f6" style={{margin:"12px 0"}}>
       <h2 className="mb2 ">Instant Delivery</h2>
   <p >Using state-of-the-art payment procedures, you are guaranteed to get your payment sent to your account within minutes.</p>
       </div>
     </article>
     <article style={{margin:"12px 0"}}>
-      {/* <img src="https://picsum.photos/600/400?image=1050" alt="Sample photo"/> */}
+    <FontAwesomeIcon icon={faLock} style={{color:'white',width:'3rem',height:'3rem'}} />
       <div class="white f6" style={{margin:"12px 0"}}>
       <h2 className="mb2 ">Trusted And Secure</h2>
   <p >Trade with high confidence, as we assure you 
@@ -107,14 +95,14 @@ class Landing extends Component {
       </div>
     </article>
     <article style={{margin:"12px 0"}}>
-      {/* <img src="https://picsum.photos/600/400?image=1041" alt="Sample photo"/> */}
+    <FontAwesomeIcon icon={faUserCheck} style={{color:'white',width:'3rem',height:'3rem'}}/>
       <div class="white f6" style={{margin:"12px 0"}}>
       <h2 className="mb2">Verification In A Flash</h2>
   <p>Complete your account set up and start purchasing in minutes</p>
       </div>
     </article>
     <article style={{margin:"12px 0"}}>
-      {/* <img src="https://picsum.photos/600/400?image=1015" alt="Sample photo"/> */}
+    <FontAwesomeIcon icon={faQuestionCircle} style={{color:'white',width:'3rem',height:'3rem'}}/>
       <div class="white f6" style={{margin:"12px 0"}}>
       <h2 className="mb2 ">Responsive Support</h2>
 <p>Our team of Happiness Heroes stands by to help out with anything - any time</p>

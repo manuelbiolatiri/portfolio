@@ -1,13 +1,8 @@
 import React from 'react';
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Input,
-  Button
-} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './Converter.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import Convert from '../Convert/Convert'
 
 class Converts extends React.Component {
@@ -24,11 +19,21 @@ class Converts extends React.Component {
       result: '',
       btcusd: '-',
       ltcusd: '-',
-      ethusd: '-'
+      ethusd: '-',
+      errorMessage: ''
       // currbtc: '-',
       // currusd: '-',
       // currusd: '-'
     };
+  }
+
+  showError = (props) => {
+    this.setState({ errorMessage: 'You must be logged in to sell bitcoins' });
+    let customId = "custom-id-yes";
+    toast.warn('You must be logged in to sell bitcoins', {
+      toastId: customId,
+      position: toast.POSITION.TOP_CENTER
+    });
   }
 
   getDataFor(conversion, prop) {
@@ -91,38 +96,18 @@ class Converts extends React.Component {
     // this.getCurrencyFor('usd-eth', 'currusd');
   }
 
-  // getDataFor(conversion, prop){
-  //         fetch(this.BASE_URL + conversion)
-  //         .then(res => res.json())
-  //         .then(d => {
-  //             if(prop === 'btcusd'){
-  //                 const dataSource = this.state.dataSource;
-  //                 dataSource.chart.yAxisMaxValue =  parseInt(d.ticker.price) + 5;
-  //                 dataSource.chart.yAxisMinValue =  parseInt(d.ticker.price) - 5;
-  //                 dataSource.dataset[0]['data'][0].value = d.ticker.price;
-  //                 this.setState({
-  //                     showChart: true,
-  //                     dataSource: dataSource,
-  //                     initValue: d.ticker.price
-  //                 }, ()=>{
-
-  //                     this.startUpdatingData();
-  //                 })
-  //             }
-
-  //             this.setState({
-  //                 [prop]: d.ticker.price
-  //             });
-  //         })
-
-  //     }
-
   render() {
     const { currencies, amount, result, base, convertTo, btcusd } = this.state;
+    let token = localStorage.jwt;
     return (
-      <div className=" text-center m-auto"
-      data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600">
+      <div className=" text-center m-auto">
+{this.state.errorMessage ? <ToastContainer position= "top-right"
 
+hideProgressBar= {false}
+closeOnClick= {true}
+pauseOnHover= {true}
+draggable= {true}
+progress= {undefined}/> : ''}
         <form className="">
         <div className="mb4 " style={{padding:'0 10px'}}>
           <div className="mb4 mb0-ns ">
@@ -146,6 +131,7 @@ class Converts extends React.Component {
         <div className=" " style={{padding:'0 10px'}}>
         <div className="mb2 mb0-ns ">
               <input
+              type="number"
                 disabled={true}
                 value={
                   amount === ''
@@ -165,11 +151,18 @@ class Converts extends React.Component {
             </div>
             </div>
         </form>
-        <Link to="/confirmsell">
-          <button type="button" style={{lineHeight: 1.15}} className=" button b ph3 pv2 input-reset ba white mt2 mb3 bg-black-80 grow pointer f5 dib ">
+        {token ?
+          <Link to="/confirmsell">
+          <button type="button"  style={{lineHeight: 1.15}} className=" button b ph3 pv2 input-reset ba white mt2 mb3 bg-black-80 grow pointer f5 dib ">
             Sell
           </button>
         </Link>
+        : 
+        <button onClick={this.showError} type="button" style={{lineHeight: 1.15}} className=" button b ph3 pv2 input-reset ba white mt2 mb3 bg-black-80 grow pointer f5 dib ">
+          Sell
+        </button>
+        }
+        
       </div>
     );
   }

@@ -11,7 +11,7 @@ nav ul{}
 nav ul li{float:left;}
 nav ul li:last-child{padding-right:0px;}
 nav ul li a{color:#fff; font-size:18px; padding: 25px 20px; display:inline-block; transition: all 0.5s ease 0s;}
-nav ul li a:hover{ color:#060c14; transition: all 0.5s ease 0s;}
+nav ul li a:hover{ color:#d1d1d1; transition: all 0.5s ease 0s;}
 nav ul li a:hover i{color:#fff; transition: all 0.5s ease 0s;}
 nav ul li a i{padding-right:10px; color:#002e5b; transition: all 0.5s ease 0s;}
 

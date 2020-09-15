@@ -1,21 +1,11 @@
-import React, { useState, useEffect } from "react";
-import jwtDecode from "jwt-decode";
-import { useHistory, Redirect,Link } from "react-router-dom";
+import React from "react";
+import {Link } from "react-router-dom";
 import Tilt from 'react-tilt'
 
 import './Navigation.css'
 
-import { history } from "../../helpers/history";
-
 const Navigation = (props) => {
 
-  // state = {
-  //   isLoggedIn : false
-  // }
-  // const [isLoggedIn, setIsLoggedIn] = useState(true);
-  // clickLogin = () => {
-  //   this.setState({isLoggedIn:true});
-  // }
 
   const clickLogout = () => {
     localStorage.removeItem("jwt")
@@ -23,9 +13,6 @@ const Navigation = (props) => {
     // history.push('/sign_in')
   }
 
-
-
-  let history = useHistory();
   let token = localStorage.jwt;
  
   if (token){
@@ -47,7 +34,7 @@ const Navigation = (props) => {
 <li><Link to="/about">About</Link></li>
 <li><Link to="/affiliate">Affiliate</Link></li>
 <li><Link to="/profile"><i class="fas fa-gear"></i>Profile</Link></li>
-<li><Link to="/contact"><i class="fa fa-phone"></i>Contact</Link></li>
+<li><Link to="#footer"><i class="fa fa-phone"></i>Contact</Link></li>
 <li><a><button className="b ph3 pv2 input-reset ba b--white white bg-transparent grow pointer f6 dib"
 onClick={
   clickLogout
@@ -77,7 +64,7 @@ onClick={
 <li><Link to="/affiliate">Affiliate</Link></li>
 <li><Link to="/sign_up">Register</Link></li>
 <li><Link to="/sign_in">Login</Link></li>
-<li><Link to="/contact">Contact</Link></li>
+<li><Link to="#footer">Contact</Link></li>
 </ul>
 
 </nav>

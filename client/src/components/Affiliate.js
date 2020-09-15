@@ -3,6 +3,15 @@ import {Link} from 'react-router-dom';
 import './Register/Register.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { css } from "@emotion/core";
+import PulseLoader from "react-spinners/PulseLoader";
+
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 function ValidationMessage(props) {
     if (!props.valid) {
@@ -24,7 +33,16 @@ class Affiliate extends React.Component {
           errorMsg: {},
           errorMessage: '',
           successMessage: '',
-          visible: true
+          visible: true,
+          loading: false
+        }
+      
+        hideLoader = () => {
+          this.setState({ loading: false });
+        }
+      
+        showLoader = () => {
+          this.setState({ loading: true });
         }
       
         validateForm = () => {
@@ -111,6 +129,7 @@ class Affiliate extends React.Component {
         }
       
         onSubmitSignIn = () => {
+          this.showLoader();
           let customId = "custom-id-yes";
           try {
           fetch('http://localhost:3006/api/v1/auth/create-user', {
@@ -129,15 +148,19 @@ class Affiliate extends React.Component {
                   position: toast.POSITION.TOP_RIGHT
                 });
                 this.setState({errorMessage: 'User already exist'});
+                this.hideLoader();
               } else if (response.status === 201){
                 toast.success('User registered successfully', {
                   toastId: customId,
                   position: toast.POSITION.TOP_CENTER
                 });
                 this.setState({successMessage: 'User registered successfully'});
+                
                 setTimeout(() => {
+                  
                   this.props.history.push(`/verify`);
-                }, 1500)
+                  this.hideLoader();
+                }, 1800)
                 
               }
             })
@@ -238,13 +261,12 @@ progress= {undefined}/> : ''}
               </div>
             </fieldset>
             <div className="">
-              <input
-                onClick={this.onSubmitSignIn}
-                className="button b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
-                disabled={!this.state.formValid}
-                type="submit"
-                value="Register"
-              />
+            <button onClick={this.onSubmitSignIn}
+            disabled={!this.state.formValid}
+                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">
+                {this.state.loading ? <PulseLoader css={override} size={6}
+          color={"black"}
+        /> : `Register`}</button>
               <div className="lh-copy mt3">
               <Link to="/sign_in">
           <p className="f6 link dim black db pointer">Have an account? Login!</p>

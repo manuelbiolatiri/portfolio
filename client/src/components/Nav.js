@@ -1,5 +1,4 @@
 import React from 'react';
-import jwtDecode from 'jwt-decode';
 import Tilt from 'react-tilt';
 // import {Link} from 'react-router-dom';
 

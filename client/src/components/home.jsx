@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-// import jwtDecode from "jwt-decode";
-import Converts from './Converter/Converter';
 import Navigation from './Navigation/Navigation';
 import UploadForm from './UploadForm/UploadForm';
-import NumberFormat from 'react-number-format';
-import axios from 'axios';
 import Body from './Body';
 
 class Home extends Component {

@@ -97,7 +97,7 @@ class Converts extends React.Component {
   }
 
   render() {
-    const { currencies, amount, result, base, convertTo, btcusd } = this.state;
+    const {  amount, result } = this.state;
     let token = localStorage.jwt;
     return (
       <div className=" text-center m-auto">

@@ -128,7 +128,7 @@ const ConfirmSell = (props) => {
             
             window.location.href = "/dashboard"
             hideLoader();
-          }, 1500)
+          }, 1900)
           }
         })
         .catch((error) => {

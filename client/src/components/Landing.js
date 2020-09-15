@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Converts from './Converter/Converter';
-import { Link } from 'react-router-dom';
 import Body from './Body';
 import './Landing.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -30,7 +29,7 @@ class Landing extends Component {
             
     </div>
     {/* <div className="mw9 w-50"> */}
-      <img src="landing.svg" className="img" style={{ height: 500, width: 500 }}
+      <img src="landing.svg" className="" style={{ height: 500, width: 500 }} alt=""
      />
       {/* </div> */}
   </header>
@@ -44,33 +43,33 @@ class Landing extends Component {
 {/* <div className="bg-dark-pink h2">
 <h1 className="white center">Giftcards Rates</h1>
 </div> */}
-<div className="pv3 bg-white" style={{textAlign:'center',width:'100%'}}>
+<div className=" bg-white" style={{textAlign:'center',width:'100%'}}>
     <h2 className="black-70">Chat With Us For A Flash Giftcards Transaction</h2>
   </div>
-<div class="center bg-white">
+<div class="center pv5 bg-white">
   
-  <main class="gridd" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600">
+  <main class="gridd" >
     <article>
-      <img src="https://i.pinimg.com/236x/b0/f7/fc/b0f7fc969633b3effc5c022b46279f56--gift-cards.jpg" className="w-100" alt="Sample photo"/>
+      <img src="https://i.pinimg.com/236x/b0/f7/fc/b0f7fc969633b3effc5c022b46279f56--gift-cards.jpg" className="w-100" alt=""/>
       <div class="text">
   <p >Itunes | 200/$</p>
       </div>
     </article>
     <article>
-      <img src="https://i.pinimg.com/236x/b0/f7/fc/b0f7fc969633b3effc5c022b46279f56--gift-cards.jpg" alt="Sample photo"/>
+      <img src="https://i.pinimg.com/236x/b0/f7/fc/b0f7fc969633b3effc5c022b46279f56--gift-cards.jpg" alt=""/>
       <div class="text">
   <p >Amazon | 240/$</p>
       </div>
     </article>
     <article>
-      <img src="https://i.pinimg.com/236x/b0/f7/fc/b0f7fc969633b3effc5c022b46279f56--gift-cards.jpg" className="w-100" alt="Sample photo"/>
+      <img src="https://i.pinimg.com/236x/b0/f7/fc/b0f7fc969633b3effc5c022b46279f56--gift-cards.jpg" className="w-100" alt=""/>
       <div class="text">
   <p>Steam | 250$</p>
       </div>
     </article>
     <article>
     
-      <img src="https://i.pinimg.com/236x/b0/f7/fc/b0f7fc969633b3effc5c022b46279f56--gift-cards.jpg" alt="Sample photo"/>
+      <img src="https://i.pinimg.com/236x/b0/f7/fc/b0f7fc969633b3effc5c022b46279f56--gift-cards.jpg" alt=""/>
       <div class="text">
 <p>Ebay | 240/$</p>
       </div>

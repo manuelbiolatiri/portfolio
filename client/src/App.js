@@ -23,7 +23,6 @@ import ConfirmSell from './components/confirmSell';
 import Footer from './components/Footer';
 import Affiliate from './components/Affiliate';
 import ErrorPage from './components/ErrorPage';
-import Nav from './components/Nav';
 
 const particlesOptions = {
   particles: {
@@ -52,7 +51,6 @@ class App extends Component {
   }
 
   render() {
-    const isLoggedIn = this.state.isLoggedIn;
     return (
       <Router>
         <div className="App">
@@ -64,7 +62,7 @@ class App extends Component {
             <Route path="/sign_up" exact component={Register} />
             <Route path="/sign_in" exact component={Signin} clickData={this.clickLogin}/>
             <Route path="/verify" exact component={Verify} />
-            <Route path="/referrals/:id" exact component={Referrals} />
+            <Route path="/referrals/:refuser" exact component={Referrals} />
             <Route path="/home" exact component={Home} />
             <Route path="/affiliate" exact component={Affiliate} />
             <ProtectedRoute path={'/dashboard'} exact component={Dashboard} />

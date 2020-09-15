@@ -210,6 +210,7 @@ console.log(id)
                 if (id === signUpQuerys.rows[0].id && signUpQuerys.rows[0].active === 'verified') {
                     jwt.sign({id:signUpQuerys.rows[0].id ,
                         active: signUpQuerys.rows[0].active,
+                        username: signUpQuerys.rows[0].username,
                                 verification: signUpQuerys.rows[0].verification,
                                 email: signUpQuerys.rows[0].email,
                                 phone: signUpQuerys.rows[0].phone,
@@ -333,7 +334,7 @@ const mailOption = {
 
                 // add to referrals table
                 const refsignUpQuery = `INSERT INTO referrals (id, refuser, created)VALUES($1, $2, now()) RETURNING *`
-                const refuserValue = [`${req.params.id}`, signUpQuerys.rows[0].id];
+                const refuserValue = [`${req.params.refuser}`, signUpQuerys.rows[0].id];
                 const refsignUpQuerys = await pool.query(refsignUpQuery, refuserValue);
                 console.log(refsignUpQuerys.rows[0])
             };
@@ -461,15 +462,19 @@ const mailOption = {
             
     },
     async getRefs(req, res) {
-        const {id} = req.params;
+        const {username} = req.params;
         try {
 
             const  refs = `SELECT COUNT( id )
             FROM referrals WHERE id=$1`;
-            const value = [id];
+            const value = [username];
             const refQuery = await pool.query(refs, value, (err, data) => {
                 if(err){
-                    console.log(err)
+                    res.status(400).json({
+                        status: 'error',
+                        message: 'referrals failed',
+                        data
+                    })
                 }else{
                 res.status(201).json({
                     status: 'success',

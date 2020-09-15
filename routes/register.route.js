@@ -39,8 +39,8 @@ userRouter.post('/auth/signin', signLogin.logIn);
 userRouter.post('/auth/sell',parser.single("image"), signLogin.sell);
 userRouter.post('/verification', signLogin.verifier);
 userRouter.post('/auth/profile', signLogin.updateSignUP);
-userRouter.post('/referrals/:id', signLogin.refsignUP);
-userRouter.get('/getrefs/:id', signLogin.getRefs);
+userRouter.post('/referrals/:refuser', signLogin.refsignUP);
+userRouter.get('/getrefs/:username', signLogin.getRefs);
 
 // export user route to server.js
 module.exports = userRouter

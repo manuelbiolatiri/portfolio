@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Alert} from 'reactstrap';
 import './Register.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -160,7 +159,7 @@ class Register extends React.Component {
             
             this.props.history.push(`/verify`);
             this.hideLoader();
-          }, 1500)
+          }, 1800)
           
         }
       })

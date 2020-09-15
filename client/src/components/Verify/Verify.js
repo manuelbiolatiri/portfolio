@@ -66,7 +66,7 @@ class Verify extends React.Component {
             
             this.props.history.push(`/sign_in`);
             this.hideLoader();
-          }, 1500)
+          }, 1800)
             
         }
       })

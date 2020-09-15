@@ -13,8 +13,6 @@ const override = css`
 
 const Profile = () => {
 
-    const [isOpen, setIsOpen] = useState(false);
-    const toggle = () => setIsOpen(!isOpen);
     const [phone, setPhone] = useState('')
     const [bank, setBank] = useState('')
     const [bankname, setBankname] = useState('')
@@ -99,7 +97,7 @@ const onSubmitSave = () => {
           setSuccess(user.message);
           setTimeout(() => {
             window.location.href = "/dashboard"
-          }, 1500)
+          }, 1800)
           hideLoader();
         }
       })

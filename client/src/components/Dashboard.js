@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import jwtDecode from "jwt-decode";
-import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDollarSign, faRetweet, faExchangeAlt} from '@fortawesome/free-solid-svg-icons'
 import { css } from "@emotion/core";
@@ -17,9 +16,11 @@ const Dashboard = () => {
   // const [password, setPassword] = useState('');
   const [referrals, setReferrals] = useState('');
 
+  const jwt = window.localStorage.getItem("jwt");
+    const result = jwtDecode(jwt);
+
 useEffect( ()=>{
-  let jwt = window.localStorage.getItem("jwt");
-    let result = jwtDecode(jwt);
+  
     setUsername(result.username)
     // this.setState({username:result.username})
     console.log(`The result is`, result);
@@ -27,7 +28,7 @@ useEffect( ()=>{
 
     //  getRefs
    
-       fetch(`http://localhost:3006/api/v1/getrefs/${result.id}`)
+       fetch(`http://localhost:3006/api/v1/getrefs/${result.username}`)
       .then(response => response.json())
       .then(res => {
          setReferrals(res.data.rows[0].count)
@@ -43,45 +44,6 @@ useEffect( ()=>{
     })
 }, [username, referrals])
 
-
-// class Dashboard extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       username: "",
-//       password: "",
-//       referrals: ""
-//     };
-//   }
-
-
-
-//  async componentDidMount(){
-//     let jwt = window.localStorage.getItem("jwt");
-//     let result = jwtDecode(jwt);
-//     this.setState({username:result.username})
-//     console.log(`The result is`, result);
-//     console.log(`the current dashboard state is`, window.localStorage);
-
-//     //  getRefs
-   
-//       const res = await  fetch(`http://localhost:3006/api/v1/getrefs/${result.id}`)
-//       .then(response => response.json())
-//       .then(res => {
-         
-//           this.setState({referrals: res.data.rows[0].count});
-//           console.log(res.data.rows[0].count);
-      
-//       })
-      
-
-//       .catch(res => {
-//         console.log(res)
-    
-//     })
-
-    
-//   }
     return (
       <div>
         
@@ -112,6 +74,9 @@ useEffect( ()=>{
       </div>
     </article>
   </main>
+</div>
+<div className="container white">
+<p className=" tc"><span><h5>Your referral link: </h5></span>http://localhost:3000/referrals/{username}</p>
 </div>
     </div>
       </div>

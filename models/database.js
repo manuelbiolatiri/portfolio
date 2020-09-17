@@ -95,7 +95,6 @@ const createTables = async () => {
         console.log(e)
     }
 };
-
 const referralsTable = async () => {
     const refTable = `CREATE TABLE IF NOT EXISTS
       referrals(

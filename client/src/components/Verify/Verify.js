@@ -82,6 +82,10 @@ class Verify extends React.Component {
     return (
       
       <div className='container'>
+        <div style={{backgroundColor:'light-green', marginBottom:'8px',height:'10px'}}>
+        <p style={{backgroundColor:'green', marginBottom:'8px'}}>A Verification code has been sent to the email provided</p>
+        </div>
+        
         {this.state.errorMessage ? <ToastContainer position= "top-right"
 autoClose= '3000'
 hideProgressBar= {false}

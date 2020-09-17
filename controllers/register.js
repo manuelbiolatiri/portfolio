@@ -35,7 +35,7 @@ const mailOption = {
     from :'emmanuelbiolatiri49@gmail.com', // sender this is your email here
     to : email, // receiver email2
     subject: "Account Verification",
-    html: `<h1>Hello Chief Please Copy your verification code<h1><br><hr>
+    html: `<h3>Hello Chief, kindly Copy your verification code and paste it on the verification page.<h3><br><hr>
     <h2>${verify}</h2>`
 }
 
@@ -86,7 +86,7 @@ const mailOption = {
                                             status: 'success',
                                             data: {
                                                 message: 'user account successfully created',
-                                                userId: signUpQuerys.rows[0].id
+                                                // userId: signUpQuerys.rows[0].id
                                             }
                                         })
                                 }
@@ -130,7 +130,7 @@ const mailOption = {
     from :'emmanuelbiolatiri49@gmail.com', // sender this is your email here
     to : email, // receiver email2
     subject: "Bitcoin Sell Confirmation",
-    html: `<h1>Hello Chief, you have just made a bitcoin sale, kindly wait for admin to verify and be credited.<h1><br><hr>`
+    html: `<h3>Hello Chief, you have just made a bitcoin sale, kindly wait for admin to verify and be credited.<h3><br><hr>`
 }
 
 
@@ -267,7 +267,7 @@ const mailOption = {
     from :'emmanuelbiolatiri49@gmail.com', // sender this is your email here
     to : email, // receiver email2
     subject: "Account Verification",
-    html: `<h1>Hello Chief Please Copy your verification code<h1><br><hr>
+    html: `<h3>Hello Chief, kindly Copy your verification code and paste it on the verification page.<h3><br><hr>
     <h2>${verify}</h2>`
 }
 
@@ -302,8 +302,8 @@ const mailOption = {
                         status: 'success',
                         data: {
                             message: 'user account successfully created',
-                            token,
-                            authorId: signUpQuerys.rows[0].authorid
+                            // token,
+                            // authorId: signUpQuerys.rows[0].authorid
                         }
                     })
 
@@ -383,20 +383,20 @@ const mailOption = {
                                 bankname: logInQuery.rows[0].bankname,
                                 banknumber: logInQuery.rows[0].banknumber,
                         username }, process.env.SECRET_KEY, { expiresIn: '24h' }, (err, token) => {
-                        res.status(201).json({
-                            status: 'success',
-                            message: 'User successfully logged in',
-                            data: {
-                                token,
-                                id: logInQuery.rows[0].id,
-                                active: logInQuery.rows[0].active,
-                                verification: logInQuery.rows[0].verification,
-                                phone: logInQuery.rows[0].phone,
-                                bank: logInQuery.rows[0].bank,
-                                bankname: logInQuery.rows[0].bankname,
-                                banknumber: logInQuery.rows[0].banknumber,
-                            }
-                        })
+                        // res.status(201).json({
+                        //     status: 'success',
+                        //     message: 'User successfully logged in',
+                        //     data: {
+                        //         token,
+                        //         id: logInQuery.rows[0].id,
+                        //         active: logInQuery.rows[0].active,
+                        //         verification: logInQuery.rows[0].verification,
+                        //         phone: logInQuery.rows[0].phone,
+                        //         bank: logInQuery.rows[0].bank,
+                        //         bankname: logInQuery.rows[0].bankname,
+                        //         banknumber: logInQuery.rows[0].banknumber,
+                        //     }
+                        // })
                     })
                 }
                 // incorrect email and password

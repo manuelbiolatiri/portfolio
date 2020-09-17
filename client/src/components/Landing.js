@@ -50,26 +50,26 @@ class Landing extends Component {
   
   <main class="gridd" >
     <article>
-      <img src="https://i.pinimg.com/236x/b0/f7/fc/b0f7fc969633b3effc5c022b46279f56--gift-cards.jpg" className="w-100" alt=""/>
+      <img src="https://igiftcards.fr/resources/images/products/340w/amazon-340w.png" className="w-100" alt=""/>
       <div class="text">
   <p >Itunes | 200/$</p>
       </div>
     </article>
     <article>
-      <img src="https://i.pinimg.com/236x/b0/f7/fc/b0f7fc969633b3effc5c022b46279f56--gift-cards.jpg" alt=""/>
+      <img src="https://igiftcards.fr/resources/images/products/340w/amazon-340w.png" alt=""/>
       <div class="text">
   <p >Amazon | 240/$</p>
       </div>
     </article>
     <article>
-      <img src="https://i.pinimg.com/236x/b0/f7/fc/b0f7fc969633b3effc5c022b46279f56--gift-cards.jpg" className="w-100" alt=""/>
+      <img src="https://igiftcards.fr/resources/images/products/340w/amazon-340w.png" className="w-100" alt=""/>
       <div class="text">
   <p>Steam | 250$</p>
       </div>
     </article>
     <article>
     
-      <img src="https://i.pinimg.com/236x/b0/f7/fc/b0f7fc969633b3effc5c022b46279f56--gift-cards.jpg" alt=""/>
+      <img src="https://igiftcards.fr/resources/images/products/340w/amazon-340w.png" alt=""/>
       <div class="text">
 <p>Ebay | 240/$</p>
       </div>

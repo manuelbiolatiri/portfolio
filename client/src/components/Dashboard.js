@@ -22,7 +22,6 @@ const Dashboard = () => {
 useEffect( ()=>{
   
     setUsername(result.username)
-    // this.setState({username:result.username})
   
 
     //  getRefs

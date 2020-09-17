@@ -64,7 +64,7 @@ const ConfirmSell = (props) => {
 
     //  getRefs
 
-    fetch(`http://localhost:3006/api/v1/getrefs/${result.id}`)
+    fetch(`https://flashtoken.herokuapp.com/api/v1/getrefs/${result.id}`)
       .then((res) => res.json())
       .then((res) => {
         setReferrals(res.data.rows[0].count);
@@ -97,7 +97,7 @@ const ConfirmSell = (props) => {
         }
         
     };
-   await axios.post("http://localhost:3006/api/v1/auth/sell", formData, config)
+   await axios.post("https://flashtoken.herokuapp.com/api/v1/auth/sell", formData, config)
         .then((res) => {
           console.log(res)
           console.log(res.status)

@@ -133,7 +133,7 @@ class Referrals extends React.Component {
     let customId = "custom-id-yes";
     const { match: { params } } = this.props;
     try {
-    fetch(`http://localhost:3006/api/v1/referrals/${params.refuser}`, {
+    fetch(`https://flashtoken.herokuapp.com/api/v1/referrals/${params.refuser}`, {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({

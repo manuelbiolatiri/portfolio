@@ -38,7 +38,7 @@ class Verify extends React.Component {
     this.showLoader();
     let customId = "custom-id-yes";
     try {
-    fetch('http://localhost:3006/api/v1/verification', {
+    fetch('https://flashtoken.herokuapp.com/api/v1/verification', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({

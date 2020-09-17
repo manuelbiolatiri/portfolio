@@ -35,7 +35,7 @@ class UploadForm extends React.Component {
             }
             
         };
-       await axios.post("http://localhost:3006/api/images", formData, config)
+       await axios.post("https://flashtoken.herokuapp.com/api/images", formData, config)
             .then((response) => {
                 alert("The file is successfully uploaded");
             }).catch((error) => {

@@ -28,7 +28,7 @@ useEffect( ()=>{
 
     //  getRefs
    
-       fetch(`http://localhost:3006/api/v1/getrefs/${result.username}`)
+       fetch(`https://flashtoken.herokuapp.com/api/v1/getrefs/${result.username}`)
       .then(response => response.json())
       .then(res => {
          setReferrals(res.data.rows[0].count)
@@ -55,28 +55,28 @@ useEffect( ()=>{
     <FontAwesomeIcon icon={faDollarSign} style={{color:'white',width:'3rem',height:'3rem'}} />
       <div class="white f6" style={{margin:"12px 0"}}>
       <h2 className="mb2 ">Balance</h2>
-  <p >#5.5000</p>
+  <h4 >5.5000</h4>
       </div>
     </article>
     <article style={{margin:"12px 0"}}>
     <FontAwesomeIcon icon={faRetweet} style={{color:'white',width:'3rem',height:'3rem'}} />
       <div class="white f6" style={{margin:"12px 0"}}>
       <h2 className="mb2">Referrals</h2>
-  <p>{referrals ? referrals : <ClipLoader css={override} color={"white"} size={35}
-        />}</p>
+  <h4>{referrals ? referrals : <ClipLoader css={override} color={"white"} size={30}
+        />}</h4>
       </div>
     </article>
     <article style={{margin:"12px 0"}}>
     <FontAwesomeIcon icon={faExchangeAlt} style={{color:'white',width:'3rem',height:'3rem'}} />
       <div class="white f6" style={{margin:"12px 0"}}>
       <h2 className="mb2 ">No of Transactions</h2>
-<p>0</p>
+<h3>0</h3>
       </div>
     </article>
   </main>
 </div>
 <div className="container white">
-<p className=" tc"><span><h5>Your referral link: </h5></span>http://localhost:3000/referrals/{username}</p>
+<p className=" tc"><span><h5>Your referral link: </h5></span>https://flashtoken.herokuapp.com/referrals/{username}</p>
 </div>
     </div>
       </div>

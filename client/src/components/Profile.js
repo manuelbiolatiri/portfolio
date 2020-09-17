@@ -37,7 +37,7 @@ useEffect( ()=>{
     setBanknumber(result.banknumber);
 
     //  getRefs
-       fetch(`http://localhost:3006/api/v1/getrefs/${result.id}`)
+       fetch(`https://flashtoken.herokuapp.com/api/v1/getrefs/${result.id}`)
       .then(response => response.json())
       .then(res => {
          setReferrals(res.data.rows[0].count)
@@ -66,7 +66,7 @@ const onSubmitSave = () => {
   showLoader();
     const id = result.id;
     try {
-    fetch('http://localhost:3006/api/v1/auth/profile', {
+    fetch('https://flashtoken.herokuapp.com/api/v1/auth/profile', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({

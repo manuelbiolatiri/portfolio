@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3006/api/v1/auth/";
+const API_URL = "https://flashtoken.herokuapp.com/api/v1/auth/";
 
 const register = (username, email, password) => {
   return axios.post(API_URL + "create-user", {

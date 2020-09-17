@@ -29,7 +29,7 @@ class Landing extends Component {
             
     </div>
     {/* <div className="mw9 w-50"> */}
-      <img src="landing.svg" className="" style={{ height: 500, width: 500 }} alt=""
+      <img src="landing.svg" className="img" style={{ height: 500, width: 500 }} alt=""
      />
       {/* </div> */}
   </header>

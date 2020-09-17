@@ -153,13 +153,7 @@ class Body extends React.Component{
             <div className="col-12">
                 <div className="card custom-card mb-5 mb-xs-4">
                    <div className="card-body">
-                            {
-                            // this.state.showChart ? 
-                            // <ReactFC 
-                            // {...this.chartConfigs}
-                            // dataSource={this.state.dataSource} 
-                            // onRender={this.getChartRef.bind(this)}/>: null
-                        }
+                            
                    </div>
                 </div>
             </div>

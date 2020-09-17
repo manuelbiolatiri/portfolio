@@ -55,8 +55,7 @@ class Signin extends React.Component {
     })
     .then(response => response.json())
       .then((user) => {
-        // console.log(user);
-        // console.log(user);
+        
         if(user.status === 'error') {
           toast.warn(user.error, {
             toastId: customId,
@@ -86,7 +85,7 @@ class Signin extends React.Component {
   
   }
     catch (e) {
-      console.log(e);
+      
   };
   }
 

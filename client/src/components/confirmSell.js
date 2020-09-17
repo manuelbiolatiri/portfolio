@@ -59,16 +59,13 @@ const ConfirmSell = (props) => {
     setUsd(usdamount);
     setBtc(btcamount);
 
-    console.log(`The result is`, result);
-    console.log(`the current dashboard state is`, window.localStorage);
-
     //  getRefs
 
     fetch(`https://flashtoken.herokuapp.com/api/v1/getrefs/${result.id}`)
       .then((res) => res.json())
       .then((res) => {
         setReferrals(res.data.rows[0].count);
-        console.log(res.data.rows[0].count);
+        
       })
       .catch((res) => {
         console.log(res);
@@ -99,10 +96,7 @@ const ConfirmSell = (props) => {
     };
    await axios.post("https://flashtoken.herokuapp.com/api/v1/auth/sell", formData, config)
         .then((res) => {
-          console.log(res)
-          console.log(res.status)
-          console.log(res.data)
-          console.log(res.message)
+          
           
           if(res.status === 400) {
             toast.warn(res.data.message, {
@@ -135,13 +129,13 @@ const ConfirmSell = (props) => {
           console.log(error)
     });
   } else {
-    setErrorMessage('You need to select a file');
+    setErrorMessage('You need to upload a receipt');
     toast.warn('You need to select a file', {
       toastId: customId,
       position: toast.POSITION.TOP_CENTER
     });
     hideLoader();
-    console.log('You need to select a file');
+    
 }
 }
   return (

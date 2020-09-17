@@ -23,8 +23,7 @@ useEffect( ()=>{
   
     setUsername(result.username)
     // this.setState({username:result.username})
-    console.log(`The result is`, result);
-    console.log(`the current dashboard state is`, window.localStorage);
+  
 
     //  getRefs
    
@@ -33,7 +32,7 @@ useEffect( ()=>{
       .then(res => {
          setReferrals(res.data.rows[0].count)
           // this.setState({referrals: });
-          console.log(res.data.rows[0].count);
+         
       
       })
       

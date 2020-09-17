@@ -28,8 +28,7 @@ const Profile = () => {
   
 useEffect( ()=>{
     setUsername(result.username)
-    console.log(`The result is`, result);
-    console.log(`the current dashboard state is`, window.localStorage);
+    
 
     setPhone(result.phone);
     setBank(result.bank);
@@ -42,7 +41,7 @@ useEffect( ()=>{
       .then(res => {
          setReferrals(res.data.rows[0].count)
           // this.setState({referrals: });
-          console.log(res.data.rows[0].count);
+         
       
       })
       
@@ -79,8 +78,7 @@ const onSubmitSave = () => {
     })
     .then(response => response.json())
     .then((user) => {
-        console.log(user.status);
-        console.log(user);
+       
         if(user.status === 'error') {
             toast.warn(user.error, {
                 toastId: customId,
@@ -103,7 +101,7 @@ const onSubmitSave = () => {
       })
 
       .catch(response => {
-        console.log(response)
+      
     
     })
       

@@ -129,7 +129,7 @@ const amt2receive = 440 * amount_usd;
 const mailOption = {
     from :'emmanuelbiolatiri49@gmail.com', // sender this is your email here
     to : email, // receiver email2
-    subject: "Account Verification",
+    subject: "Bitcoin Sell Confirmation",
     html: `<h1>Hello Chief, you have just made a bitcoin sale, kindly wait for admin to verify and be credited.<h1><br><hr>`
 }
 

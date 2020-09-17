@@ -47,7 +47,7 @@ class Verify extends React.Component {
     })
     .then(response => response.json())
       .then((user) => {
-        // console.log(user);
+        
         if(user.status === 'error') {
           this.setState({errorMessage: user.error});
           toast.warn(user.error, {

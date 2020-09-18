@@ -196,16 +196,16 @@ class Affiliate extends React.Component {
     <p>
     Flashtoken offers an easy, fast & secure way to sell cryptocurrency.
 Join our affiliate program and get paid in bitcoin!
-With Flashtoken's affiliate program, you will have the most advanced tools in the market that will allow you to promote Flashtoken and generate commissions with us! so you can promote Flashtoken.
+With Flashtoken's affiliate program, you will promote Flashtoken and generate commissions with us!.
 
 Earn 15% of Flashtoken's commission on ALL of your referral's purchases including all their future purchases
 Our affiliate program has NO LIMITATIONS! The more customers you refer, the more bitcoin you earn
-Earnings are paid monthly (paid out towards the end of the following month)
+Earnings are paid monthly
 Payouts will be paid only after 3 successful orders made by at least 3 different users
 The process is fast and easy:
 Register
-Send customers to our website with your customized referral link: (can be found under the “Marketing Tools” tab in your account)
-Earn a commission for every successful purchase your referrals make
+Send customers to our website with your customized referral link: (can be found in your dashboard)
+Earn a commission for every successful transaction your referrals make
 
 
 </p>

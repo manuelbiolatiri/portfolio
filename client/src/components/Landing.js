@@ -18,7 +18,7 @@ class Landing extends Component {
 
         </span>
       </h3>
-      <h4 className="f3 fw1 georgia i mb2 white">Trusted by over 1,000 people across 2 countries since 2017.</h4>
+      <h4 className="f3 fw1 georgia i mb2 white">Trusted by Nigerians since 2017.</h4>
       
                 <a
                   href="/sign_up"
@@ -82,7 +82,7 @@ class Landing extends Component {
     <FontAwesomeIcon icon={faFastForward} style={{color:'white',width:'3rem',height:'3rem'}} />
       <div class="white f6" style={{margin:"12px 0"}}>
       <h2 className="mb2 ">Instant Delivery</h2>
-  <p >Using state-of-the-art payment procedures, you are guaranteed to get your payment sent to your account within minutes.</p>
+  <p >You are guaranteed to get your payment sent to your account within minutes.</p>
       </div>
     </article>
     <article style={{margin:"12px 0"}}>
@@ -90,21 +90,21 @@ class Landing extends Component {
       <div class="white f6" style={{margin:"12px 0"}}>
       <h2 className="mb2 ">Trusted And Secure</h2>
   <p >Trade with high confidence, as we assure you 
-  the highest level of encryption and professionally audited exchange system.</p>
+  the highest level of security in our system.</p>
       </div>
     </article>
     <article style={{margin:"12px 0"}}>
     <FontAwesomeIcon icon={faUserCheck} style={{color:'white',width:'3rem',height:'3rem'}}/>
       <div class="white f6" style={{margin:"12px 0"}}>
       <h2 className="mb2">Verification In A Flash</h2>
-  <p>Complete your account set up and start purchasing in minutes</p>
+  <p>Complete your account set up and start selling in minutes</p>
       </div>
     </article>
     <article style={{margin:"12px 0"}}>
     <FontAwesomeIcon icon={faQuestionCircle} style={{color:'white',width:'3rem',height:'3rem'}}/>
       <div class="white f6" style={{margin:"12px 0"}}>
       <h2 className="mb2 ">Responsive Support</h2>
-<p>Our team of Happiness Heroes stands by to help out with anything - any time</p>
+<p>Round the clock customer relation team stands by to help out with anything</p>
       </div>
     </article>
   </main>

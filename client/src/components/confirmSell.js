@@ -162,7 +162,8 @@ progress= {undefined}/> : ''}
                     <legend className="f1 fw6 ph0 mh0 center">Sell Details</legend>
             <h2 className="mv2">Send Coin to Any of These Wallet Addresses</h2>
 
-            <p>wiorivnirvnroihwr48394489y3hfc8n5</p>
+            <p>3BtYdafMkpGVieQtf9ZHuE4MdVqpM2jzFT</p>
+            <p>3NGdrGh7c12NUfVmsyjZ9qo47LQAiWF7Y6</p>
             <h2 className="mv2">Amount</h2>
             <p style={{marginBottom:'2rem'}}>
               {usd} USD | {btc} BTC

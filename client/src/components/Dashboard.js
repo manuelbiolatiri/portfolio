@@ -60,8 +60,8 @@ useEffect( ()=>{
     <FontAwesomeIcon icon={faRetweet} style={{color:'white',width:'3rem',height:'3rem'}} />
       <div class="white f6" style={{margin:"12px 0"}}>
       <h2 className="mb2">Referrals</h2>
-  <h4>{referrals ? referrals : <ClipLoader css={override} color={"white"} size={30}
-        />}</h4>
+  <h4>{referrals ? referrals : (!referrals? <ClipLoader css={override} color={"white"} size={30}
+        /> : '0')}</h4>
       </div>
     </article>
     <article style={{margin:"12px 0"}}>

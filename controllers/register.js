@@ -3,24 +3,15 @@ const bcrypt = require('bcryptjs');
 const pool = require('../models/database');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
-const mg = require('nodemailer-mailgun-transport');
 
-const auth = {
-    auth: {
-      api_key: 'b0f4bf18277d16fe9975fc1ec7ffc40d-7238b007-55ac26b7',
-      domain: 'sandbox25b314747b1d43249c1f7985db8b071f.mailgun.org'
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth:{
+        user:'emmanuelbiolatiri49@gmail.com',
+        pass:'biolatiriel123'
     }
-  }
-   
-  const transporter = nodemailer.createTransport(mg(auth));
-
-// var transporter = nodemailer.createTransport({
-//     service: 'gmail',
-//     auth:{
-//         user:'emmanuelbiolatiri49@gmail.com',
-//         pass:'biolatiriel123'
-//     }
-// });
+});
 
 
 const register = {
@@ -40,23 +31,13 @@ console.log(req.body);
 
 const verify = Math.floor((Math.random() * 10000000) + 1);
 
-// const sendMail = (name, email, subject, text, cb) => {
-    const mailOption = {
-        sender: 'Flashtoken',
-        from: "Flashtoken",
-        to: email,
-        subject: "Account Verification",
-        html: `<h3>Hello Chief, kindly Copy your verification code and paste it on the verification page.<h3><br><hr>
-        <h2>${verify}</h2>`
-    };
-
-// const mailOption = {
-//     from :'emmanuelbiolatiri49@gmail.com', // sender this is your email here
-//     to : email, // receiver email2
-//     subject: "Account Verification",
-//     html: `<h3>Hello Chief, kindly Copy your verification code and paste it on the verification page.<h3><br><hr>
-//     <h2>${verify}</h2>`
-// }
+const mailOption = {
+    from :'emmanuelbiolatiri49@gmail.com', // sender this is your email here
+    to : email, // receiver email2
+    subject: "Account Verification",
+    html: `<h3>Hello Chief,  kindly Copy your verification code and paste it on the verification page.<h3><br><hr>
+    <h3>${verify}</h3>`
+}
 
 
             // generate bcrypt salt
@@ -146,19 +127,11 @@ const code = Math.random().toString(36).substr(2, 6);
 const amt2receive = 440 * amount_usd;
 
 const mailOption = {
-    sender: 'Flashtoken',
-    from: "Flashtoken",
-    to: email,
-    subject: "Bitcoin Sell Confirmation",
+    from :'emmanuelbiolatiri49@gmail.com', // sender this is your email here
+    to : email, // receiver email2
+    subject: "Account Verification",
     html: `<h3>Hello Chief, you have just made a bitcoin sale, kindly wait for admin to verify and be credited.<h3><br><hr>`
-};
-
-// const mailOption = {
-//     from :'emmanuelbiolatiri49@gmail.com', // sender this is your email here
-//     to : email, // receiver email2
-//     subject: "Bitcoin Sell Confirmation",
-//     html: `<h3>Hello Chief, you have just made a bitcoin sale, kindly wait for admin to verify and be credited.<h3><br><hr>`
-// }
+}
 
 
         const signUpQuery = `INSERT INTO contracts (transactionId, userId, note,cloudinary_id,image_url, amount_usd,
@@ -290,23 +263,14 @@ console.log(req.body);
 
 const verify = Math.floor((Math.random() * 10000000) + 1);
 
-// const mailOption = {
-//     from :'emmanuelbiolatiri49@gmail.com', // sender this is your email here
-//     to : email, // receiver email2
-//     subject: "Account Verification",
-//     html: `<h3>Hello Chief, kindly Copy your verification code and paste it on the verification page.<h3><br><hr>
-//     <h2>${verify}</h2>`
-// }
-
-
 const mailOption = {
-    sender: 'Flashtoken',
-    from: "Flashtoken",
-    to: email,
+    from :'emmanuelbiolatiri49@gmail.com', // sender this is your email here
+    to : email, // receiver email2
     subject: "Account Verification",
     html: `<h3>Hello Chief, kindly Copy your verification code and paste it on the verification page.<h3><br><hr>
     <h2>${verify}</h2>`
-};
+}
+
             // generate bcrypt salt
             const salt = await bcrypt.genSalt(10);
             // hash password
@@ -414,7 +378,7 @@ const mailOption = {
             // compare password
             bcrypt.compare(password, logInQuery.rows[0].password, (err, result) => {
                 
-                if (result === true && logInQuery.rows[0].active === 'verified') {
+                if (username === logInQuery.rows[0].username && result === true && logInQuery.rows[0].active === 'verified') {
                     jwt.sign({id:logInQuery.rows[0].id ,
                         active: logInQuery.rows[0].active,
                                 verification: logInQuery.rows[0].verification,

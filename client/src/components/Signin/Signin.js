@@ -76,7 +76,7 @@ class Signin extends React.Component {
             
             window.location.href = "/dashboard"
             
-            // this.props.history.push(`/dashboard`);
+            this.props.history.push(`/dashboard`);
           }, 2000)
           this.hideLoader();
         //   // this.props.onRouteChange('home')

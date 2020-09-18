@@ -1,16 +1,17 @@
 import React from "react";
-import {Link } from "react-router-dom";
+import {Link, useHistory } from "react-router-dom";
 import Tilt from 'react-tilt'
 
 import './Navigation.css'
-
+  
 const Navigation = (props) => {
+  let history = useHistory();
 
 
   const clickLogout = () => {
     localStorage.removeItem("jwt")
     window.location.href = "/sign_in"
-    // history.push('/sign_in')
+    history.push('/sign_in')
   }
 
   let token = localStorage.jwt;

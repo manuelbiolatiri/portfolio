@@ -175,12 +175,12 @@ app.get("/retrieve-image/:cloudinary_id", (request, response) => {
 });
 
 // wronge routes
-app.use('*', (req, res) => {
-    res.status(404).json({
-        status: 'error',
-        error: 'wrong route'
-    })
-});
+// app.use('*', (req, res) => {
+//     res.status(404).json({
+//         status: 'error',
+//         error: 'wrong route'
+//     })
+// });
 
 
 app.listen(port,() => {

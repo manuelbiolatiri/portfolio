@@ -8,7 +8,7 @@ const mg = require('nodemailer-mailgun-transport');
 const auth = {
     auth: {
       api_key: 'b0f4bf18277d16fe9975fc1ec7ffc40d-7238b007-55ac26b7',
-      domain: 'sandbox25b314747b1d43249c1f7985db8b071f.mailgun.org'
+      domain: 'http://flashtoken.herokuapp.com'
     }
   }
    

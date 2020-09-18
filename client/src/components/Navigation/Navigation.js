@@ -3,7 +3,6 @@ import {Link } from "react-router-dom";
 import Tilt from 'react-tilt'
 
 import './Navigation.css'
-import Flashtokenlogo from './Flashtokenlogo.jpg'
 
 const Navigation = (props) => {
 
@@ -22,7 +21,7 @@ const Navigation = (props) => {
       <header className="bg-transparent">
 <section>
 <Link to="/" id="logo" target="_blank"><Tilt className="Tilt br2 shadow-2" options={{ max : 25 }} style={{ height: 50, width: 60 }} >
-           <div className="Tilt-inner"><img src={Flashtokenlogo.jpg} alt="website logo"/></div>
+           <div className="Tilt-inner"><img src="Flashtokenlogo.jpg" alt="website logo"/></div>
 </Tilt></Link>
 
 <label for="toggle-1" class="toggle-menu"><ul><li></li> <li></li> <li></li></ul></label>
@@ -52,7 +51,7 @@ onClick={
       <header className="bg-transparent">
 <section>
 <Link to="/" id="logo" target="_blank"><Tilt className="Tilt br2 shadow-2" options={{ max : 25 }} style={{ height: 50, width: 60 }} >
-           <div className="Tilt-inner"><img src={Flashtokenlogo.jpg} alt="website logo"/></div>
+           <div className="Tilt-inner"><img src="Flashtokenlogo.jpg" alt="website logo"/></div>
 </Tilt></Link>
 
 <label for="toggle-1" class="toggle-menu"><ul><li></li> <li></li> <li></li></ul></label>

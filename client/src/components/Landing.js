@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Converts from './Converter/Converter';
 import Body from './Body';
+import {Link} from 'react-router-dom';
 import './Landing.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFastForward, faLock, faUserCheck, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
@@ -20,12 +21,11 @@ class Landing extends Component {
       </h3>
       <h4 className="f3 fw1 georgia i mb2 white">Trusted by Nigerians since 2017.</h4>
       
-                <a
-                  href="/sign_up"
+      <Link to="/sign_up"
                   className="no-underline f6 tc db w-100 pv3 bg-animate button  ph3 pv2 input-reset ba b--white mt4 bg-white grow pointer f6 dib black-80 br2"
                 >
                   Sign up for free
-                </a>
+      </Link>
             
     </div>
     {/* <div className="mw9 w-50"> */}
@@ -124,12 +124,11 @@ class Landing extends Component {
                 </div>
               </div>
               <div className="pa3 pa4-ns dtc-ns v-mid">
-                <a
-                  href="/sign_in"
+              <Link to="/sign_in"
                   className="no-underline f6 tc db w-100 pv3 bg-animate bg-black-80 grow pointer hover-bg-black-70 white br2"
                 >
                   Login to get referral link
-                </a>
+                </Link>
               </div>
             </div>
           </article>

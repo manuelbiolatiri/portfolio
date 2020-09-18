@@ -383,20 +383,20 @@ const mailOption = {
                                 bankname: logInQuery.rows[0].bankname,
                                 banknumber: logInQuery.rows[0].banknumber,
                         username }, process.env.SECRET_KEY, { expiresIn: '24h' }, (err, token) => {
-                        // res.status(201).json({
-                        //     status: 'success',
-                        //     message: 'User successfully logged in',
-                        //     data: {
-                        //         token,
-                        //         id: logInQuery.rows[0].id,
-                        //         active: logInQuery.rows[0].active,
-                        //         verification: logInQuery.rows[0].verification,
-                        //         phone: logInQuery.rows[0].phone,
-                        //         bank: logInQuery.rows[0].bank,
-                        //         bankname: logInQuery.rows[0].bankname,
-                        //         banknumber: logInQuery.rows[0].banknumber,
-                        //     }
-                        // })
+                        res.status(201).json({
+                            status: 'success',
+                            message: 'User successfully logged in',
+                            data: {
+                                token,
+                                id: logInQuery.rows[0].id,
+                                active: logInQuery.rows[0].active,
+                                verification: logInQuery.rows[0].verification,
+                                phone: logInQuery.rows[0].phone,
+                                bank: logInQuery.rows[0].bank,
+                                bankname: logInQuery.rows[0].bankname,
+                                banknumber: logInQuery.rows[0].banknumber,
+                            }
+                        })
                     })
                 }
                 // incorrect email and password

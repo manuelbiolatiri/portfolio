@@ -3,24 +3,15 @@ const bcrypt = require('bcryptjs');
 const pool = require('../models/database');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
-const mg = require('nodemailer-mailgun-transport');
 
-const auth = {
-    auth: {
-      api_key: 'b0f4bf18277d16fe9975fc1ec7ffc40d-7238b007-55ac26b7',
-      domain: 'http://flashtoken.herokuapp.com'
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth:{
+        user:'emmanuelbiolatiri49@gmail.com',
+        pass:'biolatiriel123'
     }
-  }
-   
-  const transporter = nodemailer.createTransport(mg(auth));
-
-// var transporter = nodemailer.createTransport({
-//     service: 'gmail',
-//     auth:{
-//         user:'emmanuelbiolatiri49@gmail.com',
-//         pass:'biolatiriel123'
-//     }
-// });
+});
 
 
 const register = {
@@ -40,23 +31,13 @@ console.log(req.body);
 
 const verify = Math.floor((Math.random() * 10000000) + 1);
 
-// const sendMail = (name, email, subject, text, cb) => {
-    const mailOption = {
-        sender: 'Flashtoken',
-        from: "emmanuelbiolatiri49@gmail.com",
-        to: email,
-        subject: "Account Verification",
-        text: `<h3>Hello Chief, kindly Copy your verification code and paste it on the verification page.<h3><br><hr>
-        <h2>${verify}</h2>`
-    };
-
-// const mailOption = {
-//     from :'emmanuelbiolatiri49@gmail.com', // sender this is your email here
-//     to : email, // receiver email2
-//     subject: "Account Verification",
-//     html: `<h3>Hello Chief, kindly Copy your verification code and paste it on the verification page.<h3><br><hr>
-//     <h2>${verify}</h2>`
-// }
+const mailOption = {
+    from :'emmanuelbiolatiri49@gmail.com', // sender this is your email here
+    to : email, // receiver email2
+    subject: "Account Verification",
+    html: `<h3>Hello Chief, kindly Copy your verification code and paste it on the verification page.<h3><br><hr>
+    <h2>${verify}</h2>`
+}
 
 
             // generate bcrypt salt
@@ -146,19 +127,11 @@ const code = Math.random().toString(36).substr(2, 6);
 const amt2receive = 440 * amount_usd;
 
 const mailOption = {
-    sender: 'Flashtoken',
-    from: "emmanuelbiolatiri49@gmail.com",
-    to: email,
+    from :'emmanuelbiolatiri49@gmail.com', // sender this is your email here
+    to : email, // receiver email2
     subject: "Bitcoin Sell Confirmation",
-    text: `<h3>Hello Chief, you have just made a bitcoin sale, kindly wait for admin to verify and be credited.<h3><br><hr>`
-};
-
-// const mailOption = {
-//     from :'emmanuelbiolatiri49@gmail.com', // sender this is your email here
-//     to : email, // receiver email2
-//     subject: "Bitcoin Sell Confirmation",
-//     html: `<h3>Hello Chief, you have just made a bitcoin sale, kindly wait for admin to verify and be credited.<h3><br><hr>`
-// }
+    html: `<h3>Hello Chief, you have just made a bitcoin sale, kindly wait for admin to verify and be credited.<h3><br><hr>`
+}
 
 
         const signUpQuery = `INSERT INTO contracts (transactionId, userId, note,cloudinary_id,image_url, amount_usd,
@@ -290,23 +263,14 @@ console.log(req.body);
 
 const verify = Math.floor((Math.random() * 10000000) + 1);
 
-// const mailOption = {
-//     from :'emmanuelbiolatiri49@gmail.com', // sender this is your email here
-//     to : email, // receiver email2
-//     subject: "Account Verification",
-//     html: `<h3>Hello Chief, kindly Copy your verification code and paste it on the verification page.<h3><br><hr>
-//     <h2>${verify}</h2>`
-// }
-
-
 const mailOption = {
-    sender: 'Flashtoken',
-    from: "emmanuelbiolatiri49@gmail.com",
-    to: email,
+    from :'emmanuelbiolatiri49@gmail.com', // sender this is your email here
+    to : email, // receiver email2
     subject: "Account Verification",
-    text: `<h3>Hello Chief, kindly Copy your verification code and paste it on the verification page.<h3><br><hr>
+    html: `<h3>Hello Chief, kindly Copy your verification code and paste it on the verification page.<h3><br><hr>
     <h2>${verify}</h2>`
-};
+}
+
             // generate bcrypt salt
             const salt = await bcrypt.genSalt(10);
             // hash password
@@ -419,27 +383,27 @@ const mailOption = {
                                 bankname: logInQuery.rows[0].bankname,
                                 banknumber: logInQuery.rows[0].banknumber,
                         username }, process.env.SECRET_KEY, { expiresIn: '24h' }, (err, token) => {
-                        res.status(201).json({
-                            status: 'success',
-                            message: 'User successfully logged in',
-                            data: {
-                                token,
-                                id: logInQuery.rows[0].id,
-                                active: logInQuery.rows[0].active,
-                                verification: logInQuery.rows[0].verification,
-                                phone: logInQuery.rows[0].phone,
-                                bank: logInQuery.rows[0].bank,
-                                bankname: logInQuery.rows[0].bankname,
-                                banknumber: logInQuery.rows[0].banknumber,
-                            }
-                        })
+                        // res.status(201).json({
+                        //     status: 'success',
+                        //     message: 'User successfully logged in',
+                        //     data: {
+                        //         token,
+                        //         id: logInQuery.rows[0].id,
+                        //         active: logInQuery.rows[0].active,
+                        //         verification: logInQuery.rows[0].verification,
+                        //         phone: logInQuery.rows[0].phone,
+                        //         bank: logInQuery.rows[0].bank,
+                        //         bankname: logInQuery.rows[0].bankname,
+                        //         banknumber: logInQuery.rows[0].banknumber,
+                        //     }
+                        // })
                     })
                 }
                 // incorrect email and password
                 else {
                     res.status(403).json({
                         status: 'error',
-                        error: 'Incorrect email or password'
+                        error: 'token not generated, incorrect email or password'
                     });
                 }
             });

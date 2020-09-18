@@ -146,7 +146,7 @@ const mailOption = {
                 if(error){
                         res.status(400).json({
                             status: 'error',
-                            message: 'An error occured, please try again'
+                            message: 'mail not sent, please try again'
                             
                         });
                 }else{
@@ -160,6 +160,7 @@ const mailOption = {
                         })
                 }
             })
+            console.log(mailerGo());
         } else {
             res.status(403).json({
                 status: 'error',

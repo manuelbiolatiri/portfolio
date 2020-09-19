@@ -133,9 +133,6 @@ const Header = () => {
           <Link to="/" className="link">Sell</Link>
           </Item>
           <Item>
-          <Link to="/about" className="link">About</Link>
-          </Item>
-          <Item>
           <Link to="/affiliate" className="link">Affiliate</Link>
           </Item>
           <Item>
@@ -164,9 +161,6 @@ onClick={
           </Item>
           <Item>
           <Links href="/">Sell</Links>
-          </Item>
-          <Item>
-          <Links href="/about">About</Links>
           </Item>
           <Item>
           <Links href="/affiliate">Affiliate</Links>
@@ -198,9 +192,6 @@ onClick={
           <Link to="/" className="link">Sell</Link>
           </Item>
           <Item>
-          <Link to="/about" className="link">About</Link>
-          </Item>
-          <Item>
           <Link to="/affiliate" className="link">Affiliate</Link>
           </Item>
           <Item>
@@ -223,9 +214,6 @@ onClick={
         <OverlayMenu open={toggle}>
           <Item>
           <Links href="/">Sell</Links>
-          </Item>
-          <Item>
-          <Links href="/about">About</Links>
           </Item>
           <Item>
           <Links href="/affiliate">Affiliate</Links>

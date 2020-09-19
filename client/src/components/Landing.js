@@ -44,14 +44,14 @@ class Landing extends Component {
 <h1 className="white center">Giftcards Rates</h1>
 </div> */}
 <div className="" style={{textAlign:'center',width:'100%'}}>
-    <h2 className="white">Chat With Us For A Flash Giftcards Transaction</h2>
+    <h2 className="white padtext">For A Flash Giftcards Transaction, CLick On The Chat Icon Below And Ask For Rates</h2>
   </div>
 <div class="center pv5 bg-white">
   <main class="gridd" >
     <article>
-      <img src="https://igiftcards.fr/resources/images/products/340w/amazon-340w.png" className="w-100" alt=""/>
+      <img src="https://cdn.mos.cms.futurecdn.net/Z22MqvKZRhqLHd3QwHVVkT-320-80.jpg" className="w-100 coin" alt="" />
       <div class="text">
-  <p >Itunes | 200/$</p>
+  <p >Bitcoin | 450/$</p>
       </div>
     </article>
     <article>
@@ -61,16 +61,16 @@ class Landing extends Component {
       </div>
     </article>
     <article>
-      <img src="https://igiftcards.fr/resources/images/products/340w/amazon-340w.png" className="w-100" alt=""/>
+      <img src="https://cdn.mos.cms.futurecdn.net/Z22MqvKZRhqLHd3QwHVVkT-320-80.jpg" className="w-100 coin" alt=""/>
       <div class="text">
-  <p>Steam | 250$</p>
+  <p>Bitcoin | 450$</p>
       </div>
     </article>
     <article>
     
       <img src="https://igiftcards.fr/resources/images/products/340w/amazon-340w.png" alt=""/>
       <div class="text">
-<p>Ebay | 240/$</p>
+<p>Steam | 240/$</p>
       </div>
     </article>
   </main>
@@ -78,7 +78,14 @@ class Landing extends Component {
 <div class="  center">
   <main class="grid">
     <article style={{margin:"12px 0"}}>
-    <FontAwesomeIcon icon={faFastForward} style={{color:'white',width:'3rem',height:'3rem'}} />
+    <FontAwesomeIcon icon={faUserCheck} style={{color:'white',width:'3rem',height:'3rem'}}/>
+      <div class="white f6" style={{margin:"12px 0"}}>
+      <h2 className="mb2">Verification In A Flash</h2>
+  <p>Complete your account set up, update your profile with bank info and start selling in minutes</p>
+      </div>
+    </article>
+    <article style={{margin:"12px 0"}}>
+      <FontAwesomeIcon icon={faFastForward} style={{color:'white',width:'3rem',height:'3rem'}} />
       <div class="white f6" style={{margin:"12px 0"}}>
       <h2 className="mb2 ">Instant Delivery</h2>
   <p >You are guaranteed to get your payment sent to your account within minutes.</p>
@@ -93,13 +100,6 @@ class Landing extends Component {
       </div>
     </article>
     <article style={{margin:"12px 0"}}>
-    <FontAwesomeIcon icon={faUserCheck} style={{color:'white',width:'3rem',height:'3rem'}}/>
-      <div class="white f6" style={{margin:"12px 0"}}>
-      <h2 className="mb2">Verification In A Flash</h2>
-  <p>Complete your account set up and start selling in minutes</p>
-      </div>
-    </article>
-    <article style={{margin:"12px 0"}}>
     <FontAwesomeIcon icon={faQuestionCircle} style={{color:'white',width:'3rem',height:'3rem'}}/>
       <div class="white f6" style={{margin:"12px 0"}}>
       <h2 className="mb2 ">Responsive Support</h2>
@@ -108,8 +108,7 @@ class Landing extends Component {
     </article>
   </main>
 </div>
-        <section className="ph3 ph5-ns pv5"
-        data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600">
+        <section className="ph3 ph5-ns " style={{paddingBottom:'4rem'}}>
           <article className="mw8 center br2 ba b--light-blue bg-white">
             <div className="dt-ns dt--fixed-ns w-100">
               <div className="pa3 pa4-ns dtc-ns v-mid">

@@ -100,7 +100,10 @@ class Converts extends React.Component {
     const {  amount, result } = this.state;
     let token = localStorage.jwt;
     return (
-      <div className=" text-center m-auto">
+      <div className=" text-center m-auto" style={{paddingBottom: '2rem'}}>
+        <div className="" style={{textAlign:'center',width:'100%'}}>
+    <h2 className="padtext">Simple Bitcoin Converter</h2>
+  </div>
 {this.state.errorMessage ? <ToastContainer position= "top-right"
 
 hideProgressBar= {false}

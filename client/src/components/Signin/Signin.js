@@ -74,8 +74,6 @@ class Signin extends React.Component {
           
           setTimeout(() => {
             
-            window.location.href = "/dashboard"
-            
             this.props.history.push(`/dashboard`);
           }, 2000)
           this.hideLoader();

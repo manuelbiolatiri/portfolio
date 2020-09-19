@@ -25,11 +25,12 @@ useEffect( ()=>{
   
 
     //  getRefs
-   
+   try {
        fetch(`https://flashtoken.herokuapp.com/api/v1/getrefs/${result.username}`)
       .then(response => response.json())
       .then(res => {
-        if (res.data.rows[0].count === undefined){
+        console.log(res.data)
+        if (res.error){
           setReferrals(0)
         } else {
           setReferrals(res.data.rows[0].count)
@@ -40,8 +41,12 @@ useEffect( ()=>{
 
       .catch(res => {
         console.log(res)
+        
     
     })
+  } catch (e) {
+    console.log(e)
+}
 }, [username, referrals])
 
     return (
@@ -55,7 +60,7 @@ useEffect( ()=>{
     <FontAwesomeIcon icon={faDollarSign} style={{color:'white',width:'3rem',height:'3rem'}} />
       <div class="white f6" style={{margin:"12px 0"}}>
       <h2 className="mb2 ">Balance</h2>
-  <h4 >5.5000</h4>
+  <h4 >5.500</h4>
       </div>
     </article>
     <article style={{margin:"12px 0"}}>

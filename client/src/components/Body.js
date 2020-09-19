@@ -138,7 +138,7 @@ class Body extends React.Component{
 
     render(){
         return (
-        <div className="row mt-5 mt-xs-4 pv5">
+        <div className="row mt-5 mt-xs-4 " style={{paddingTop:'4rem', paddingBottom:'2rem'}}>
             <div className="col-12 mb-3">
                  <div className="card-deck custom-card-deck">
                     <PriceCard header="Bitcoin(BTC)" src={'/bitcoin.png'} alt="fireSpot" label="(Price in USD)"   value={this.state.btcusd} />

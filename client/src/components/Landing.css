@@ -36,6 +36,12 @@
   padding: 30px;
 }
 
+@media (max-width: 600px) {
+  .padtext {
+    padding: 0px 10px
+  }
+}
+
 .gd {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -81,7 +87,7 @@
 }
 
 @media (max-width: 600px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
+  .grid { grid-template-columns: repeat(2, 1fr);width: auto; }
 }
 
 .gridd {
@@ -108,12 +114,13 @@
 
 .fsm {font-size:4rem}
 
-
+.coin {height: 9.6rem}
 @media (max-width: 769px) {
-  .gridd { grid-template-columns: repeat(2, 1fr); }
+  .gridd { grid-template-columns: repeat(2, 1fr); width: auto; }
   .respo {width:100% !important}
   .fs{font-size:2rem}
   .img {display: none;}
+  .coin {height:7.3rem}
 }
 
 .marque{

@@ -29,4 +29,7 @@ span.right {
  .res {
   max-width: 100%;
  }
+ .padtext {
+  padding: 0px 10px
+}
 }

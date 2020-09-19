@@ -469,7 +469,7 @@ const mailOption = {
             FROM referrals WHERE id=$1`;
             const value = [username];
             const refQuery = await pool.query(refs, value,(err, data) => {
-                if (!refQuery.rows[0]) {
+                if (!refQuery) {
                     return res.status(400).json({
                         status: 'error',
                         error: 'no referrals found'

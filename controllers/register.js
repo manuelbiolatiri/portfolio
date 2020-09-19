@@ -368,12 +368,7 @@ const mailOption = {
                     status: 'error',
                     error: 'username does not exist, please sign up'
                 });
-            } else if (!logInQuery.rows[0].password !== password) {
-                return res.status(400).json({
-                    status: 'error',
-                    error: 'incorrect password'
-                });
-            };
+            }
 
             // compare password
             bcrypt.compare(password, logInQuery.rows[0].password, (err, result) => {

@@ -108,7 +108,8 @@
 
 .fsm {font-size:4rem}
 
-@media (max-width: 600px) {
+
+@media (max-width: 769px) {
   .gridd { grid-template-columns: repeat(2, 1fr); }
   .respo {width:100% !important}
   .fs{font-size:2rem}

@@ -56,7 +56,7 @@ class Footer extends Component {
           <div className="dn dtc-ns v-mid">
             <p className="f7 black-70 dib pr3 mb3">Copyright © FlashX 2020</p>
           </div>
-          <div className="db dtc-ns black-70 tc tr-ns v-mid">
+          <div className="db dtc-ns black-70 tc  v-mid">
             <a
               href="https://www.facebook.com/"
               className="link dim dib mr3 black-70"
@@ -87,40 +87,7 @@ class Footer extends Component {
               </svg>
             </a>
             <a
-              href="https://medium.com/"
-              className="link dim dib mr3 black-70"
-              title="Impossible Labs on Medium"
-            >
-              <svg
-                className="db w2 h2"
-                x="0px"
-                y="0px"
-                viewBox="0 0 290 248.6"
-                fill="currentColor"
-              >
-                <g>
-                  <path
-                    fill="currentColor"
-                    className="st0"
-                    d="M287.8,46.3L196,0.3c-0.4-0.2-0.9-0.3-1.3-0.3c0,0-0.1,0-0.1,0c-1.1,0-2.2,0.6-2.8,1.5l-56.6,92l63.2,102.7 l90.4-146.9C289.4,48.3,289,46.8,287.8,46.3z"
-                  ></path>
-                  <polygon
-                    fill="currentColor"
-                    points="105.2,61.2 105.2,160.3 193.3,204.4 	"
-                  ></polygon>
-                  <path
-                    fill="currentColor"
-                    d="M201,208.2l80.9,40.5c4.4,2.2,8,0,8-5v-180L201,208.2z"
-                  ></path>
-                  <path
-                    fill="currentColor"
-                    d="M95.5,46.7L10.7,4.3L5.4,1.7C4.6,1.3,3.8,1.1,3.2,1.1c-0.9,0-1.7,0.4-2.3,1.1C0.3,2.8,0,3.8,0,5v193.4 c0,3.3,2.4,7.2,5.4,8.7l83.3,41.6c1.2,0.6,2.3,0.9,3.3,0.9c2.8,0,4.8-2.2,4.8-5.8V48.7C96.7,47.8,96.2,47.1,95.5,46.7z"
-                  ></path>
-                </g>
-              </svg>
-            </a>
-            <a
-              href="https://www.linkedin.com/company/"
+              href="https://www.linkedin.com"
               className="link dim dib black-70"
             >
               <svg className="db w2 h2" x="0px" y="0px" viewBox="0 0 48 48">

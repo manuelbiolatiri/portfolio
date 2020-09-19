@@ -183,27 +183,28 @@ class Affiliate extends React.Component {
 
   render() {
     return (
-        <div>
+      <div className="container center">
+      <div class="griddd">
+      <divs className="container">
 <article class="athelas">
-  <div class="vh-40 dt w-100 tc bg-white white">
+  <div class="vh-30 dt w-100 tc bg-transparent white" style={{marginTop:'-30px'}}>
     <div class="dtc v-mid">
       <blockquote class="ph0 mh0 measure f4 lh-copy center">
       <h1 class="f1 lh-title">Flashtoken's Affiliate Program</h1><br></br>
       </blockquote>
     </div>
   </div>
-  <div class="center measure-wide f5 pv5 lh-copy ph2 white">
+  <div class="center measure-wide f5 lh-copy ph2 white" style={{marginTop:'-20px'}}>
     <p>
     Flashtoken offers an easy, fast & secure way to sell cryptocurrency.
 Join our affiliate program and get paid in bitcoin!
 With Flashtoken's affiliate program, you will promote Flashtoken and generate commissions with us!.
 
-Earn 15% of Flashtoken's commission on ALL of your referral's purchases including all their future purchases
-Our affiliate program has NO LIMITATIONS! The more customers you refer, the more bitcoin you earn
-Earnings are paid monthly
-Payouts will be paid only after 3 successful orders made by at least 3 different users
+Earn 15% of Flashtoken's commission on ALL of your referral's transaction including all their future transactions
+Our affiliate program has NO LIMITATIONS! The more customers you refer, the more bitcoin you earn.
+Earnings are paid monthly.
 The process is fast and easy:
-Register
+Register and
 Send customers to our website with your customized referral link: (can be found in your dashboard)
 Earn a commission for every successful transaction your referrals make
 
@@ -211,12 +212,12 @@ Earn a commission for every successful transaction your referrals make
 </p>
   </div>
   <div>
-  <p style={{marginTop:"-35px", color:"white"}}>Register now and start earning with us!
-Fill Out the Form Below</p>
+  <p style={{marginTop:"-35px", color:"white"}}>Register now and start earning with us!</p>
   </div>
 </article>
-<div className='container'>
-      <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 bg-white shadow-5 center">
+</divs>
+<divs className='container'>
+<article className="br3 ba b--black-10 mv4 w-100  bg-white shadow-5 center">
         <main className="pa4 black-80">
           <div className="measure">
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
@@ -276,9 +277,9 @@ progress= {undefined}/> : ''}
           </div>
         </main>
       </article>
+      </divs>
       </div>
       </div>
-
 );
   }
 }

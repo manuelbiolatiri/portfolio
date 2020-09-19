@@ -5,7 +5,7 @@ import Register from './components/Register/Register';
 import Verify from './components/Verify/Verify';
 import Referrals from './components/Referrals/Referrals';
 import UploadForm from './components/UploadForm/UploadForm';
-import Navigation from './components/Navigation/Navigation';
+// import Navigation from './components/Navigation/Navigation';
 import '../src/style.css';
 import './App.css';
 import {
@@ -24,13 +24,16 @@ import Footer from './components/Footer';
 import Affiliate from './components/Affiliate';
 import ErrorPage from './components/ErrorPage';
 
+import Header from "./Header";
+import "./styles.css";
+
 const particlesOptions = {
   particles: {
     number: {
       value: 100,
       density: {
         enable: true,
-        value_area: 1500
+        value_area: 1200
       }
     }
   }
@@ -39,22 +42,17 @@ const particlesOptions = {
 class App extends Component {
   
   state = {
-    isLoggedIn : false
+    navbarOpen: false
   }
 
-  clickLogin = () => {
-    this.setState({isLoggedIn:true});
+  handleNavbar = () => {
+    this.setState({ navbarOpen: !this.state.navbarOpen });
   }
-
-  clickLogout = () => {
-    this.setState({isLoggedIn:false});
-  }
-
   render() {
     return (
       <Router>
         <div className="App">
-          <Navigation clickData={this.clickLogout}/>
+        <Header />
           <Particles className="particles" params={particlesOptions} />
 
           <Switch>

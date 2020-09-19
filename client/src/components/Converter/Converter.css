@@ -21,8 +21,12 @@ span.right {
   width: auto!important
 } */
 
-@media (max-width: 600px) {
+@media (max-width: 769px) {
  .lhyt {
-  line-height: 2.15
+  line-height: 2.15;
+   
  } 
+ .res {
+  max-width: 100%;
+ }
 }

@@ -154,12 +154,12 @@ progress= {undefined}/> : ''}
         {token ?
           <Link to="/confirmsell">
           <button type="button"  style={{lineHeight: 1.15}} className=" button b ph3 pv2 input-reset ba white mt2 mb3 bg-black-80 grow pointer f5 dib ">
-            Sell
+          SELL
           </button>
         </Link>
         : 
-        <button onClick={this.showError} type="button" style={{lineHeight: 1.15}} className=" button b ph3 pv2 input-reset ba white mt2 mb3 bg-black-80 grow pointer f5 dib ">
-          Sell
+        <button onClick={this.showError} type="button" style={{lineHeight: 1.15,marginTop: '2rem',marginBottom: '2rem'}} className="no-underline f6 tc db mw6 w5-ns pv3  ph3 pv2 input-reset ba b--white mt4 bg-black-80 grow pointer f6 dib white br2">
+          SELL
         </button>
         }
         

@@ -1,0 +1,16 @@
+/* * {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.App {
+  font-family: sans-serif;
+} */
+.link {
+  text-decoration: none;
+  color:#060c14;
+}
+.link:hover {
+  text-decoration: underline;
+}

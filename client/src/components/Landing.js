@@ -43,11 +43,10 @@ class Landing extends Component {
 {/* <div className="bg-dark-pink h2">
 <h1 className="white center">Giftcards Rates</h1>
 </div> */}
-<div className=" bg-white" style={{textAlign:'center',width:'100%'}}>
-    <h2 className="black-70">Chat With Us For A Flash Giftcards Transaction</h2>
+<div className="" style={{textAlign:'center',width:'100%'}}>
+    <h2 className="white">Chat With Us For A Flash Giftcards Transaction</h2>
   </div>
 <div class="center pv5 bg-white">
-  
   <main class="gridd" >
     <article>
       <img src="https://igiftcards.fr/resources/images/products/340w/amazon-340w.png" className="w-100" alt=""/>

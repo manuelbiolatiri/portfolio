@@ -29,9 +29,11 @@ useEffect( ()=>{
        fetch(`https://flashtoken.herokuapp.com/api/v1/getrefs/${result.username}`)
       .then(response => response.json())
       .then(res => {
-         setReferrals(res.data.rows[0].count)
-          // this.setState({referrals: });
-         
+        if (res.data.rows[0].count === undefined){
+          setReferrals(0)
+        } else {
+          setReferrals(res.data.rows[0].count)
+        }
       
       })
       
@@ -59,13 +61,9 @@ useEffect( ()=>{
     <article style={{margin:"12px 0"}}>
     <FontAwesomeIcon icon={faRetweet} style={{color:'white',width:'3rem',height:'3rem'}} />
       <div class="white f6" style={{margin:"12px 0"}}>
-      <h2 className="mb2">Referrals</h2>amount === ''
-                    ? '0'
-                    : result === null
-                    ? 'Calculating...'
-                    : result
-  <h4>{ referrals === null ?'0' : referrals === null ?<ClipLoader css={override} color={"white"} size={30}
-        /> : referrals}</h4>
+      <h2 className="mb2">Referrals</h2>
+  <h4>{ referrals ? referrals: <ClipLoader css={override} color={"white"} size={30}
+        />}</h4>
       </div>
     </article>
     <article style={{margin:"12px 0"}}>

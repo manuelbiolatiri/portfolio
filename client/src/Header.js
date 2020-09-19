@@ -145,10 +145,10 @@ const Header = () => {
           <Link to="#footer" className="link">Contact</Link>
           </Item>
           <Item>
-          <Link ><button className="b ph3 pv2 input-reset ba b--white white bg-transparent grow pointer f6 dib"
+          <button className="b ph3 pv2 input-reset ba b--black black bg-transparent grow pointer f6 dib"
 onClick={
   clickLogout
-}>Sign out</button></Link>
+}>Sign out</button>
           </Item>
         </Menu>
         <NavIcon onClick={() => toggleNav(!toggle)}>
@@ -178,7 +178,7 @@ onClick={
           <Links href="#footer">Contact</Links>
           </Item>
           <Item>
-          <button className="b ph3 pv2 input-reset ba b--white white bg-transparent grow pointer f6 dib"
+          <button className="b ph3 pv2 input-reset ba b--black black bg-transparent grow pointer f6 dib"
 onClick={
   clickLogout
 }>Sign out</button>

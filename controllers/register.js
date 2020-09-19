@@ -484,8 +484,12 @@ const mailOption = {
             }
             });
             
-        } catch (e) {
-            console.log(e)
+        } catch (err) {
+            res.status(400).json({
+                status: 'error',
+                message: 'new error',
+                data: err
+            })
         };
     },
 

@@ -30,7 +30,9 @@ useEffect( ()=>{
       .then(response => response.json())
       .then(res => {
         console.log(res.data)
+        console.log(res)
         if (res.error){
+          console.log('00000000')
           setReferrals(0)
         } else {
           setReferrals(res.data.rows[0].count)

@@ -25,16 +25,20 @@ useEffect( ()=>{
   
 
     //  getRefs
-   try {
+   
        fetch(`https://flashtoken.herokuapp.com/api/v1/getrefs/${result.username}`)
+       console.log(referrals)
       .then(response => response.json())
       .then(res => {
-        console.log(res.data)
         console.log(res)
         if (res.error){
-          console.log('00000000')
+          console.log('1')
+          console.log(setReferrals(0))
           setReferrals(0)
-        } else {
+        } else if (res.status === "error") {
+          console.log('2')
+          setReferrals(0)
+        }else {
           setReferrals(res.data.rows[0].count)
         }
       
@@ -46,9 +50,6 @@ useEffect( ()=>{
         
     
     })
-  } catch (e) {
-    console.log(e)
-}
 }, [username, referrals])
 
     return (

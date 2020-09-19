@@ -160,7 +160,7 @@ progress= {undefined}/> : ''}
           <main className="pa4 black-80">
                 <div className="measure">
                     <legend className="f1 fw6 ph0 mh0 center">Sell Details</legend>
-            <h2 className="mv2">Send Coin to Any of These Wallet Addresses</h2>
+            <h2 className="mv2">Send Bitcoin to Any of These Wallet Addresses</h2>
 
             <p>3BtYdafMkpGVieQtf9ZHuE4MdVqpM2jzFT</p>
             <p>3NGdrGh7c12NUfVmsyjZ9qo47LQAiWF7Y6</p>

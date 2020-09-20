@@ -27,7 +27,7 @@ useEffect( ()=>{
     //  getRefs
    
        fetch(`https://flashtoken.herokuapp.com/api/v1/getrefs/${result.username}`)
-       console.log(referrals)
+       
       .then(response => response.json())
       .then(res => {
         console.log(res)
